@@ -1,0 +1,1101 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kiwi Brand Guidelines</title>
+<link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+/* Layout: a cover plus two views (Brand, Templates) behind a dark top bar. Quiet sticky index on the left, compact chapters on the right. Square corners throughout; separation from tints of Kiwi black. */
+:root{
+  --bg:#FFFFFF; --surface:#F3F3F4; --surface-2:#E8E8E8; --ink:#16181B; --ink-2:#454649; --muted:#737476; --rule:#E8E8E8; --line:#D0D1D1;
+  --btn-bg:#16181B; --btn-fg:#FFFFFF; --input:#FFFFFF;
+  --display:'Familjen Grotesk', Arial, Helvetica, sans-serif;
+  --body:'Inter', Arial, Helvetica, sans-serif;
+  --mono:ui-monospace, Menlo, Consolas, monospace;
+  --gutter:max(16px, 3.5vw);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0F1012; --surface:#1A1C1F; --surface-2:#2D2F32; --ink:#F3F3F4; --ink-2:#D0D1D1; --muted:#A2A3A4; --rule:#2D2F32; --line:#454649;
+  --btn-bg:#F3F3F4; --btn-fg:#16181B; --input:#0F1012; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0F1012; --surface:#1A1C1F; --surface-2:#2D2F32; --ink:#F3F3F4; --ink-2:#D0D1D1; --muted:#A2A3A4; --rule:#2D2F32; --line:#454649;
+  --btn-bg:#F3F3F4; --btn-fg:#16181B; --input:#0F1012; color-scheme:dark}
+
+*{box-sizing:border-box;border-radius:0}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-weight:300;font-size:15px;line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-underline-offset:3px}
+b,strong{font-weight:500}
+h1,h2,h3,h4{font-family:var(--display);font-weight:600;margin:0;text-wrap:balance;letter-spacing:-.005em}
+p{margin:0}
+ul,ol{margin:0;padding:0;list-style:none}
+.wrap{max-width:1240px;margin:0 auto;padding-inline:var(--gutter)}
+.eyebrow{font-family:var(--body);font-size:11px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sub{font-family:var(--display);font-weight:400;font-size:17px;line-height:1.45;color:var(--ink-2);max-width:62ch}
+.small{font-size:13px;color:var(--muted)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:2px}
+
+/* Hero band */
+.hero{background:#16181B;color:#FFFFFF;padding-block:16px;padding-top:calc(16px + env(safe-area-inset-top,0px))}
+.hero .wrap{display:flex;align-items:center;gap:8px 20px;flex-wrap:wrap}
+.hero-logo img{display:block;width:84px;height:auto}
+.hero-logo{padding-right:20px;border-right:1px solid #454649}
+.hero h1{font-size:20px;line-height:1.2;letter-spacing:-.005em;color:#FFFFFF}
+.hero-sub{font-size:14px;color:#A2A3A4}
+.hero .ver{margin-left:auto;font-size:12px;color:#737476}
+@media (max-width:700px){.hero .ver,.hero-sub{display:none}}
+
+/* Layout */
+.layout{display:grid;grid-template-columns:184px minmax(0,1fr);gap:56px;align-items:start;padding-block:8px 96px}
+.side{position:sticky;top:0;padding-top:40px;display:grid;gap:20px;max-height:100vh;overflow-y:auto;padding-bottom:24px}
+.side .grp{display:grid;gap:4px}
+.side ol{display:grid}
+.side a{display:block;text-decoration:none;font-size:14px;color:var(--ink-2);padding:5px 10px;border-left:2px solid transparent}
+.side a:hover{background:var(--surface)}
+.side a[aria-current="true"]{border-left-color:var(--ink);color:var(--ink);font-weight:400;background:var(--surface)}
+.side .eyebrow{padding-left:12px}
+.switch{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin-bottom:4px}
+.side .switch a{border-left:0;text-align:center;padding:8px 6px;background:var(--surface);color:var(--ink-2);font-weight:400}
+.side .switch a:hover{background:var(--surface-2)}
+.side .switch a[aria-current="page"]{background:var(--btn-bg);color:var(--btn-fg);font-weight:500}
+main{min-width:0}
+@media (max-width:900px){
+  .layout{grid-template-columns:minmax(0,1fr);gap:0}
+  .side{position:static;max-height:none;overflow-y:visible;padding-top:16px;grid-auto-flow:column;grid-auto-columns:max-content;overflow-x:auto;gap:16px;padding-bottom:4px}
+  .side ol{grid-auto-flow:column}
+  .side a{white-space:nowrap}
+}
+
+/* Mobile bar and menu */
+.mbar{display:none}
+.mnav[hidden]{display:none!important}
+.mnav{position:fixed;left:0;right:0;bottom:0;top:0;z-index:60;background:var(--bg);color:var(--ink);overflow-y:auto;padding-bottom:calc(24px + env(safe-area-inset-bottom,0px))}
+.mnav .mbar-in{display:flex;position:sticky;top:0;z-index:1;background:var(--bg);border-bottom:1px solid var(--rule);padding:8px var(--gutter);gap:10px;align-items:center;justify-content:space-between}
+.mswitch button{font:inherit;font-size:14px;padding:7px 14px;color:var(--ink-2);background:transparent;border:0;cursor:pointer}
+.mswitch button+button{border-left:1px solid var(--line)}
+.mswitch button[aria-pressed="true"]{background:var(--btn-bg);color:var(--btn-fg);font-weight:500}
+.mswitch{display:flex;border:1px solid var(--line)}
+.menu-btn.is-close::before{content:"✕";width:auto;height:auto;border:0;background:none;font-size:12px;line-height:1}
+.mnav-body{padding:8px var(--gutter) 0;display:grid;gap:18px}
+.mnav-body .grp{display:grid;gap:0}
+.mnav-body .eyebrow{padding:14px 0 6px}
+.mnav-body ol{display:grid}
+.mnav-body a{display:block;text-decoration:none;color:var(--ink);font-family:var(--display);font-size:22px;font-weight:600;padding:9px 0;border-bottom:1px solid var(--rule)}
+.mnav-body a[aria-current="true"]{color:var(--muted)}
+
+/* Chapters and sections */
+.chapter{padding-top:72px;scroll-margin-top:24px;padding-bottom:4px;display:grid;gap:4px;border-bottom:2px solid var(--ink)}
+.chapter h2{font-size:26px;line-height:1.1;display:flex;gap:12px;align-items:baseline}
+.chapter h2 span{font-size:14px;color:var(--muted);font-weight:600}
+.sec{padding-block:64px 72px;display:grid;gap:28px;scroll-margin-top:16px}
+.sec + .sec{border-top:1px solid var(--rule)}
+.sec-head{display:grid;gap:6px}
+.sec-head h3{font-size:20px;line-height:1.2}
+.sec-head p{color:var(--ink-2);max-width:64ch}
+h4{font-size:16px;line-height:1.3}
+.block{display:grid;gap:12px}
+.chapter-gap{height:32px}
+
+/* Tiles */
+.tiles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+@media (max-width:760px){.tiles{grid-template-columns:minmax(0,1fr)}}
+.tile{background:var(--surface);padding:18px 18px 20px;display:grid;gap:6px;align-content:start}
+.tile p{color:var(--ink-2);font-size:14px}
+.tag{justify-self:start;font-size:11px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;background:var(--surface-2);color:var(--ink-2);padding:3px 8px}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.chips li{font-size:13px;background:var(--surface);padding:5px 10px;color:var(--ink-2)}
+.avoid-h::before{content:"✕";color:#E5322D;margin-right:8px;font-weight:700}
+.chips.avoid li{background:#FCEBEA;color:#8E1E1A;display:inline-flex;gap:7px;align-items:center}
+.chips.avoid li span{text-decoration:line-through;text-decoration-color:#E5322D;text-decoration-thickness:1.5px}
+.chips.avoid li::before{content:"✕";color:#E5322D;font-size:11px;font-weight:700}
+
+/* Values */
+.values{display:grid;gap:2px}
+.values li{display:grid;grid-template-columns:48px minmax(0,1fr);align-items:baseline;background:var(--surface);padding:14px 18px}
+.values .n{font-family:var(--display);font-weight:600;font-size:14px;color:var(--muted)}
+.values .v{font-family:var(--display);font-weight:600;font-size:22px;line-height:1.15}
+.values li:first-child{background:#16181B;color:#FFFFFF}
+.values li:first-child .n{color:#A2A3A4}
+
+/* Audience */
+.persona{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+.persona>div{background:var(--surface);padding:16px 18px 18px;display:grid;gap:8px;align-content:start}
+.persona ul{display:grid;gap:3px;font-size:14px;color:var(--ink-2)}
+.persona li::before{content:"– ";color:var(--muted)}
+@media (max-width:760px){.persona{grid-template-columns:minmax(0,1fr)}}
+.persona-head{background:#16181B!important;color:#FFFFFF;grid-column:1/-1}
+.persona-head p{color:#D0D1D1;font-size:14px}
+
+/* Positioning */
+.pos{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:start}
+@media (max-width:860px){.pos{grid-template-columns:minmax(0,1fr)}}
+.matrix{position:relative;aspect-ratio:1;max-width:380px;width:100%;background:var(--surface)}
+.matrix::before,.matrix::after{content:"";position:absolute;background:var(--line)}
+.matrix::before{left:50%;top:0;bottom:0;width:1px}
+.matrix::after{top:50%;left:0;right:0;height:1px}
+.ax{position:absolute;font-size:10.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);white-space:nowrap;background:var(--surface);padding:2px 6px;z-index:1}
+.ax.t{top:8px;left:50%;transform:translateX(-50%)}
+.ax.b{bottom:8px;left:50%;transform:translateX(-50%)}
+.ax.l{left:8px;top:50%;transform:translateY(-50%)}
+.ax.r{right:8px;top:50%;transform:translateY(-50%)}
+.dot{position:absolute;transform:translate(-50%,-50%);display:grid;justify-items:center;gap:4px;z-index:1}
+.dot i{display:block;width:14px;height:14px;background:#16181B}
+.dot.aim i{background:var(--surface);box-shadow:inset 0 0 0 2px var(--ink)}
+.dot span{font-size:12px;font-weight:500;white-space:nowrap}
+.arrow{position:absolute;top:calc(29% - 10px);left:calc(28% + 14px);width:calc(46% - 28px);height:1px;background:var(--ink)}
+.arrow::after{content:"";position:absolute;right:-1px;top:-4px;border:4.5px solid transparent;border-left:7px solid var(--ink);border-right:0}
+.usp{display:grid;gap:2px;counter-reset:u}
+.usp li{counter-increment:u;display:grid;grid-template-columns:36px minmax(0,1fr);background:var(--surface);padding:12px 16px;font-size:14px}
+.usp li::before{content:counter(u);font-family:var(--display);font-weight:600;color:var(--muted)}
+
+/* Tone */
+.sliders{display:grid;gap:2px}
+.slider{background:var(--surface);padding:14px 18px 16px;display:grid;gap:10px}
+.track{position:relative;height:6px;background:var(--surface-2)}
+.track i{position:absolute;top:50%;width:14px;height:14px;background:var(--ink);transform:translate(-50%,-50%)}
+.ends{display:flex;justify-content:space-between;font-size:13px;color:var(--ink-2)}
+.ends b{font-weight:500;color:var(--ink)}
+.principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+@media (max-width:760px){.principles{grid-template-columns:minmax(0,1fr)}}
+
+/* Voice */
+.core{background:#16181B;color:#FFFFFF;padding:22px 22px 24px;display:grid;gap:6px}
+.core .eyebrow{color:#A2A3A4}
+.core p{font-family:var(--display);font-weight:600;font-size:clamp(28px,4vw,40px);line-height:1.05;letter-spacing:-.02em}
+.rules{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+@media (max-width:860px){.rules{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.rules{grid-template-columns:minmax(0,1fr)}}
+.rules>div{background:var(--surface);padding:14px 16px 16px;display:grid;gap:4px;align-content:start}
+.rules b{font-weight:500;font-size:14px}
+.rules p{font-size:13.5px;color:var(--ink-2)}
+.saynot{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:2px}
+.saynot>div{padding:14px 16px;display:grid;gap:4px}
+.saynot .say{background:var(--surface)}
+.saynot .say p{font-family:var(--display);font-size:17px}
+.saynot .not{background:var(--bg);box-shadow:inset 0 0 0 1px var(--rule)}
+.saynot .not p{color:var(--muted);text-decoration:line-through;text-decoration-color:#E5322D}
+@media (max-width:560px){.saynot{grid-template-columns:minmax(0,1fr)}}
+.heads{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+@media (max-width:860px){.heads{grid-template-columns:minmax(0,1fr)}}
+.heads>div{background:var(--surface);padding:16px 18px 18px;display:grid;gap:10px;align-content:start}
+.heads ul{display:grid;gap:0}
+.heads li{font-family:var(--display);font-weight:600;font-size:20px;line-height:1.2;padding:14px 0 14px 14px;border-top:1px solid var(--line);position:relative}
+.heads li:first-child{border-top:0;padding-top:4px}
+.heads li::before{content:"";position:absolute;left:0;top:18px;bottom:18px;width:3px;background:var(--ink)}
+.heads li:first-child::before{top:8px}
+
+/* Shared controls */
+.seg{display:inline-flex;border:1px solid var(--line)}
+.seg button{font:inherit;font-size:13px;background:var(--bg);color:var(--ink-2);border:0;padding:7px 12px;cursor:pointer}
+.seg button+button{border-left:1px solid var(--line)}
+.seg button[aria-pressed="true"]{background:var(--btn-bg);color:var(--btn-fg)}
+.faces{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px}
+.face{background:var(--surface);padding:20px;display:grid;gap:12px;min-width:0}
+.face .aa{font-size:72px;line-height:.9;letter-spacing:-.03em}
+.face.display .aa{font-family:var(--display);font-weight:600}
+.face.text .aa{font-family:var(--body);font-weight:300}
+.face dl{margin:0;display:grid;grid-template-columns:84px 1fr;row-gap:4px;font-size:13px}
+.face dt{color:var(--muted)}
+.face dd{margin:0}
+
+/* Logo (simplified) */
+.logo-bar{display:flex;flex-wrap:wrap;gap:12px 16px;align-items:center}
+.check{display:inline-flex;gap:8px;align-items:center;font-size:13px;color:var(--ink-2);cursor:pointer}
+.check input{accent-color:var(--ink);width:15px;height:15px;margin:0}
+.lv-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:2px}
+@media (max-width:1100px){.lv-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.lv-grid .lv:last-child{grid-column:1/-1}}
+@media (max-width:520px){.lv-grid{grid-template-columns:minmax(0,1fr)}}
+.lv{background:var(--surface);display:grid;grid-template-rows:auto 1fr}
+.lv-art{display:grid;place-items:center;background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--rule);height:150px;padding:20px}
+.lv-art img{width:100%;max-width:150px;height:auto}
+.lv-body{padding:14px 16px 16px;display:flex;flex-direction:column;gap:6px}
+.lv-body p{font-size:13px;color:var(--ink-2)}
+.lv-dl{display:flex;gap:6px;margin-top:auto;padding-top:10px;flex-wrap:wrap}
+.lv-dl a{font-size:12px;font-weight:500;text-decoration:none;border:1px solid var(--line);background:var(--bg);padding:5px 10px}
+.lv-dl a:hover{border-color:var(--ink)}
+.lv-dl{align-items:center}
+@media (min-width:1101px){.lv-body{padding:14px 12px 16px}.lv-dl{gap:5px}.lv-dl a{padding:5px 8px}}
+.lv-note{flex-basis:100%;font-size:12px;color:var(--muted);order:-1}
+
+/* Clear space */
+.cs{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.cs{grid-template-columns:minmax(0,1fr)}}
+.cs-diagram{background:var(--surface);padding:24px;display:grid;place-items:center;overflow:hidden}
+.cs-box{--x:clamp(36px,7vw,60px);position:relative;padding:var(--x);background:repeating-linear-gradient(45deg,transparent 0 6px,rgba(115,116,118,.18) 6px 7px);outline:1px dashed var(--muted);max-width:100%}
+.cs-box img{display:block;width:calc(var(--x) * 3.5);height:var(--x);background:#FFFFFF;max-width:100%}
+.x{position:absolute;font-family:var(--display);font-weight:600;font-size:13px;color:var(--ink-2)}
+.x-t{top:calc(var(--x) / 2);left:50%;transform:translate(-50%,-50%)}
+.x-b{bottom:calc(var(--x) / 2);left:50%;transform:translate(-50%,50%)}
+.x-l{left:calc(var(--x) / 2);top:50%;transform:translate(-50%,-50%)}
+.x-r{right:calc(var(--x) / 2);top:50%;transform:translate(50%,-50%)}
+.x-mark{position:absolute;left:calc(var(--x) - 14px);top:var(--x);height:var(--x);width:8px;border:1px solid var(--ink);border-right:0}
+.mini{border-collapse:collapse;font-size:13px;width:100%;max-width:420px}
+.mini th,.mini td{text-align:left;padding:7px 10px 7px 0;border-bottom:1px solid var(--rule)}
+.mini th{font-weight:500;color:var(--muted);font-size:12px}
+
+/* Don'ts */
+.dont-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px}
+@media (max-width:900px){.dont-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.dn{margin:0;background:var(--surface);display:grid}
+.dn-art{position:relative;height:140px;display:grid;place-items:center;background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--rule);overflow:hidden;padding:16px}
+.dn-art img{width:62%;max-width:170px;height:auto}
+.dn-art::after{content:"";position:absolute;top:10px;right:10px;width:18px;height:18px;background:
+  linear-gradient(45deg,transparent 43%,#E5322D 43%,#E5322D 57%,transparent 57%),linear-gradient(-45deg,transparent 43%,#E5322D 43%,#E5322D 57%,transparent 57%)}
+.dn-busy{background:repeating-linear-gradient(120deg,#8A8C8D 0 10px,#454649 10px 18px,#B9BABB 18px 30px)!important}
+.dn-retype{display:grid;justify-items:center;gap:4px;width:62%}
+.dn-retype img{width:100%}
+.dn-retype span{font-family:Georgia,'Times New Roman',serif;font-style:italic;font-size:13px;color:#16181B}
+.dn-crowd{grid-template-columns:auto auto;gap:4px;align-content:center;justify-content:center}
+.dn-crowd span{font-family:var(--display);font-weight:600;font-size:13px;color:#16181B;max-width:70px;line-height:1.1}
+.dn-crowd img{width:110px}
+.dn figcaption{padding:10px 14px 12px;font-size:13px;color:var(--ink-2)}
+
+/* Type (simplified) */
+.styles{display:grid}
+.st{display:grid;grid-template-columns:minmax(0,1fr) 260px;gap:20px;align-items:baseline;padding-block:16px;border-top:1px solid var(--rule)}
+.st:last-child{border-bottom:1px solid var(--rule)}
+.st-spec{font-size:12px;color:var(--muted);line-height:1.5}
+@media (max-width:700px){.st{grid-template-columns:minmax(0,1fr);gap:6px}}
+.t-h1{font-family:var(--display);font-weight:600;font-size:clamp(34px,4.5vw,48px);line-height:1.1;letter-spacing:0}
+.t-h2{font-family:var(--display);font-weight:600;font-size:clamp(22px,2.6vw,28px);line-height:1.2;letter-spacing:0}
+.t-h3{font-family:var(--display);font-weight:600;font-size:22px;line-height:1.25}
+.t-h4{font-family:var(--display);font-weight:600;font-size:18px;line-height:1.3}
+.t-sub{font-family:var(--display);font-weight:400;font-size:17px;line-height:1.45}
+.t-body{font-weight:300;font-size:16px;line-height:1.6;max-width:56ch}
+.t-strong{font-weight:600}
+.t-label{font-weight:600;font-size:12px;line-height:1.4;letter-spacing:.12em;text-transform:uppercase}
+.rules-3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:700px){.rules-3{grid-template-columns:minmax(0,1fr)}}
+
+/* Colour */
+.swatches{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px}
+button.sw,button.tint{font:inherit;color:inherit;text-align:left;border:0;padding:0;cursor:pointer;background:none}
+.sw{background:var(--surface)!important;display:grid}
+.sw-chip{height:140px;display:flex;align-items:flex-end;padding:14px 16px;font-family:var(--display);font-weight:600;font-size:18px}
+.sw-chip.k{background:#16181B;color:#FFFFFF}
+.sw-chip.w{background:#FFFFFF;color:#16181B;box-shadow:inset 0 0 0 1px var(--rule)}
+.sw-meta{display:flex;flex-wrap:wrap;gap:4px 16px;padding:12px 16px 14px;font-size:13px;align-items:baseline}
+.sw-meta .val{font-family:var(--mono);font-size:13px;color:var(--ink)}
+.sw-meta .rgb{font-family:var(--mono);font-size:12px;color:var(--muted)}
+.sw-meta .copy{margin-left:auto;font-size:12px;color:var(--muted)}
+.sw:hover .copy,.sw:focus-visible .copy{color:var(--ink)}
+.tints{display:grid;grid-template-columns:repeat(12,minmax(0,1fr));gap:2px}
+.tint{display:grid;gap:4px;font-size:12px;align-content:start}
+.tint i{display:block;height:64px}
+.tint b{font-weight:500}
+.tint .val{font-family:var(--mono);font-size:10px;color:var(--muted);line-height:1.3}
+.tint:hover i{outline:2px solid var(--ink);outline-offset:-2px}
+@media (max-width:860px){.tints{grid-template-columns:repeat(6,minmax(0,1fr))}}
+
+/* Signature tool */
+.tool{display:grid;grid-template-columns:260px minmax(0,1fr);background:var(--surface)}
+@media (max-width:1000px){.tool{grid-template-columns:minmax(0,1fr)}}
+.tool>*{min-width:0}
+.fields{display:grid;gap:12px;align-content:start;padding:18px}
+.field{display:grid;gap:4px}
+.field label{font-size:12px;font-weight:500;color:var(--ink-2)}
+.field label span{font-weight:300;color:var(--muted)}
+.field input{font:inherit;font-weight:400;font-size:14px;color:var(--ink);background:var(--input);border:1px solid var(--line);padding:7px 10px;width:100%;min-width:0}
+.field input:focus-visible{outline:2px solid var(--ink);outline-offset:-1px}
+.stage{display:grid;align-content:start;gap:10px;padding:12px 12px 12px 0}
+@media (max-width:1000px){.stage{padding:0 12px 12px}}
+.stage-bar{display:flex;flex-wrap:wrap;gap:8px;justify-content:flex-end}
+.act{font:inherit;font-size:14px;font-weight:400;padding:8px 16px;border:1px solid var(--btn-bg);background:var(--btn-bg);color:var(--btn-fg);cursor:pointer;text-decoration:none;display:inline-block}
+.act.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.canvas{overflow-x:auto;padding:24px 22px 28px;background:#FFFFFF;color:#16181B}
+.canvas .mock{font-family:Arial,Helvetica,sans-serif;font-size:13px;line-height:19px;color:#16181B;margin:0 0 20px}
+
+.how{display:grid;grid-template-columns:240px minmax(0,1fr);gap:2px;background:var(--surface)}
+@media (max-width:860px){.how{grid-template-columns:minmax(0,1fr)}}
+.how-steps{padding:18px;display:grid;gap:10px;align-content:start;counter-reset:h}
+.how-steps li{counter-increment:h;display:grid;grid-template-columns:24px minmax(0,1fr);font-size:14px}
+.how-steps li::before{content:counter(h);font-family:var(--display);font-weight:600;color:var(--muted)}
+.how-apps{background:var(--bg);margin:2px 2px 2px 0;display:grid;align-content:start}
+@media (max-width:860px){.how-apps{margin:0 2px 2px}}
+.tabs{display:flex;flex-wrap:wrap;border-bottom:1px solid var(--rule)}
+.tabs button{font:inherit;font-size:13px;font-weight:400;white-space:nowrap;background:transparent;color:var(--muted);border:0;border-bottom:2px solid transparent;margin-bottom:-1px;padding:10px 12px;cursor:pointer}
+.tabs button[aria-selected="true"]{color:var(--ink);border-bottom-color:var(--ink);font-weight:500}
+.tabpanel{padding:10px 16px 14px}
+.tabpanel ol{counter-reset:s;max-width:70ch}
+.tabpanel li{counter-increment:s;display:grid;grid-template-columns:24px minmax(0,1fr);padding:6px 0;font-size:14px}
+.tabpanel li::before{content:counter(s);color:var(--muted)}
+.menu{font-weight:500}
+kbd{font-family:var(--mono);font-size:.8em;background:var(--surface);border:1px solid var(--line);padding:0 5px}
+details.help{background:var(--surface)}
+details.help summary{cursor:pointer;padding:12px 18px;font-size:14px;font-weight:500}
+.qa{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px;padding:0 2px 2px}
+@media (max-width:640px){.qa{grid-template-columns:minmax(0,1fr)}}
+.qa div{background:var(--bg);padding:12px 16px;display:grid;gap:2px}
+.qa b{font-size:14px}
+.qa p{font-size:13px;color:var(--ink-2)}
+
+/* Newsletter */
+.nl-pages{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;background:var(--surface-2);padding:24px;max-width:760px}
+@media (max-width:640px){.nl-pages{grid-template-columns:minmax(0,1fr)}}
+.nl-pages figure{margin:0}
+.nl-pages img{display:block;width:100%;height:auto;background:#FFFFFF;box-shadow:0 1px 3px rgba(22,24,27,.12)}
+.nl-side{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.nl-side{grid-template-columns:minmax(0,1fr)}}
+
+/* Letterhead */
+.lh{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.lh{grid-template-columns:minmax(0,1fr)}}
+.paper{margin:0;background:var(--surface-2);padding:24px}
+.paper img{display:block;width:100%;height:auto;background:#FFFFFF;box-shadow:0 1px 3px rgba(22,24,27,.12)}
+.lh-side{display:grid;gap:16px}
+.dl{display:flex;flex-wrap:wrap;gap:8px}
+.spec{margin:0;display:grid;grid-template-columns:96px minmax(0,1fr);row-gap:6px;font-size:13px;background:var(--surface);padding:14px 16px}
+.spec dt{color:var(--muted)}
+.spec dd{margin:0}
+
+.dl-band{background:#16181B;color:#FFFFFF;padding-block:40px}
+.dl-band .wrap{display:flex;flex-wrap:wrap;gap:20px 40px;align-items:flex-end;justify-content:space-between}
+.dl-copy{display:grid;gap:6px;max-width:56ch}
+.dl-copy .eyebrow{color:#A2A3A4}
+.dl-copy h3{font-size:22px;line-height:1.2;color:#FFFFFF}
+.dl-copy p{color:#B9BABB;font-size:14px}
+.dl-btns{display:flex;flex-wrap:wrap;gap:8px}
+.act.inv{background:#FFFFFF;color:#16181B;border-color:#FFFFFF}
+.act.inv.ghost{background:transparent;color:#FFFFFF;border-color:#5C5D5F}
+footer.foot{background:var(--surface);padding-block:18px;font-size:12px;color:var(--muted)}
+footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space-between}
+.toast{position:fixed;left:50%;bottom:calc(env(safe-area-inset-bottom,0px) + 20px);transform:translateX(-50%);background:var(--btn-bg);color:var(--btn-fg);padding:10px 16px;font-size:14px;z-index:20}
+#copybuf{position:absolute;left:-10000px;top:0}
+/* Mobile overrides (kept last so they win) */
+@media (max-width:900px){
+  .side{display:none!important}
+  .mbar{display:flex;position:sticky;top:0;z-index:15;background:var(--bg);border-bottom:1px solid var(--rule);padding:8px var(--gutter);gap:10px;align-items:center;justify-content:space-between}
+  .mswitch{display:flex;border:1px solid var(--line)}
+  .mswitch a{text-decoration:none;font-size:14px;padding:7px 14px;color:var(--ink-2)}
+  .mswitch a+a{border-left:1px solid var(--line)}
+  .mswitch a[aria-current="page"]{background:var(--btn-bg);color:var(--btn-fg);font-weight:500}
+  .menu-btn{font:inherit;font-size:14px;font-weight:500;background:transparent;color:var(--ink);border:1px solid var(--line);padding:7px 14px;cursor:pointer;display:inline-flex;align-items:center;gap:8px}
+  .menu-btn::before{content:"";width:14px;height:10px;border-top:2px solid currentColor;border-bottom:2px solid currentColor;background:linear-gradient(currentColor,currentColor) center/100% 2px no-repeat}
+  .sec,.chapter{scroll-margin-top:64px}
+  .sec{padding-block:36px 40px;gap:20px}
+  .chapter{padding-top:40px}
+  .chapter-gap{height:8px}
+  .layout{padding-block:0 64px}
+  .values .v{font-size:18px}
+  .values li{padding:12px 14px;grid-template-columns:36px minmax(0,1fr)}
+  .lv-art{height:120px}
+  .heads li{font-size:18px}
+  .core p{font-size:28px}
+  .tabs{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none}
+  .tabs button{flex:0 0 auto}
+}
+
+/* Cover: the landing view, reached from the logo in the top band */
+.cover{background:#16181B;color:#FFFFFF;min-height:100vh;min-height:100svh;display:flex}
+.cover .wrap{flex:1;display:flex;flex-direction:column;gap:56px;padding-block:calc(48px + env(safe-area-inset-top,0px)) 32px;width:100%}
+.cover-logo img{display:block;width:180px;height:auto}
+.cover-main{margin-top:auto;display:grid;gap:40px}
+.cover-intro{display:grid;gap:14px;max-width:640px}
+.cover h1{font-size:64px;line-height:1.05;letter-spacing:-.01em;color:#FFFFFF}
+.cover-intro p{font-size:17px;line-height:1.55;color:#B9BABB}
+.cover-cards{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}
+.cover-cards a{background:#2D2F32;color:#FFFFFF;text-decoration:none;padding:28px 24px;display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-family:var(--display);font-weight:600;font-size:28px;line-height:1.15}
+.cover-cards a::after{content:"\2192";font-weight:400}
+.cover-cards a:hover{background:#454649}
+.cover-dl{display:flex;flex-wrap:wrap;gap:8px}
+.cover-foot{display:flex;justify-content:space-between;gap:16px;padding-top:14px;border-top:1px solid #454649;font-size:12px;color:#737476}
+.cover :focus-visible{outline-color:#FFFFFF}
+.is-home .dl-band,.is-home .foot{display:none}
+@media (max-width:760px){
+  .cover .wrap{gap:40px;padding-top:calc(32px + env(safe-area-inset-top,0px))}
+  .cover-logo img{width:140px}
+  .cover h1{font-size:44px}
+  .cover-intro p{font-size:16px}
+  .cover-cards{grid-template-columns:minmax(0,1fr)}
+  .cover-cards a{padding:22px 20px;font-size:24px}
+}
+</style>
+
+</head>
+<body>
+<div class="page">
+<!-- ======================= COVER ======================= -->
+<div data-view="home" id="view-home">
+  <section class="cover" id="home"><div class="wrap">
+    <div class="cover-logo"><img src="assets/logo/kiwi-strap-beneath-white.svg" alt="KIWI. Design, Manage, Build" width="200" height="106"></div>
+    <div class="cover-main">
+      <div class="cover-intro">
+        <h1>Brand guidelines</h1>
+        <p>How Kiwi looks and sounds, with every brand asset ready to download.</p>
+      </div>
+      <nav class="cover-cards" aria-label="Guidelines">
+        <a href="#brand">Brand</a>
+        <a href="#templates">Templates</a>
+      </nav>
+      <div class="cover-dl">
+        <a class="act inv" href="assets/guidelines/kiwi-brand-guidelines.pdf" data-file="Kiwi brand guidelines.pdf" data-dl>Brand guidelines (PDF)</a>
+        <a class="act inv ghost" href="assets/guidelines/how-to-use-the-kiwi-brand-guidelines.txt" data-file="How to use the Kiwi brand guidelines.txt" data-dl>How to use these guidelines (TXT)</a>
+      </div>
+    </div>
+    <div class="cover-foot"><span>Version 1.6</span><span>13 October 2026</span></div>
+  </div></section>
+</div>
+
+<!-- ======================= BRAND ======================= -->
+<div data-view="brand" id="view-brand">
+  <section class="hero" id="brand"><div class="wrap">
+    <a href="#home" class="hero-logo" aria-label="Kiwi brand guidelines cover"><img src="assets/logo/kiwi-strap-right-white.svg" alt="KIWI. Design, Manage, Build" width="84" height="24"></a>
+    <h1>Brand</h1>
+    <p class="hero-sub">What Kiwi stands for, how it sounds and how it looks.</p>
+    <span class="ver">Version 1.6 · 13 October 2026</span>
+  </div></section>
+  <div class="mbar"><div class="mswitch" role="group" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a></div><button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button></div>
+
+
+  <div class="wrap layout">
+    <nav class="side" aria-label="Brand sections">
+      <div class="switch" role="group" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a></div>
+      <div class="grp"><span class="eyebrow">Strategy</span><ol>
+        <li><a href="#values">Values</a></li>
+        <li><a href="#audience">Audience</a></li>
+        <li><a href="#positioning">Positioning</a></li>
+      </ol></div>
+      <div class="grp"><span class="eyebrow">Voice</span><ol>
+        <li><a href="#tone">Tone of voice</a></li>
+        <li><a href="#messages">Key messages</a></li>
+        <li><a href="#writing">Writing style</a></li>
+        <li><a href="#headlines">Example headlines</a></li>
+      </ol></div>
+      <div class="grp"><span class="eyebrow">Identity</span><ol>
+        <li><a href="#logo">Logo</a></li>
+        <li><a href="#clearspace">Clear space and size</a></li>
+        <li><a href="#misuse">Logo don’ts</a></li>
+        <li><a href="#colour">Colour</a></li>
+        <li><a href="#type">Typography</a></li>
+      </ol></div>
+    </nav>
+
+    <main>
+      <div class="chapter" id="strategy"><h2><span>01</span>Strategy</h2></div>
+
+      <section class="sec" id="values">
+        <div class="sec-head"><h3>Values</h3><p>Five core values, in order of importance.</p></div>
+        <ol class="values">
+          <li><span class="n">1</span><span class="v">We make it happen</span></li>
+          <li><span class="n">2</span><span class="v">Quality</span></li>
+          <li><span class="n">3</span><span class="v">Compliant</span></li>
+          <li><span class="n">4</span><span class="v">Teamwork</span></li>
+          <li><span class="n">5</span><span class="v">Problem solving</span></li>
+        </ol>
+        <div class="block"><h4>Key words</h4>
+          <ul class="chips"><li>Client-focused</li><li>Family-focused</li><li>Part of the Kiwi family</li><li>Approachable</li><li>Trustworthy and reliable</li></ul></div>
+      </section>
+
+      <section class="sec" id="audience">
+        <div class="sec-head"><h3>Audience</h3><p>Who Kiwi builds for, and who makes the decision.</p></div>
+        <div class="block"><h4>Sectors</h4>
+          <div class="tiles">
+            <div class="tile"><span class="tag">Group 1</span><h4>Retail</h4><p>Footwear and sports fashion. Capable of any store type.</p></div>
+            <div class="tile"><span class="tag">Group 2</span><h4>Gyms and leisure</h4></div>
+            <div class="tile"><span class="tag">Group 3</span><h4>Entertainment facilities</h4></div>
+          </div>
+        </div>
+        <div class="block"><h4>Decision makers</h4>
+          <div class="persona">
+            <div class="persona-head"><span class="eyebrow" style="color:#A2A3A4">Primary audience</span><h4 style="font-size:20px">Cost consultants and project managers</h4><p>Interior fit-out. Based in London and Manchester.</p></div>
+            <div><h4>Challenges</h4><ul><li>Costs</li><li>Consistency</li><li>Ensuring high standards</li><li>Compliance</li><li>Speed and turnaround</li><li>Contractors not finishing on time</li></ul></div>
+            <div><h4>Goals and motivations</h4><ul><li>Making themselves look good</li><li>Ease of communication</li><li>Keeping strong relationships</li></ul></div>
+            <div><h4>Objections</h4><ul><li>Bad reputations</li><li>Missing deadlines</li></ul><h4 style="margin-top:8px">How they find suppliers</h4><ul><li>Word of mouth and trust</li><li>LinkedIn</li></ul></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="positioning">
+        <div class="sec-head"><h3>Positioning</h3><p>Premium, and moving from traditional to innovative. Kiwi already innovates in the work itself, adapting a client’s design to what can actually be built.</p></div>
+        <div class="pos">
+          <div>
+            <div class="matrix" role="img" aria-label="Positioning matrix. Kiwi now sits in premium and traditional. The ambition is premium and innovative.">
+              <span class="ax t">Premium</span><span class="ax b">Affordable</span><span class="ax l">Traditional</span><span class="ax r">Innovative</span>
+              <div class="dot now" style="left:28%;top:29%"><i></i><span>Now</span></div>
+              <div class="arrow"></div>
+              <div class="dot aim" style="left:74%;top:29%"><i></i><span>Ambition</span></div>
+            </div>
+          </div>
+          <div class="block"><h4>Top five strengths</h4>
+            <ol class="usp">
+              <li>Specialist team: our people</li>
+              <li>40 years of experience</li>
+              <li>Trusted specialist subcontractors</li>
+              <li>In-house manufacturing</li>
+              <li>In-house design</li>
+            </ol>
+          </div>
+        </div>
+      </section>
+
+      <div class="chapter-gap"></div>
+      <div class="chapter" id="voice"><h2><span>02</span>Voice</h2></div>
+
+      <section class="sec" id="tone">
+        <div class="sec-head"><h3>Tone of voice</h3><p>Serious about the work, not about ourselves. Great, reliable people to work with.</p></div>
+        <div class="sliders">
+          <div class="slider"><div class="track"><i style="left:76%"></i></div><div class="ends"><span>Economy</span><b>Premium</b></div></div>
+          <div class="slider"><div class="track"><i style="left:50%"></i></div><div class="ends"><span>Playful</span><span>Professional</span></div></div>
+          <div class="slider"><div class="track"><i style="left:50%"></i></div><div class="ends"><span>Casual</span><span>Formal</span></div></div>
+          <div class="slider"><div class="track"><i style="left:82%"></i></div><div class="ends"><span>Subtle</span><b>Bold</b></div></div>
+        </div>
+        <div class="principles">
+          <div class="tile"><h4>Big and bold</h4><p>Confident, simple statements. Just Kiwi.</p></div>
+          <div class="tile"><h4>Say less, show more</h4><p>Let imagery and finished projects do the talking. Cut unnecessary words.</p></div>
+          <div class="tile"><h4>Balanced</h4><p>Halfway between playful and professional, casual and formal.</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="messages">
+        <div class="sec-head"><h3>Key messages</h3><p>What we want people to remember about Kiwi. Start from these on the website, in proposals and on social.</p></div>
+        <div class="core"><span class="eyebrow">Core message</span><p>We make it happen.</p></div>
+        <div class="tiles">
+          <div class="tile"><h4>One team, start to finish</h4><p>We design, manufacture and build in-house. You deal with one team from the first drawing to handover.</p></div>
+          <div class="tile"><h4>40 years of fit-out</h4><p>We’ve been designing and building interiors for 40 years. We know what can be built, and how to build it well.</p></div>
+          <div class="tile"><h4>Our own specialists</h4><p>A specialist team of our own, backed by subcontractors we trust.</p></div>
+          <div class="tile"><h4>Your design, made buildable</h4><p>We adapt your design to what can actually be built, without losing what makes it work.</p></div>
+          <div class="tile"><h4>Quality you don’t chase</h4><p>Quality and compliance are part of how we work, not a check at the end.</p></div>
+          <div class="tile"><h4>Easy to work with</h4><p>Straight answers, clear updates and a finish you can put your name to.</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="writing">
+        <div class="sec-head"><h3>Writing style</h3><p>A few simple rules so everyone at Kiwi writes the same way.</p></div>
+        <div class="rules">
+          <div><b>UK English</b><p>colour, programme, organise</p></div>
+          <div><b>Write “Kiwi” in sentences</b><p>Not KIWI or Kiwi Design. KIWI is for the logo only. Kiwi Design is for legal text only.</p></div>
+          <div><b>Short sentences</b><p>One idea per sentence. Cut any word that doesn’t add something.</p></div>
+          <div><b>“We” and “you”</b><p>We’ll manage the programme. Not: Kiwi will manage the client’s programme.</p></div>
+          <div><b>Active voice</b><p>We fitted out the store. Not: The store was fitted out by our team.</p></div>
+          <div><b>Sentence case headings</b><p>Our work. Not: Our Work.</p></div>
+          <div><b>Numbers</b><p>Use numerals: 3 sites, 40 years. Spell out a number only at the start of a sentence.</p></div>
+          <div><b>Dates and times</b><p>12 October 2026. 9am, 5.30pm.</p></div>
+          <div><b>Phone numbers</b><p>01202 501745</p></div>
+          <div><b>Fit-out</b><p>Fit-out as a noun, fit out as a verb. We fit out stores. The fit-out took a month.</p></div>
+          <div><b>Punctuation</b><p>No exclamation marks. Write “and”, not “&amp;”, in sentences.</p></div>
+          <div><b>Plain words</b><p>Say what you mean. Avoid the words below.</p></div>
+        </div>
+        <div class="block"><h4 class="avoid-h">Words to avoid</h4>
+          <ul class="chips avoid"><li><span>Solutions</span></li><li><span>Turnkey</span></li><li><span>World-class</span></li><li><span>Best-in-class</span></li><li><span>Cutting-edge</span></li><li><span>Seamless</span></li><li><span>Synergy</span></li><li><span>Leverage</span></li><li><span>Passionate about</span></li></ul></div>
+        <div class="block"><h4>Say this, not that</h4>
+          <div class="saynot">
+            <div class="say"><span class="eyebrow">Say</span><p>We make it happen.</p></div><div class="not"><span class="eyebrow">Not</span><p>We pride ourselves on delivering exceptional outcomes for our valued clients.</p></div>
+            <div class="say"><span class="eyebrow">Say</span><p>One team from first drawing to handover.</p></div><div class="not"><span class="eyebrow">Not</span><p>An end-to-end turnkey fit-out solution.</p></div>
+            <div class="say"><span class="eyebrow">Say</span><p>Talk to one of our directors.</p></div><div class="not"><span class="eyebrow">Not</span><p>Please do not hesitate to contact a member of our team.</p></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="headlines">
+        <div class="sec-head"><h3>Example headlines</h3><p>To show the tone in action. Adapt them to the job rather than copying them word for word.</p></div>
+        <div class="heads">
+          <div><span class="eyebrow">Website</span><ul><li>We make it happen.</li><li>Designed, made and built by one team.</li><li>Fit-out for retail, leisure and entertainment.</li></ul></div>
+          <div><span class="eyebrow">Sections and proposals</span><ul><li>Your design, made buildable.</li><li>40 years in the making.</li><li>Our people are the difference.</li></ul></div>
+          <div><span class="eyebrow">LinkedIn and project news</span><ul><li>Doors open. Another one done.</li><li>From first drawing to opening day.</li><li>Built in-house, start to finish.</li></ul></div>
+        </div>
+      </section>
+
+      <div class="chapter-gap"></div>
+      <div class="chapter" id="identity"><h2><span>03</span>Identity</h2></div>
+
+      <section class="sec" id="logo">
+        <div class="sec-head"><h3>Logo</h3><p>Three versions of the wordmark, plus a square profile image and a favicon. Use black on light backgrounds and white on dark. Each download includes both colours.</p></div>
+        <div class="logo-bar">
+          <label class="check"><input type="checkbox" id="cs-toggle"> Include clear space</label>
+          <a class="act" href="assets/logo/kiwi-logo-suite.zip" download="Kiwi logo suite.zip" data-dl style="margin-left:auto">Download all (.zip)</a>
+        </div>
+        <div class="lv-grid">
+          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="KIWI logo with strapline on the right" width="280" height="80"></div>
+            <div class="lv-body"><h4>Strap right</h4><p>The everyday version.</p><div class="lv-dl" data-logo="kiwi-strap-right" data-name="Strap right"></div></div></article>
+          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-strap-beneath-black.svg" alt="KIWI logo with strapline beneath" width="200" height="106"></div>
+            <div class="lv-body"><h4>Strap beneath</h4><p>For square or tall spaces.</p><div class="lv-dl" data-logo="kiwi-strap-beneath" data-name="Strap beneath"></div></div></article>
+          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-primary-black.svg" alt="KIWI primary wordmark" width="200" height="80"></div>
+            <div class="lv-body"><h4>Primary</h4><p>For small sizes, without the strapline.</p><div class="lv-dl" data-logo="kiwi-primary" data-name="Primary"></div></div></article>
+          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-profile-dark.svg" alt="Kiwi profile image" width="120" height="120" style="max-width:84px"></div>
+            <div class="lv-body"><h4>Profile</h4><p>For social media profiles.</p><div class="lv-dl" data-logo="kiwi-profile" data-name="Profile" data-profile></div></div></article>
+          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-favicon-black.svg" alt="Kiwi favicon" width="100" height="100" style="max-width:84px"></div>
+            <div class="lv-body"><h4>Favicon</h4><p>For browser tabs and app icons.</p><div class="lv-dl" data-logo="kiwi-favicon" data-name="Favicon" data-nocs></div></div></article>
+        </div>
+      </section>
+
+      <section class="sec" id="clearspace">
+        <div class="sec-head"><h3>Clear space and size</h3><p>Leave space equal to <b>x</b>, the height of the KIWI wordmark, on every side.</p></div>
+        <div class="cs">
+          <div class="cs-diagram" role="img" aria-label="Clear space diagram. The space around the logo on every side equals the height of the KIWI wordmark, marked x.">
+            <div class="cs-box">
+              <span class="x x-t">x</span><span class="x x-b">x</span><span class="x x-l">x</span><span class="x x-r">x</span>
+              <img src="assets/logo/kiwi-strap-right-black.svg" alt="" width="280" height="80">
+              <span class="x-mark"></span>
+            </div>
+          </div>
+          <div class="block">
+            <h4>Minimum size</h4>
+            <table class="mini"><thead><tr><th>Version</th><th>Screen</th><th>Print</th></tr></thead>
+              <tbody><tr><td>Strap right</td><td>140px wide</td><td>35mm wide</td></tr>
+              <tr><td>Strap beneath</td><td>120px wide</td><td>30mm wide</td></tr>
+              <tr><td>Primary</td><td>60px wide</td><td>15mm wide</td></tr></tbody></table>
+            <p class="small">Smaller than this, use the Primary version.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="sec" id="misuse">
+        <div class="sec-head"><h3>Logo don’ts</h3><p>Always use the supplied files as they are.</p></div>
+        <div class="dont-grid">
+          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="transform:scaleX(1.45)"></div><figcaption>Don’t stretch or squash it</figcaption></figure>
+          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="transform:rotate(-14deg)"></div><figcaption>Don’t rotate it</figcaption></figure>
+          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="filter:invert(36%) sepia(92%) saturate(2400%) hue-rotate(345deg) brightness(95%)"></div><figcaption>Don’t change the colour</figcaption></figure>
+          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="filter:drop-shadow(5px 6px 4px rgba(0,0,0,.45))"></div><figcaption>Don’t add shadows or effects</figcaption></figure>
+          <figure class="dn"><div class="dn-art dn-busy"><img src="assets/logo/kiwi-strap-right-black.svg" alt=""></div><figcaption>Don’t place it on busy backgrounds</figcaption></figure>
+          <figure class="dn"><div class="dn-art" style="background:#2D2F32"><img src="assets/logo/kiwi-strap-right-black.svg" alt=""></div><figcaption>Don’t use black on dark backgrounds</figcaption></figure>
+          <figure class="dn"><div class="dn-art"><div class="dn-retype"><img src="assets/logo/kiwi-primary-black.svg" alt=""><span>Design · Manage · Build</span></div></div><figcaption>Don’t retype the strapline</figcaption></figure>
+          <figure class="dn"><div class="dn-art dn-crowd"><span>Lorem ipsum dolor sit</span><img src="assets/logo/kiwi-strap-right-black.svg" alt=""></div><figcaption>Don’t crowd it</figcaption></figure>
+        </div>
+      </section>
+
+      <section class="sec" id="colour">
+        <div class="sec-head"><h3>Colour</h3><p>A mono palette. Kiwi black does the heavy lifting, with white for space and contrast. Click any colour to copy its value.</p></div>
+        <div class="seg" role="group" aria-label="Colour values" style="justify-self:start">
+          <button type="button" id="cv-hex" aria-pressed="true">HEX</button>
+          <button type="button" id="cv-cmyk" aria-pressed="false">CMYK</button>
+        </div>
+        <div class="swatches">
+          <button type="button" class="sw" data-hex="#16181B" data-cmyk="C19 M11 Y0 K89"><span class="sw-chip k">Kiwi black</span><span class="sw-meta"><span class="val"></span><span class="rgb">RGB 22 24 27</span><span class="copy">Click to copy</span></span></button>
+          <button type="button" class="sw" data-hex="#FFFFFF" data-cmyk="C0 M0 Y0 K0"><span class="sw-chip w">White</span><span class="sw-meta"><span class="val"></span><span class="rgb">RGB 255 255 255</span><span class="copy">Click to copy</span></span></button>
+        </div>
+        <div class="block"><h4>Tints</h4>
+          <p class="small">Shades of Kiwi black. 100 to 60 work for text on white. 50 and lighter are for backgrounds, dividers and lines.</p>
+          <div class="tints">
+            <button type="button" class="tint" data-hex="#16181B" data-cmyk="C19 M11 Y0 K89"><i style="background:#16181B"></i><b>100</b><span class="val"></span></button>
+            <button type="button" class="tint" data-hex="#2D2F32" data-cmyk="C10 M6 Y0 K80"><i style="background:#2D2F32"></i><b>90</b><span class="val"></span></button>
+            <button type="button" class="tint" data-hex="#454649" data-cmyk="C5 M4 Y0 K71"><i style="background:#454649"></i><b>80</b><span class="val"></span></button>
+            <button type="button" class="tint" data-hex="#5C5D5F" data-cmyk="C3 M2 Y0 K63"><i style="background:#5C5D5F"></i><b>70</b><span class="val"></span></button>
+            <button type="button" class="tint" data-hex="#737476" data-cmyk="C3 M2 Y0 K54"><i style="background:#737476"></i><b>60</b><span class="val"></span></button>
+            <button type="button" class="tint" data-hex="#8A8C8D" data-cmyk="C2 M1 Y0 K45"><i style="background:#8A8C8D"></i><b>50</b><span class="val"></span></button>
+            <button type="button" class="tint" data-hex="#A2A3A4" data-cmyk="C1 M1 Y0 K36"><i style="background:#A2A3A4"></i><b>40</b><span class="val"></span></button>
+            <button type="button" class="tint" data-hex="#B9BABB" data-cmyk="C1 M1 Y0 K27"><i style="background:#B9BABB"></i><b>30</b><span class="val"></span></button>
+            <button type="button" class="tint" data-hex="#D0D1D1" data-cmyk="C0 M0 Y0 K18"><i style="background:#D0D1D1"></i><b>20</b><span class="val"></span></button>
+            <button type="button" class="tint" data-hex="#E8E8E8" data-cmyk="C0 M0 Y0 K9"><i style="background:#E8E8E8"></i><b>10</b><span class="val"></span></button>
+            <button type="button" class="tint" data-hex="#F3F3F4" data-cmyk="C0 M0 Y0 K4"><i style="background:#F3F3F4;box-shadow:inset 0 0 0 1px var(--rule)"></i><b>5</b><span class="val"></span></button>
+            <button type="button" class="tint" data-hex="#FAFAFA" data-cmyk="C0 M0 Y0 K2"><i style="background:#FAFAFA;box-shadow:inset 0 0 0 1px var(--rule)"></i><b>2</b><span class="val"></span></button>
+          </div>
+        </div>
+        <p class="small">CMYK values are converted from HEX. Ask your printer for a proof before a full print run.</p>
+      </section>
+
+      <section class="sec" id="type">
+        <div class="sec-head"><h3>Typography</h3><p>Two typefaces, two weights each. Familjen Grotesk for headings. Inter for everything people read.</p></div>
+        <div class="faces">
+          <div class="face display"><span class="aa">Aa</span><h4>Familjen Grotesk</h4>
+            <dl><dt>Use for</dt><dd>Headings and subheads</dd><dt>Weights</dt><dd>SemiBold, Regular</dd><dt>Get it</dt><dd><a href="https://fonts.google.com/specimen/Familjen+Grotesk">Google Fonts</a></dd></dl></div>
+          <div class="face text"><span class="aa">Aa</span><h4>Inter</h4>
+            <dl><dt>Use for</dt><dd>Body text, emphasis and labels</dd><dt>Weights</dt><dd>Light, SemiBold</dd><dt>Get it</dt><dd><a href="https://fonts.google.com/specimen/Inter">Google Fonts</a></dd></dl></div>
+        </div>
+        <div class="block"><h4>Text styles</h4>
+          <div class="styles">
+            <div class="st"><div class="t-h1">Heading 1</div><div class="st-spec">Familjen Grotesk SemiBold<br>48px · 32pt · line height 1.1 · tracking 0</div></div>
+            <div class="st"><div class="t-h2">Heading 2</div><div class="st-spec">Familjen Grotesk SemiBold<br>28px · 20pt · line height 1.2 · tracking 0</div></div>
+            <div class="st"><div class="t-h3">Heading 3</div><div class="st-spec">Familjen Grotesk SemiBold<br>22px · 16pt · line height 1.25 · tracking 0</div></div>
+            <div class="st"><div class="t-h4">Heading 4</div><div class="st-spec">Familjen Grotesk SemiBold<br>18px · 13pt · line height 1.3 · tracking 0</div></div>
+            <div class="st"><div class="t-sub">Subhead</div><div class="st-spec">Familjen Grotesk Regular<br>17px · 12pt · line height 1.45 · tracking 0</div></div>
+            <div class="st"><div class="t-body">Body text. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor.</div><div class="st-spec">Inter Light<br>16px · 10pt · line height 1.6 · tracking 0</div></div>
+            <div class="st"><div class="t-body t-strong">Body emphasis</div><div class="st-spec">Inter SemiBold<br>16px · 10pt · line height 1.6 · tracking 0</div></div>
+            <div class="st"><div class="t-label">Label</div><div class="st-spec">Inter SemiBold, capitals<br>12px · 7.5pt · line height 1.4 · tracking +12%</div></div>
+          </div>
+          <p class="small">Sizes are shown for screen, then print. On mobile, reduce headings by about a quarter.</p>
+        </div>
+        <div class="rules rules-3">
+          <div><b>Left-aligned</b><p>Never justify or centre long text.</p></div>
+          <div><b>Sentence case</b><p>For every heading and subhead.</p></div>
+          <div><b>Fallback</b><p>Where the brand fonts aren’t available, such as email, use Arial.</p></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<!-- ======================= TEMPLATES ======================= -->
+<div data-view="templates" id="view-templates" hidden>
+  <section class="hero" id="templates"><div class="wrap">
+    <a href="#home" class="hero-logo" aria-label="Kiwi brand guidelines cover"><img src="assets/logo/kiwi-strap-right-white.svg" alt="KIWI. Design, Manage, Build" width="84" height="24"></a>
+    <h1>Templates</h1>
+    <p class="hero-sub">Ready-to-use files for everyday work.</p>
+    <span class="ver">Version 1.6 · 13 October 2026</span>
+  </div></section>
+  <div class="mbar"><div class="mswitch" role="group" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a></div><button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button></div>
+
+
+  <div class="wrap layout">
+    <nav class="side" aria-label="Template sections">
+      <div class="switch" role="group" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a></div>
+      <div class="grp"><span class="eyebrow">Templates</span><ol>
+        <li><a href="#signature">Email signature</a></li>
+        <li><a href="#letterhead">Letterhead</a></li>
+        <li><a href="#newsletter">Newsletter</a></li>
+      </ol></div>
+    </nav>
+
+    <main>
+      <div class="chapter" id="signature"><h2><span>01</span>Email signature</h2></div>
+      <section class="sec" style="border-top:0">
+        <div class="sec-head"><p>Fill in your details, copy the signature and paste it into your email app.</p></div>
+
+        <div class="tool" id="tool">
+          <form class="fields" id="details" autocomplete="off">
+            <div class="field"><label for="name">Name</label><input type="text" id="name" value="Richard Levett"></div>
+            <div class="field"><label for="letters">Letters after your name <span>(optional)</span></label><input type="text" id="letters" value="TMIET FCMI"></div>
+            <div class="field"><label for="title">Job title</label><input type="text" id="title" value="Managing Director"></div>
+            <div class="field"><label for="email">Email</label><input type="text" id="email" value="richard.levett@kiwidesign.co.uk"></div>
+            <div class="field"><label for="phone">Office phone</label><input type="text" id="phone" value="01202 501745"></div>
+            <div class="field"><label for="mobile">Mobile <span>(optional)</span></label><input type="text" id="mobile" value=""></div>
+          </form>
+          <div class="stage">
+            <div class="stage-bar">
+              <button type="button" class="act" id="copy-sig">Copy signature</button>
+              <button type="button" class="act ghost" id="copy-html">Copy HTML</button>
+            </div>
+            <div class="canvas"><p class="mock">Hi Sam,<br><br>Drawings attached for review.<br><br>Thanks,</p><div class="sig" id="sig"></div></div>
+          </div>
+        </div>
+
+        <div class="how">
+          <ol class="how-steps">
+            <li><span>Fill in your details.</span></li>
+            <li><span>Click <b>Copy signature</b>.</span></li>
+            <li><span>Paste it into your email app. Steps for each app are on the right.</span></li>
+            <li><span>Send yourself a test email.</span></li>
+          </ol>
+          <div class="how-apps">
+            <div class="tabs" role="tablist" aria-label="Email app">
+              <button type="button" role="tab" id="t-new" aria-controls="p-new" aria-selected="true">New Outlook</button>
+              <button type="button" role="tab" id="t-classic" aria-controls="p-classic" aria-selected="false" tabindex="-1">Classic Outlook</button>
+              <button type="button" role="tab" id="t-mac" aria-controls="p-mac" aria-selected="false" tabindex="-1">Outlook for Mac</button>
+              <button type="button" role="tab" id="t-web" aria-controls="p-web" aria-selected="false" tabindex="-1">Outlook on the web</button>
+              <button type="button" role="tab" id="t-gmail" aria-controls="p-gmail" aria-selected="false" tabindex="-1">Gmail</button>
+              <button type="button" role="tab" id="t-apple" aria-controls="p-apple" aria-selected="false" tabindex="-1">Apple Mail (Mac)</button>
+              <button type="button" role="tab" id="t-ios" aria-controls="p-ios" aria-selected="false" tabindex="-1">iPhone and iPad</button>
+            </div>
+            <div class="tabpanel" role="tabpanel" id="p-new" aria-labelledby="t-new"><ol>
+              <li><span>Go to <span class="menu">Settings › Accounts › Signatures</span>.</span></li>
+              <li><span>Select <span class="menu">New signature</span>, name it <b>Kiwi</b> and paste with <kbd>Ctrl</kbd> + <kbd>V</kbd>. Select <span class="menu">Save</span>.</span></li>
+              <li><span>Under <span class="menu">Select default signatures</span>, choose <b>Kiwi</b> for new messages and replies. Select <span class="menu">Save</span>.</span></li>
+            </ol></div>
+            <div class="tabpanel" role="tabpanel" id="p-classic" aria-labelledby="t-classic" hidden><ol>
+              <li><span>Start a new email and go to <span class="menu">Message › Signature › Signatures</span>.</span></li>
+              <li><span>Select <span class="menu">New</span>, name it <b>Kiwi</b>, then paste into <span class="menu">Edit signature</span> with <kbd>Ctrl</kbd> + <kbd>V</kbd>.</span></li>
+              <li><span>Set <span class="menu">New messages</span> and <span class="menu">Replies/forwards</span> to <b>Kiwi</b>. Select <span class="menu">OK</span>.</span></li>
+            </ol></div>
+            <div class="tabpanel" role="tabpanel" id="p-mac" aria-labelledby="t-mac" hidden><ol>
+              <li><span>Go to <span class="menu">Outlook › Settings › Signatures</span>.</span></li>
+              <li><span>Select <span class="menu">+</span>, name it <b>Kiwi</b>, paste with <kbd>Cmd</kbd> + <kbd>V</kbd> and save.</span></li>
+              <li><span>Under <span class="menu">Choose default signature</span>, set new messages and replies to <b>Kiwi</b>.</span></li>
+            </ol></div>
+            <div class="tabpanel" role="tabpanel" id="p-web" aria-labelledby="t-web" hidden><ol>
+              <li><span>Go to <span class="menu">Settings › Account › Signatures</span>.</span></li>
+              <li><span>Select <span class="menu">New signature</span>, name it <b>Kiwi</b> and paste.</span></li>
+              <li><span>Choose <b>Kiwi</b> for new messages and replies. Select <span class="menu">Save</span>.</span></li>
+            </ol></div>
+            <div class="tabpanel" role="tabpanel" id="p-gmail" aria-labelledby="t-gmail" hidden><ol>
+              <li><span>Go to <span class="menu">Settings › See all settings › General › Signature</span>.</span></li>
+              <li><span>Select <span class="menu">Create new</span>, name it <b>Kiwi</b> and paste.</span></li>
+              <li><span>Set <span class="menu">Signature defaults</span> to <b>Kiwi</b>, then <span class="menu">Save Changes</span> at the bottom.</span></li>
+            </ol></div>
+            <div class="tabpanel" role="tabpanel" id="p-apple" aria-labelledby="t-apple" hidden><ol>
+              <li><span>In Mail, go to <span class="menu">Mail › Settings › Signatures</span>.</span></li>
+              <li><span>Click your account on the left, then <span class="menu">+</span>. Name it <b>Kiwi</b> and paste with <kbd>Cmd</kbd> + <kbd>V</kbd>.</span></li>
+              <li><span>Untick <span class="menu">Always match my default message font</span>, so the signature keeps its own fonts.</span></li>
+              <li><span>Set <span class="menu">Choose Signature</span> to <b>Kiwi</b>, then close the window.</span></li>
+            </ol></div>
+            <div class="tabpanel" role="tabpanel" id="p-ios" aria-labelledby="t-ios" hidden><ol>
+              <li><span>On your computer, send yourself an email with your Kiwi signature in it.</span></li>
+              <li><span>On your iPhone or iPad, open that email, press and hold on the signature, and copy it.</span></li>
+              <li><span>Go to <span class="menu">Settings › Apps › Mail › Signature</span> (on older versions, <span class="menu">Settings › Mail › Signature</span>) and paste.</span></li>
+              <li><span>If the formatting turns plain, shake the device and tap <span class="menu">Undo</span>. Phone signatures are simpler, so small differences are normal.</span></li>
+            </ol></div>
+          </div>
+        </div>
+
+        <details class="help">
+          <summary>Something not right?</summary>
+          <div class="qa">
+            <div><b>Pasted as plain text</b><p>Copy again and paste with <kbd>Ctrl</kbd> + <kbd>V</kbd> or <kbd>Cmd</kbd> + <kbd>V</kbd>, not “paste as plain text”.</p></div>
+            <div><b>Logo missing</b><p>Your email app may be hiding images. Select “Show images” in your test email.</p></div>
+            <div><b>Logo arrives as an attachment</b><p>Classic Outlook sometimes does this. Ask IT to switch off “send pictures with document”.</p></div>
+            <div><b>Details changed</b><p>Update them here, copy again and paste over the old signature.</p></div>
+          </div>
+        </details>
+      </section>
+
+      <div class="chapter-gap"></div>
+      <div class="chapter" id="letterhead"><h2><span>02</span>Letterhead</h2></div>
+      <section class="sec" style="border-top:0">
+        <div class="lh">
+          <figure class="paper"><img src="assets/templates/letterhead-preview.png" alt="Kiwi letterhead: logo top left, website, phone and address top right, a rule below and a blank page" width="910" height="1287"></figure>
+          <div class="lh-side">
+            <p class="sub" style="font-size:16px">A Word template with the logo and contact details in the header. Double-click it to start a new letter.</p>
+            <div class="dl">
+              <a class="act" href="assets/templates/kiwi-letterhead.dotx" download="Kiwi letterhead.dotx" data-dl>Download Word template</a>
+              <a class="act ghost" href="assets/templates/kiwi-letterhead.docx" download="Kiwi letterhead.docx" data-dl>Download .docx</a>
+            </div>
+            <dl class="spec">
+              <dt>Paper</dt><dd>A4</dd>
+              <dt>Header</dt><dd>Familjen Grotesk</dd>
+              <dt>Body text</dt><dd>Inter Light, 10pt</dd>
+              <dt>Margins</dt><dd>20mm left and right</dd>
+              <dt>Fonts</dt><dd>Built into the file</dd>
+            </dl>
+          </div>
+        </div>
+      </section>
+
+      <div class="chapter-gap"></div>
+      <div class="chapter" id="newsletter"><h2><span>03</span>Newsletter</h2></div>
+      <section class="sec" style="border-top:0">
+        <div class="sec-head"><p>A simple two-page A4 newsletter for sharing news inside the team. Edit it in Word, save it as a PDF and send it round.</p></div>
+        <div class="nl-pages">
+          <figure><img src="assets/templates/newsletter-p-1.png" alt="Newsletter page 1: title, intro, one image and a text section" width="662" height="936"></figure>
+          <figure><img src="assets/templates/newsletter-p-2.png" alt="Newsletter page 2: two text sections and a black panel" width="662" height="936"></figure>
+        </div>
+        <div class="nl-side">
+          <div class="block">
+            <div class="dl">
+              <a class="act" href="assets/templates/kiwi-newsletter.docx" download="Kiwi newsletter.docx" data-dl>Download Word file</a>
+              <a class="act ghost" href="assets/templates/kiwi-newsletter.pdf" data-file="Kiwi newsletter.pdf" data-dl>Download PDF example</a>
+            </div>
+            <div class="tabpanel" style="background:var(--surface)"><ol>
+              <li><span>Open the Word file and replace the placeholder text. The styles are built in, so new text matches the brand.</span></li>
+              <li><span>Swap an image: right-click it and choose <span class="menu">Change Picture</span>.</span></li>
+              <li><span>Need more space? Copy a text section and paste it below.</span></li>
+              <li><span>Go to <span class="menu">File › Save As</span>, choose <b>PDF</b>, and send.</span></li>
+            </ol></div>
+          </div>
+          <dl class="spec">
+            <dt>Paper</dt><dd>A4, 2 pages</dd>
+            <dt>Sections</dt><dd>Title and intro, one image, text sections, black panel</dd>
+            <dt>Fonts</dt><dd>Familjen Grotesk and Inter, built into the file</dd>
+          </dl>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+
+<section class="dl-band" id="downloads"><div class="wrap">
+  <div class="dl-copy"><span class="eyebrow">Take it with you</span><h3>Download the guidelines</h3><p>A printable PDF of the brand guidelines, and a short plain-text guide to using this site.</p></div>
+  <div class="dl-btns">
+    <a class="act inv" href="assets/guidelines/kiwi-brand-guidelines.pdf" data-file="Kiwi brand guidelines.pdf" data-dl>Brand guidelines (PDF)</a>
+    <a class="act inv ghost" href="assets/guidelines/how-to-use-the-kiwi-brand-guidelines.txt" data-file="How to use the Kiwi brand guidelines.txt" data-dl>How to use these guidelines (TXT)</a>
+  </div>
+</div></section>
+<footer class="foot"><div class="wrap"><span>Kiwi brand guidelines</span><span>Version 1.6 · 13 October 2026</span></div></footer>
+</div>
+<div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Sections" hidden>
+  <div class="mbar mbar-in"><div class="mswitch" role="group" aria-label="Choose a page"><button type="button" data-mview="brand">Brand</button><button type="button" data-mview="templates">Templates</button></div><button type="button" class="menu-btn is-close mnav-close" aria-expanded="true">Close</button></div>
+  <nav class="mnav-body" aria-label="Sections"></nav>
+</div>
+<div id="copybuf" aria-hidden="true"></div>
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script>
+/* ============================================================
+   SIGNATURE SETTINGS
+   Company-wide details. Edit here, then publish.
+   ============================================================ */
+const CONFIG = {
+  // Where the signature images live. Leave blank to use the
+  // assets/email folder next to this page (e.g. on GitHub Pages).
+  // Later: 'https://wearekiwi.com/wp-content/uploads/email/'
+  imageBase: '',
+  website: 'https://wearekiwi.com',
+  websiteText: 'wearekiwi.com',
+  address: '9 Bessemer Close, Ebblake Industrial Estate, Verwood, Dorset BH31 6AZ',
+  terms: 'The information transmitted is intended only for the person or entity to which it is addressed and may contain confidential and/or privileged material. Any review, retransmission, dissemination or other use of, or taking of any action in reliance upon, this information by persons or entities other than the intended recipient is prohibited. If you receive this in error, please contact the sender and delete the material from any computer. We make every effort to keep our network free from viruses. You should independently check this e-mail and any attachments for viruses as we can take no responsibility for any computer viruses that might be transferred by way of this e-mail. The views expressed in this communication are not necessarily those held by Kiwi Design. Errors and Omissions Excepted. Registered Office: As Above. Registered in England No. 2077828.'
+};
+/* ============================================================ */
+
+const EMBED = window.__EMBED_IMAGES__ || null; // preview builds only
+const base = CONFIG.imageBase || new URL('assets/email/', location.href).href;
+const IMG = EMBED || { logo: base+'kiwi-logo.png', sc: base+'safecontractor.png', ssip: base+'ssip.png' };
+
+const K='#16181B', M='#5F6266', H='#D0D1D2';
+const F="font-family:'Familjen Grotesk',Arial,sans-serif;mso-line-height-rule:exactly;";
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const tel=s=>{let d=s.replace(/[^\d+]/g,'');if(d.startsWith('0'))d='+44'+d.slice(1);return 'tel:'+d};
+const T='cellpadding="0" cellspacing="0" border="0" role="presentation"';
+const A=(h,t)=>`<a href="${esc(h)}" style="color:${K};text-decoration:none;">${esc(t)}</a>`;
+
+function signature(d){
+  const r=[['EMAIL',A('mailto:'+d.email.trim(),d.email.trim())]];
+  if(d.phone.trim()) r.push(['OFFICE',A(tel(d.phone),d.phone.trim())]);
+  if(d.mobile.trim()) r.push(['MOBILE',A(tel(d.mobile),d.mobile.trim())]);
+  r.push(['WEB',A(CONFIG.website,CONFIG.websiteText)]);
+  const rows=r.map(([k,v],i)=>{const b=i<r.length-1?`border-bottom:1px solid ${H};`:'';
+    return `<tr><td width="72" style="${F}width:72px;padding:6px 0;${b}font-size:9px;line-height:16px;letter-spacing:1px;font-weight:600;color:${K};">${k}</td><td style="${F}padding:6px 0;${b}font-size:12px;line-height:16px;color:${K};">${v}</td></tr>`}).join('');
+  const letters=d.letters.trim()?` <span class="m" style="font-weight:400;font-size:12px;color:${M};">${esc(d.letters.trim())}</span>`:'';
+  const img=(src,w,h,alt)=>`<img src="${src}" width="${w}" height="${h}" alt="${alt}" style="display:block;border:0;">`;
+  return `<table ${T} width="520" style="width:520px;border-collapse:collapse;">
+<tr><td style="${F}padding:0 0 2px;font-size:16px;line-height:20px;font-weight:600;color:${K};">${esc(d.name.trim())}${letters}</td></tr>
+<tr><td style="${F}padding:0 0 14px;font-size:13px;line-height:18px;color:${K};">${esc(d.title.trim())}</td></tr>
+<tr><td style="border-top:1px solid ${K};"><table ${T} width="100%" style="border-collapse:collapse;">${rows}</table></td></tr>
+<tr><td style="padding:16px 0;border-top:1px solid ${K};"><table ${T} width="100%" style="border-collapse:collapse;"><tr><td valign="bottom"><a href="${CONFIG.website}">${img(IMG.logo,200,57,'KIWI. Design, Manage, Build')}</a></td><td valign="bottom" align="right"><table ${T}><tr><td>${img(IMG.sc,30,30,'SafeContractor Approved')}</td><td width="10"></td><td>${img(IMG.ssip,39,30,'SSIP Accredited')}</td></tr></table></td></tr></table></td></tr>
+<tr><td style="${F}padding:8px 0 0;border-top:1px solid ${K};font-size:11px;line-height:16px;color:${K};">${esc(CONFIG.address)}</td></tr>
+<tr><td class="m" style="${F}padding:10px 0 0;font-size:9px;line-height:13px;color:${M};">${esc(CONFIG.terms)}</td></tr>
+</table>`;
+}
+
+const ids=['name','letters','title','email','phone','mobile'];
+const read=()=>Object.fromEntries(ids.map(i=>[i,document.getElementById(i).value]));
+let current='';
+function render(){current=signature(read());document.getElementById('sig').innerHTML=current;}
+ids.forEach(i=>document.getElementById(i).addEventListener('input',render));
+document.getElementById('details').addEventListener('submit',e=>e.preventDefault());
+render();
+
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.hidden=false;clearTimeout(toast._t);toast._t=setTimeout(()=>t.hidden=true,2600);}
+function selectCopy(node){const s=getSelection();s.removeAllRanges();const r=document.createRange();r.selectNodeContents(node);s.addRange(r);let ok=false;try{ok=document.execCommand('copy')}catch(e){}s.removeAllRanges();return ok;}
+document.getElementById('copy-sig').addEventListener('click',async()=>{
+  try{await navigator.clipboard.write([new ClipboardItem({'text/html':new Blob([current],{type:'text/html'}),'text/plain':new Blob([document.getElementById('sig').innerText],{type:'text/plain'})})]);toast('Signature copied. Now paste it into your email app.');return;}catch(e){}
+  const buf=document.getElementById('copybuf');buf.innerHTML=current;const ok=selectCopy(buf);buf.innerHTML='';
+  toast(ok?'Signature copied. Now paste it into your email app.':'Copy didn’t work. Select the signature, then press Ctrl + C or Cmd + C.');
+});
+document.getElementById('copy-html').addEventListener('click',async()=>{
+  const doc=`<!DOCTYPE html>\n<html><head><meta charset="utf-8"><title>Kiwi signature</title></head><body>\n${current}\n</body></html>`;
+  try{await navigator.clipboard.writeText(doc);toast('HTML copied.');}
+  catch(e){const ta=document.createElement('textarea');ta.value=doc;document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}ta.remove();toast(ok?'HTML copied.':'Copy didn’t work in this browser.');}
+});
+
+const tabs=[...document.querySelectorAll('[role=tab]')];
+function pick(t,focus){tabs.forEach(x=>{const on=x===t;x.setAttribute('aria-selected',on);x.tabIndex=on?0:-1;document.getElementById(x.getAttribute('aria-controls')).hidden=!on;});if(focus)t.focus();}
+tabs.forEach((t,i)=>{t.addEventListener('click',()=>pick(t));t.addEventListener('keydown',e=>{if(e.key==='ArrowRight')pick(tabs[(i+1)%tabs.length],true);if(e.key==='ArrowLeft')pick(tabs[(i-1+tabs.length)%tabs.length],true);});});
+
+/* Two pages in one file: #brand and #templates, plus any section id */
+const views=[...document.querySelectorAll('[data-view]')];
+function route(){
+  const id=decodeURIComponent(location.hash.slice(1))||'home';
+  const target=document.getElementById(id);
+  const view=(target&&target.closest('[data-view]'))||views[0];
+  views.forEach(v=>v.hidden=v!==view);
+  document.body.classList.toggle('is-home',view.dataset.view==='home');
+  document.querySelectorAll('[data-view-link]').forEach(a=>{if(a.dataset.viewLink===view.dataset.view)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
+  if(target&&!target.classList.contains('hero')&&!target.classList.contains('cover')){requestAnimationFrame(()=>target.scrollIntoView({block:'start'}));}else{window.scrollTo(0,0);}
+}
+addEventListener('hashchange',route);route();
+
+/* Logo downloads: one zip per version and format, holding both colours */
+function logoRows(){
+  const cs=document.getElementById('cs-toggle').checked;
+  document.querySelectorAll('.lv-dl[data-logo]').forEach(el=>{
+    const base=el.dataset.logo, prof=el.hasAttribute('data-profile'), nocs=prof||el.hasAttribute('data-nocs'), nm=el.dataset.name;
+    const stem=base+(cs&&!nocs?'-clear-space':'');
+    el.innerHTML=['svg','png','pdf'].map(f=>'<a href="assets/logo/sets/'+stem+'-'+f+'.zip" download="Kiwi '+nm+(cs&&!nocs?' clear space':'')+' '+f.toUpperCase()+'.zip" data-dl>'+f.toUpperCase()+'</a>').join('')+'<span class="lv-note">'+(prof?'Dark and light':'Black and white')+'</span>';
+    el.querySelectorAll('a[data-dl]').forEach(bindDl);
+    if(typeof newTabs==='function')newTabs(el);
+  });
+}
+document.getElementById('cs-toggle').addEventListener('change',logoRows);
+
+/* Colour values: HEX or CMYK, click to copy */
+let cmode='hex';
+function showVals(){document.querySelectorAll('[data-hex]').forEach(b=>{b.querySelector('.val').textContent=cmode==='hex'?b.dataset.hex:b.dataset.cmyk;});}
+['cv-hex','cv-cmyk'].forEach(id=>document.getElementById(id).addEventListener('click',()=>{
+  cmode=id==='cv-hex'?'hex':'cmyk';
+  document.getElementById('cv-hex').setAttribute('aria-pressed',cmode==='hex');
+  document.getElementById('cv-cmyk').setAttribute('aria-pressed',cmode==='cmyk');
+  showVals();
+}));
+showVals();
+async function copyText(t){try{await navigator.clipboard.writeText(t);return true;}catch(e){const ta=document.createElement('textarea');ta.value=t;document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand('copy')}catch(_){}ta.remove();return ok;}}
+document.querySelectorAll('[data-hex]').forEach(b=>b.addEventListener('click',async e=>{
+  const v=cmode==='hex'?b.dataset.hex:b.dataset.cmyk; const ok=await copyText(v);
+  const tip=document.createElement('div');tip.className='copied';tip.textContent=ok?'Copied '+v:'Copy blocked';
+  const r=b.getBoundingClientRect();tip.style.left=(r.left+r.width/2)+'px';tip.style.top=(r.top)+'px';document.body.appendChild(tip);setTimeout(()=>tip.remove(),1200);
+}));
+
+/* Downloads. On a normal website the links just work. Inside the
+   Claude preview, files are handed over through its downloads feature. */
+function bindDl(a){a.addEventListener('click',async e=>{
+  if(!window.claude||typeof window.claude.use!=='function')return;
+  e.preventDefault();
+  try{
+    const dl=await window.claude.use('downloads');
+    if(!dl)throw {code:'unavailable'};
+    const name=a.getAttribute('download')||a.dataset.file, key=a.getAttribute('href').split('/').pop();
+    let data;
+    const emb=(window.__EMBED_FILES__||{})[key];
+    if(emb){const bin=atob(emb);const u=new Uint8Array(bin.length);for(let i=0;i<bin.length;i++)u[i]=bin.charCodeAt(i);data=new Blob([u]);}
+    else{const r=await fetch(a.getAttribute('href'));if(!r.ok)throw {code:'missing'};data=await r.blob();}
+    await dl.save({filename:name,data});
+  }catch(err){
+    const c=err&&err.code;
+    if(c==='declined')return;
+    toast(c==='rejected_extension'||c==='missing'?'This file can’t be downloaded in the preview. It works on the live site.':'Download didn’t work here. Try the live site.');
+  }
+});}
+document.querySelectorAll('a[data-dl]').forEach(bindDl);
+logoRows();
+
+/* Anything that leaves the guidelines opens in a new tab */
+function newTabs(root){
+  root.querySelectorAll('a[href]').forEach(a=>{
+    const h=a.getAttribute('href');
+    if(!h||h.startsWith('#')||a.closest('#sig'))return;
+    a.target='_blank'; a.rel='noopener';
+  });
+}
+newTabs(document);
+/* Links inside the signature preview are for show only */
+document.getElementById('sig').addEventListener('click',e=>{if(e.target.closest('a'))e.preventDefault();});
+
+/* Mobile menu overlay: same bar as the page, Menu becomes Close.
+   Brand/Templates inside the menu only switch the list. */
+const mnav=document.getElementById('mnav'); let lastBtn=null;
+function fillMenu(name){
+  const v=views.find(x=>x.dataset.view===name);
+  const body=mnav.querySelector('.mnav-body'); body.innerHTML='';
+  v.querySelectorAll('.side .grp').forEach(g=>body.appendChild(g.cloneNode(true)));
+  mnav.querySelectorAll('[data-mview]').forEach(b=>b.setAttribute('aria-pressed',b.dataset.mview===name));
+}
+function openMenu(btn){
+  const v=views.find(x=>!x.hidden);
+  const bar=v.querySelector('.mbar'); const top=Math.max(0,bar.getBoundingClientRect().top);
+  mnav.style.top=top+'px';
+  fillMenu(v.dataset.view);
+  mnav.hidden=false; document.body.style.overflow='hidden'; lastBtn=btn;
+  document.querySelectorAll('.menu-btn:not(.is-close)').forEach(b=>b.setAttribute('aria-expanded','true'));
+  mnav.querySelector('.mnav-close').focus();
+}
+function closeMenu(){
+  if(mnav.hidden)return;
+  mnav.hidden=true; document.body.style.overflow='';
+  document.querySelectorAll('.menu-btn:not(.is-close)').forEach(b=>b.setAttribute('aria-expanded','false'));
+  if(lastBtn&&lastBtn.offsetParent)lastBtn.focus();
+}
+document.querySelectorAll('.menu-btn:not(.is-close)').forEach(b=>b.addEventListener('click',()=>openMenu(b)));
+mnav.querySelector('.mnav-close').addEventListener('click',closeMenu);
+mnav.querySelectorAll('[data-mview]').forEach(b=>b.addEventListener('click',()=>fillMenu(b.dataset.mview)));
+mnav.querySelector('.mnav-body').addEventListener('click',e=>{const l=e.target.closest('a');if(!l)return;closeMenu();if(l.getAttribute('href')===location.hash)setTimeout(route,0);});
+addEventListener('keydown',e=>{if(e.key==='Escape')closeMenu();});
+
+/* Highlight the section in view: the last section whose top has passed the top of the screen */
+let ticking=false;
+function track(){
+  ticking=false;
+  const v=views.find(x=>!x.hidden); if(!v)return;
+  const links=[...v.querySelectorAll('.side ol a')]; if(!links.length)return;
+  let cur=links[0];
+  for(const a of links){const t=document.getElementById(a.getAttribute('href').slice(1));if(t&&t.getBoundingClientRect().top<=window.innerHeight*0.3)cur=a;}
+  if(window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-4)cur=links[links.length-1];
+  links.forEach(a=>a.setAttribute('aria-current',a===cur?'true':'false'));
+}
+addEventListener('scroll',()=>{if(!ticking){ticking=true;requestAnimationFrame(track);}},{passive:true});
+addEventListener('hashchange',()=>setTimeout(track,60));
+setTimeout(track,60);
+</script>
+
+</body>
+</html>

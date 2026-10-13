@@ -1,0 +1,116 @@
+HOW TO USE THE KIWI BRAND GUIDELINES
+October 2026
+
+The Kiwi brand guidelines live online at:
+[guidelines web address]
+
+They show how Kiwi looks and sounds, and hold every logo file and template the team needs. Bookmark the page so you can find it again.
+
+
+1. FINDING YOUR WAY AROUND
+
+The guidelines open on a cover page with links to two pages:
+
+- Brand: values, audience, positioning, tone of voice, logo, colour and typography.
+- Templates: email signature, letterhead and newsletter.
+
+Click the Kiwi logo at the top of any page to go back to the cover.
+
+On a computer, use the menu on the left. The Brand and Templates buttons at the top of the menu switch between the two pages. The menu highlights the section you are reading.
+
+On a phone, use the bar at the top of the screen. Tap Brand or Templates to switch pages, or tap Menu to see every section. Tap a section to jump to it.
+
+
+2. DOWNLOADING THE LOGO
+
+Go to Brand, then Logo.
+
+There are five versions:
+
+- Strap right: the everyday version, for websites, email and letters.
+- Strap beneath: for square or tall spaces, such as signs and merchandise.
+- Primary: the wordmark on its own, for small sizes.
+- Profile: a square image for LinkedIn and other social media.
+- Favicon: the small icon for browser tabs, bookmarks and app icons.
+
+Each version has three buttons: SVG, PNG and PDF. Each button downloads a zip file with both the black and white versions inside.
+
+Which format to choose:
+
+- SVG: websites and design software. Stays sharp at any size.
+- PNG: Word, PowerPoint, email and social media.
+- PDF: printing and sending to a printer or sign maker.
+
+Tick "Include clear space" before you download if you want files with the correct space already built in around the logo. The profile image and favicon have no clear space versions.
+
+To get every logo file at once, click "Download all (.zip)".
+
+Before you use the logo, read "Clear space and size" and "Logo don'ts" in the same section.
+
+
+3. COPYING COLOUR VALUES
+
+Go to Brand, then Colour.
+
+Click any colour to copy its value. Use the HEX and CMYK buttons to choose which value is shown and copied:
+
+- HEX: for screens, such as websites, PowerPoint and social media.
+- CMYK: for print. Ask your printer for a proof before a full print run.
+
+
+4. GETTING THE FONTS
+
+Go to Brand, then Typography.
+
+Kiwi uses two free fonts from Google Fonts:
+
+- Familjen Grotesk, for headings: https://fonts.google.com/specimen/Familjen+Grotesk
+- Inter, for body text: https://fonts.google.com/specimen/Inter
+
+Download and install both on your computer. The Text styles list shows which font, size and weight to use for each type of text.
+
+You don't need the fonts for the letterhead or newsletter. They are built into those files.
+
+
+5. SETTING UP YOUR EMAIL SIGNATURE
+
+Go to Templates, then Email signature.
+
+1. Type your name, job title, email and phone numbers into the boxes. Leave a box empty to hide that line.
+2. Click "Copy signature".
+3. Choose your email app from the tabs below the signature and follow the steps.
+4. Send yourself a test email to check it looks right.
+
+Always set up your signature from the guidelines website, so the logo in your signature loads properly for the people you email.
+
+If your details change, update them on the page, copy the signature again and paste it over the old one.
+
+
+6. WRITING A LETTER
+
+Go to Templates, then Letterhead.
+
+1. Click "Download Word template".
+2. Double-click the file. Word opens a new, untitled letter, so the template stays clean.
+3. Type your letter below the line.
+4. Save it with a new name. To email it, go to File > Save As and choose PDF.
+
+
+7. MAKING A NEWSLETTER
+
+Go to Templates, then Newsletter.
+
+1. Click "Download Word file".
+2. Replace the placeholder text. The styles are built in, so new text matches the brand.
+3. To swap an image, right-click it and choose Change Picture.
+4. Go to File > Save As, choose PDF, and send it round.
+
+
+8. THE PDF VERSION
+
+A printable PDF of the brand guidelines is at the bottom of every page, under "Download the guidelines". It covers the same brand rules as the website. For logo files and templates, use the website.
+
+
+QUESTIONS
+
+If something is missing or doesn't look right, contact [name] at [email address].
