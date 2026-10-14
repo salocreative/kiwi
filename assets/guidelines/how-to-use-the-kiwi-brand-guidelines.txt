@@ -2,7 +2,7 @@ HOW TO USE THE KIWI BRAND GUIDELINES
 October 2026
 
 The Kiwi brand guidelines live online at:
-[guidelines web address]
+https://salocreative.github.io/kiwi/
 
 They show how Kiwi looks and sounds, and hold every logo file and template the team needs. Bookmark the page so you can find it again.
 
@@ -109,8 +109,3 @@ Go to Templates, then Newsletter.
 8. THE PDF VERSION
 
 A printable PDF of the brand guidelines is at the bottom of every page, under "Download the guidelines". It covers the same brand rules as the website. For logo files and templates, use the website.
-
-
-QUESTIONS
-
-If something is missing or doesn't look right, contact [name] at [email address].

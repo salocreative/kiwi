@@ -61,11 +61,11 @@ The signature points to the images in `assets/email/` on whatever site hosts thi
 
 **Keep the images where they are.** Signatures people have already set up link to these files. If you move or rename them, the logo disappears from those signatures.
 
-To move the images to wearekiwi.com later:
+To move the images to wearekiwi.co.uk later:
 
 1. Upload the three files in `assets/email/` to the WordPress media library (or any public folder).
 2. In `index.html`, find `SIGNATURE SETTINGS` and set `imageBase` to that folder's address, ending with a `/`. For example:
-   `imageBase: 'https://wearekiwi.com/wp-content/uploads/email/',`
+   `imageBase: 'https://wearekiwi.co.uk/wp-content/uploads/email/',`
 3. Publish, then ask everyone to copy and paste their signature again.
 
 ## Changing company-wide details
@@ -92,7 +92,7 @@ The site's own tab icon is in `assets/favicon/`. If the favicon changes, replace
 
 ## After it goes live
 
-Open `assets/guidelines/how-to-use-the-kiwi-brand-guidelines.txt` and replace `[guidelines web address]`, `[name]` and `[email address]` with the live link and a contact, then upload it again.
+The site is live at https://salocreative.github.io/kiwi/. To move it to a custom domain such as brand.wearekiwi.co.uk, the domain owner adds a CNAME record for `brand` pointing to `salocreative.github.io`. Then, in this repository, go to **Settings › Pages › Custom domain**, enter the domain and save. Tick **Enforce HTTPS** once it's available. If the address changes, update the link in the how-to text file.
 
 ## Technical notes
 
