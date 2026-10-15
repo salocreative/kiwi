@@ -10,6 +10,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300,0,0&icon_names=arrow_forward,call,construction,design_services,download,fitness_center,location_on,mail,menu,open_in_new,precision_manufacturing,storefront&display=block" rel="stylesheet">
 <style>
 /* Layout: a cover plus two views (Brand, Templates) behind a dark top bar. Quiet sticky index on the left, compact chapters on the right. Square corners throughout; separation from tints of Kiwi black. */
 :root{
@@ -292,6 +293,27 @@ button.sw,button.tint{font:inherit;color:inherit;text-align:left;border:0;paddin
 .tint:hover i{outline:2px solid var(--ink);outline-offset:-2px}
 @media (max-width:860px){.tints{grid-template-columns:repeat(6,minmax(0,1fr))}}
 
+/* Icons: Material Symbols Sharp, unfilled, weight 300, mono */
+.ms{font-family:'Material Symbols Sharp';font-weight:normal;font-style:normal;font-size:24px;line-height:1;letter-spacing:normal;text-transform:none;display:inline-block;white-space:nowrap;word-wrap:normal;direction:ltr;font-feature-settings:'liga';-webkit-font-smoothing:antialiased;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 24;user-select:none;flex:none}
+.ms.s20{font-size:20px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 20}
+.ms.s40{font-size:40px;font-variation-settings:'FILL' 0,'wght' 300,'GRAD' 0,'opsz' 40}
+.ic-panels{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px}
+@media (max-width:760px){.ic-panels{grid-template-columns:minmax(0,1fr)}}
+.ic-panel{padding:24px 16px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 8px}
+.ic-panel.w{background:#FFFFFF;color:#16181B;box-shadow:inset 0 0 0 1px var(--rule)}
+.ic-panel.k{background:#16181B;color:#FFFFFF;box-shadow:inset 0 0 0 1px #2D2F32}
+.ic{display:grid;justify-items:center;gap:8px;text-align:center;min-width:0}
+.ic code{font-family:var(--mono);font-size:10px;line-height:1.3;opacity:.7;overflow-wrap:anywhere}
+.ic-sizes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+@media (max-width:760px){.ic-sizes{grid-template-columns:minmax(0,1fr)}}
+.ic-size{background:var(--surface);padding:16px 18px 18px;display:grid;gap:12px;align-content:start}
+.ic-size .demo{display:flex;align-items:center;gap:8px;min-height:64px;color:var(--ink)}
+.ic-size .demo.col{flex-direction:column;align-items:flex-start;justify-content:center;gap:6px}
+.ic-size .demo .act{display:inline-flex;align-items:center;gap:8px}
+.ic-size p{font-size:13px;color:var(--ink-2)}
+.ic-spec{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,1fr);gap:24px;align-items:start}
+@media (max-width:860px){.ic-spec{grid-template-columns:minmax(0,1fr)}}
+
 /* Signature tool */
 .tool{display:grid;grid-template-columns:260px minmax(0,1fr);background:var(--surface)}
 @media (max-width:1000px){.tool{grid-template-columns:minmax(0,1fr)}}
@@ -437,7 +459,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
         <a class="act inv ghost" href="assets/guidelines/how-to-use-the-kiwi-brand-guidelines.txt" data-file="How to use the Kiwi brand guidelines.txt" data-dl>How to use these guidelines (TXT)</a>
       </div>
     </div>
-    <div class="cover-foot"><span>Version 1.7</span><span>14 October 2026</span></div>
+    <div class="cover-foot"><span>Version 1.8</span><span>15 October 2026</span></div>
   </div></section>
 </div>
 
@@ -447,7 +469,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
     <a href="#home" class="hero-logo" aria-label="Kiwi brand guidelines cover"><img src="assets/logo/kiwi-strap-right-white.svg" alt="KIWI. Design, Manage, Build" width="84" height="24"></a>
     <h1>Brand</h1>
     <p class="hero-sub">What Kiwi stands for, how it sounds and how it looks.</p>
-    <span class="ver">Version 1.7 · 14 October 2026</span>
+    <span class="ver">Version 1.8 · 15 October 2026</span>
   </div></section>
   <div class="mbar"><div class="mswitch" role="group" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a></div><button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button></div>
 
@@ -472,6 +494,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
         <li><a href="#misuse">Logo don’ts</a></li>
         <li><a href="#colour">Colour</a></li>
         <li><a href="#type">Typography</a></li>
+        <li><a href="#icons">Icons</a></li>
       </ol></div>
     </nav>
 
@@ -715,6 +738,41 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
           <div><b>Fallback</b><p>Where the brand fonts aren’t available, such as email, use Arial.</p></div>
         </div>
       </section>
+      <section class="sec" id="icons">
+        <div class="sec-head"><h3>Icons</h3><p>Google Material Symbols in the Sharp style. Square ends to match the square corners everywhere else. Always mono: Kiwi black on light backgrounds, white on dark.</p></div>
+        <div class="ic-panels">
+          <div class="ic-panel w"><div class="ic"><span class="ms" aria-hidden="true">call</span><code>call</code></div><div class="ic"><span class="ms" aria-hidden="true">mail</span><code>mail</code></div><div class="ic"><span class="ms" aria-hidden="true">location_on</span><code>location_on</code></div><div class="ic"><span class="ms" aria-hidden="true">arrow_forward</span><code>arrow_forward</code></div><div class="ic"><span class="ms" aria-hidden="true">download</span><code>download</code></div><div class="ic"><span class="ms" aria-hidden="true">open_in_new</span><code>open_in_new</code></div><div class="ic"><span class="ms" aria-hidden="true">menu</span><code>menu</code></div><div class="ic"><span class="ms" aria-hidden="true">design_services</span><code>design_services</code></div><div class="ic"><span class="ms" aria-hidden="true">precision_manufacturing</span><code>precision_manufacturing</code></div><div class="ic"><span class="ms" aria-hidden="true">construction</span><code>construction</code></div><div class="ic"><span class="ms" aria-hidden="true">storefront</span><code>storefront</code></div><div class="ic"><span class="ms" aria-hidden="true">fitness_center</span><code>fitness_center</code></div></div>
+          <div class="ic-panel k"><div class="ic"><span class="ms" aria-hidden="true">call</span><code>call</code></div><div class="ic"><span class="ms" aria-hidden="true">mail</span><code>mail</code></div><div class="ic"><span class="ms" aria-hidden="true">location_on</span><code>location_on</code></div><div class="ic"><span class="ms" aria-hidden="true">arrow_forward</span><code>arrow_forward</code></div><div class="ic"><span class="ms" aria-hidden="true">download</span><code>download</code></div><div class="ic"><span class="ms" aria-hidden="true">open_in_new</span><code>open_in_new</code></div><div class="ic"><span class="ms" aria-hidden="true">menu</span><code>menu</code></div><div class="ic"><span class="ms" aria-hidden="true">design_services</span><code>design_services</code></div><div class="ic"><span class="ms" aria-hidden="true">precision_manufacturing</span><code>precision_manufacturing</code></div><div class="ic"><span class="ms" aria-hidden="true">construction</span><code>construction</code></div><div class="ic"><span class="ms" aria-hidden="true">storefront</span><code>storefront</code></div><div class="ic"><span class="ms" aria-hidden="true">fitness_center</span><code>fitness_center</code></div></div>
+        </div>
+        <div class="ic-spec">
+          <div class="block"><h4>Settings</h4>
+            <dl class="spec">
+              <dt>Library</dt><dd>Material Symbols</dd>
+              <dt>Style</dt><dd>Sharp</dd>
+              <dt>Fill</dt><dd>Off (outline)</dd>
+              <dt>Weight</dt><dd>300</dd>
+              <dt>Grade</dt><dd>0</dd>
+              <dt>Optical size</dt><dd>Match the icon size</dd>
+              <dt>Colour</dt><dd>Kiwi black #16181B or white</dd>
+            </dl>
+          </div>
+          <div class="block"><h4>Get them</h4>
+            <p class="small" style="color:var(--ink-2)">Browse and download every icon free at <a href="https://fonts.google.com/icons?icon.style=Sharp">fonts.google.com/icons</a>. Set the style to Sharp, fill off and weight 300 before you download, so every icon matches.</p>
+          </div>
+        </div>
+        <div class="block"><h4>Sizes</h4>
+          <div class="ic-sizes">
+            <div class="ic-size"><span class="tag">20px</span><div class="demo"><span class="ms s20" aria-hidden="true">mail</span><span style="font-size:16px">Email us</span></div><p>Next to body text, in lists and contact details.</p></div>
+            <div class="ic-size"><span class="tag">24px</span><div class="demo"><span class="act"><span class="ms" aria-hidden="true">download</span>Download PDF</span></div><p>In buttons, navigation and forms. The default size.</p></div>
+            <div class="ic-size"><span class="tag">40px</span><div class="demo col"><span class="ms s40" aria-hidden="true">design_services</span><b style="font-family:var(--display);font-weight:600;font-size:18px">Design</b></div><p>Feature icons, such as a list of services.</p></div>
+          </div>
+        </div>
+        <div class="rules rules-3">
+          <div><b>Mono only</b><p>Kiwi black on light, white on dark. Never a tint or any other colour.</p></div>
+          <div><b>One set, one setting</b><p>Material Symbols Sharp, outline, weight 300. Don't mix in other icon sets, styles or filled icons.</p></div>
+          <div><b>Icons support words</b><p>Pair an icon with a label. Only universal icons, such as menu, stand alone, and they still need a name for screen readers.</p></div>
+        </div>
+      </section>
     </main>
   </div>
 </div>
@@ -725,7 +783,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
     <a href="#home" class="hero-logo" aria-label="Kiwi brand guidelines cover"><img src="assets/logo/kiwi-strap-right-white.svg" alt="KIWI. Design, Manage, Build" width="84" height="24"></a>
     <h1>Templates</h1>
     <p class="hero-sub">Ready-to-use files for everyday work.</p>
-    <span class="ver">Version 1.7 · 14 October 2026</span>
+    <span class="ver">Version 1.8 · 15 October 2026</span>
   </div></section>
   <div class="mbar"><div class="mswitch" role="group" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a></div><button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button></div>
 
@@ -892,7 +950,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
     <a class="act inv ghost" href="assets/guidelines/how-to-use-the-kiwi-brand-guidelines.txt" data-file="How to use the Kiwi brand guidelines.txt" data-dl>How to use these guidelines (TXT)</a>
   </div>
 </div></section>
-<footer class="foot"><div class="wrap"><span>Kiwi brand guidelines</span><span>Version 1.7 · 14 October 2026</span></div></footer>
+<footer class="foot"><div class="wrap"><span>Kiwi brand guidelines</span><span>Version 1.8 · 15 October 2026</span></div></footer>
 </div>
 <div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Sections" hidden>
   <div class="mbar mbar-in"><div class="mswitch" role="group" aria-label="Choose a page"><button type="button" data-mview="brand">Brand</button><button type="button" data-mview="templates">Templates</button></div><button type="button" class="menu-btn is-close mnav-close" aria-expanded="true">Close</button></div>

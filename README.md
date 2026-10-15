@@ -2,7 +2,7 @@
 
 A brand guidelines site in `index.html`. It opens on a cover page (`#home`) that links into two views:
 
-- **Brand** (`#brand`): strategy (values, audience, positioning), voice (tone, key messages, writing style, example headlines), logo, clear space and usage, colour, typography.
+- **Brand** (`#brand`): strategy (values, audience, positioning), voice (tone, key messages, writing style, example headlines), logo, clear space and usage, colour, typography, icons.
 - **Templates** (`#templates`): email signature generator, Word letterhead, newsletter (Word file and PDF example).
 
 Any section can be linked directly, for example `#signature` or `#letterhead`. The page switches to the right view. The Kiwi logo in the top band always goes back to the cover.

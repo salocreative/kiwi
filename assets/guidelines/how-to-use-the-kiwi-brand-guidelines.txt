@@ -11,7 +11,7 @@ They show how Kiwi looks and sounds, and hold every logo file and template the t
 
 The guidelines open on a cover page with links to two pages:
 
-- Brand: values, audience, positioning, tone of voice, logo, colour and typography.
+- Brand: values, audience, positioning, tone of voice, logo, colour, typography and icons.
 - Templates: email signature, letterhead and newsletter.
 
 Click the Kiwi logo at the top of any page to go back to the cover.
@@ -72,7 +72,22 @@ Download and install both on your computer. The Text styles list shows which fon
 You don't need the fonts for the letterhead or newsletter. They are built into those files.
 
 
-5. SETTING UP YOUR EMAIL SIGNATURE
+5. USING ICONS
+
+Go to Brand, then Icons.
+
+Kiwi uses Google Material Symbols, free at https://fonts.google.com/icons
+
+Before you download an icon, set:
+
+- Style: Sharp
+- Fill: off
+- Weight: 300
+
+Icons are always Kiwi black on light backgrounds and white on dark. Use 20px next to body text, 24px in buttons and menus, and 40px for feature icons. Pair each icon with a word; don't let it stand in for one.
+
+
+6. SETTING UP YOUR EMAIL SIGNATURE
 
 Go to Templates, then Email signature.
 
@@ -86,7 +101,7 @@ Always set up your signature from the guidelines website, so the logo in your si
 If your details change, update them on the page, copy the signature again and paste it over the old one.
 
 
-6. WRITING A LETTER
+7. WRITING A LETTER
 
 Go to Templates, then Letterhead.
 
@@ -96,7 +111,7 @@ Go to Templates, then Letterhead.
 4. Save it with a new name. To email it, go to File > Save As and choose PDF.
 
 
-7. MAKING A NEWSLETTER
+8. MAKING A NEWSLETTER
 
 Go to Templates, then Newsletter.
 
@@ -106,6 +121,6 @@ Go to Templates, then Newsletter.
 4. Go to File > Save As, choose PDF, and send it round.
 
 
-8. THE PDF VERSION
+9. THE PDF VERSION
 
 A printable PDF of the brand guidelines is at the bottom of every page, under "Download the guidelines". It covers the same brand rules as the website. For logo files and templates, use the website.
