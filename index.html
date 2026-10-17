@@ -7,11 +7,13 @@
 <link rel="icon" href="assets/favicon/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="assets/favicon/favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="assets/favicon/apple-touch-icon.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Familjen+Grotesk:wght@400..700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,300,0,0&icon_names=arrow_forward,call,construction,design_services,download,fitness_center,location_on,mail,menu,open_in_new,precision_manufacturing,storefront&display=block" rel="stylesheet">
+<link rel="preload" href="assets/fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/familjen-grotesk-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:'Familjen Grotesk';font-style:normal;font-weight:400 700;font-display:swap;src:url(assets/fonts/familjen-grotesk-latin.woff2) format('woff2')}
+@font-face{font-family:'Inter';font-style:normal;font-weight:300 600;font-display:swap;src:url(assets/fonts/inter-latin.woff2) format('woff2')}
+@font-face{font-family:'Material Symbols Sharp';font-style:normal;font-weight:300;font-display:block;src:url(assets/fonts/material-symbols-sharp-kiwi.woff2) format('woff2')}
+
 /* Layout: a cover plus two views (Brand, Templates) behind a dark top bar. Quiet sticky index on the left, compact chapters on the right. Square corners throughout; separation from tints of Kiwi black. */
 :root{
   --bg:#FFFFFF; --surface:#F3F3F4; --surface-2:#E8E8E8; --ink:#16181B; --ink-2:#454649; --muted:#737476; --rule:#E8E8E8; --line:#D0D1D1;
@@ -85,7 +87,7 @@ main{min-width:0}
 .mnav-body{padding:8px var(--gutter) 0;display:grid;gap:18px}
 .mnav-body .grp{display:grid;gap:0}
 .mnav-body .eyebrow{padding:14px 0 6px}
-.mnav-body ol{display:grid}
+.mnav-body ol,.mnav-body ul{display:grid}
 .mnav-body a{display:block;text-decoration:none;color:var(--ink);font-family:var(--display);font-size:22px;font-weight:600;padding:9px 0;border-bottom:1px solid var(--rule)}
 .mnav-body a[aria-current="true"]{color:var(--muted)}
 
@@ -436,10 +438,134 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
   .cover-cards{grid-template-columns:minmax(0,1fr)}
   .cover-cards a{padding:22px 20px;font-size:24px}
 }
+
+/* ===== Website basics. The full set lives in the reference kit. ===== */
+:root{--acc:#FFB020;--k:#16181B;--w:#FFFFFF;--ease:cubic-bezier(.2,.7,.2,1);--ease-io:cubic-bezier(.65,0,.35,1)}
+.wb-note{display:flex;gap:10px;align-items:flex-start;background:var(--surface);padding:12px 16px;font-size:13px;color:var(--ink-2)}
+.wb-note i{width:12px;height:12px;background:var(--acc);flex:none;margin-top:4px}
+.wb-tiles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:2px}
+@media (max-width:900px){.wb-tiles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.wb-tiles{grid-template-columns:minmax(0,1fr)}}
+.wb-tiles.c3{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:760px){.wb-tiles.c3{grid-template-columns:minmax(0,1fr)}}
+.wb-t{background:var(--surface);display:grid;grid-template-rows:auto 1fr;min-width:0}
+.wb-art{position:relative;aspect-ratio:4/3;overflow:hidden;background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--rule);display:grid;place-items:center;padding:16px;container-type:inline-size}
+.wb-art.dk{background:#16181B;color:#FFFFFF;box-shadow:none}
+.wb-body{padding:12px 16px 16px;display:grid;gap:4px;align-content:start}
+.wb-body b{font-weight:500;font-size:14px}
+.wb-body p{font-size:13px;color:var(--ink-2)}
+/* grid */
+.wb-g{position:absolute;inset:0;width:100%;height:100%;color:#16181B}
+.wb-g line{stroke:currentColor;stroke-width:1;vector-effect:non-scaling-stroke}
+.wb-g line.d{stroke-dasharray:6 5}
+.wb-g.on-dark{color:#FFFFFF}
+.wb-g.feature{opacity:1}.wb-g.structure{opacity:.35}.wb-g.ambient{opacity:.15}
+/* highlights */
+.wb-dash{display:inline-flex;align-items:center;gap:10px;font:400 15px/1.5 var(--display);letter-spacing:.02em;text-transform:uppercase;color:#F3F3F4}
+.wb-dash i{width:30px;height:5px;background:var(--acc);flex:none}
+.wb-dot{display:inline-flex;align-items:center;gap:10px;font:400 15px/1.5 var(--display);letter-spacing:.02em;text-transform:uppercase;color:#FFFFFF}
+.wb-dot i{width:8px;height:8px;background:var(--acc);flex:none}
+.wb-bar{position:relative;isolation:isolate;display:inline-block;padding:4px 4px 3px;font:400 15px/1.3 var(--display);letter-spacing:.02em;text-transform:uppercase;color:#16181B}
+.wb-bar::before{content:"";position:absolute;z-index:-1;left:0;right:0;bottom:0;height:9px;background:var(--acc)}
+.wb-line{white-space:nowrap;font:600 13cqw/1.15 var(--display);letter-spacing:.01em;color:#16181B}
+.wb-mk,.wb-blk{position:relative;isolation:isolate}
+.wb-mk::before{content:"";position:absolute;z-index:-1;left:-.08em;right:-.09em;bottom:.05em;height:.41em;background:var(--acc)}
+.wb-blk::before{content:"";position:absolute;z-index:-1;left:-.08em;right:-.08em;bottom:0;height:1.06em;background:var(--acc)}
+/* buttons */
+.wb-btns{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:2px}
+@media (max-width:760px){.wb-btns{grid-template-columns:minmax(0,1fr)}}
+.wb-btns>div{display:flex;flex-wrap:wrap;gap:24px 28px;align-items:center;justify-content:center;padding:40px 16px;background:#FFFFFF;box-shadow:inset 0 0 0 1px var(--rule)}
+.wb-btns>div.dk{background:#16181B;box-shadow:none}
+.wb-btns small{display:block;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#737476;margin-bottom:8px}
+.wb-btns .dk small{color:#A2A3A4}
+.wb-btn{--fg:#16181B;--bg:transparent;display:inline-flex;align-items:stretch;height:32px;text-decoration:none;font:400 17px/1.5 var(--body);letter-spacing:.01em;color:var(--fg);background:var(--bg);white-space:nowrap}
+.wb-btn .lbl{display:flex;align-items:center;padding:2px 9px;border:1px solid var(--fg)}
+.wb-btn .box{width:32px;display:grid;place-items:center;border:1px solid var(--fg);border-left:0;transition:background-color .2s var(--ease)}
+.wb-btn .box svg{width:22px;height:22px;display:block;color:var(--fg);transition:transform .2s var(--ease),color .2s var(--ease)}
+.wb-btn.light{--fg:#FFFFFF}
+.wb-btn.accent{--bg:var(--acc)}
+.wb-btn:hover .box,.wb-btn:focus-visible .box,.wb-btn.is-hover .box{background:var(--fg)}
+.wb-btn:hover .box svg,.wb-btn:focus-visible .box svg,.wb-btn.is-hover .box svg{transform:rotate(45deg)}
+.wb-btn.light:hover .box svg,.wb-btn.light:focus-visible .box svg,.wb-btn.light.is-hover .box svg{color:#16181B}
+.wb-btn.dark:hover .box svg,.wb-btn.dark:focus-visible .box svg,.wb-btn.dark.is-hover .box svg{color:#FFFFFF}
+.wb-btn.accent:hover .box svg,.wb-btn.accent:focus-visible .box svg,.wb-btn.accent.is-hover .box svg{color:var(--acc)}
+.wb-btn.light:focus-visible{outline-color:#FFFFFF}
+/* images */
+.wb-art.ph{padding:0;background:#16181B}
+.wb-ph{position:absolute;inset:0;background-size:cover;background-position:center}
+.sec.ld .wb-ph.strat{background-image:url(assets/website/photos/strat-m.webp)}
+.sec.ld .wb-ph.hero{background-image:url(assets/website/photos/hero-m.webp)}
+.wb-ph.mono{filter:grayscale(1)}
+.wb-ph.win{-webkit-mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Crect x='50' y='0.0' width='25' height='33.333'/%3E%3Crect x='75' y='0.0' width='25' height='33.333'/%3E%3Crect x='50' y='33.333' width='25' height='33.333'/%3E%3Crect x='75' y='66.666' width='25' height='33.333'/%3E%3Crect x='25' y='66.666' width='25' height='33.333'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat;mask:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100' preserveAspectRatio='none'%3E%3Crect x='50' y='0.0' width='25' height='33.333'/%3E%3Crect x='75' y='0.0' width='25' height='33.333'/%3E%3Crect x='50' y='33.333' width='25' height='33.333'/%3E%3Crect x='75' y='66.666' width='25' height='33.333'/%3E%3Crect x='25' y='66.666' width='25' height='33.333'/%3E%3C/svg%3E") 0 0/100% 100% no-repeat}
+.wb-ph.shade::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(22,24,27,.55),rgba(22,24,27,.1))}
+/* motion */
+.wb-motion{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px;align-items:start}
+@media (max-width:860px){.wb-motion{grid-template-columns:minmax(0,1fr)}}
+.wb-ease{display:grid;gap:2px}
+.wb-ease>div{background:var(--surface);padding:14px 16px;display:grid;gap:8px}
+.wb-ease b{font-weight:500;font-size:14px}
+.wb-ease code{font-family:var(--mono);font-size:12px;color:var(--ink-2)}
+.wb-ease .bar{position:relative;height:6px;background:var(--surface-2);overflow:hidden}
+.wb-ease .bar i{position:absolute;left:0;top:0;bottom:0;width:30%;background:var(--ink);animation:wb-run 1.6s var(--ease) infinite alternate}
+.wb-ease .io .bar i{animation-timing-function:var(--ease-io)}
+@keyframes wb-run{to{left:70%}}
+@media (prefers-reduced-motion:reduce){.wb-ease .bar i{animation:none}.wb-btn .box,.wb-btn .box svg{transition:none}}
+/* reference kit card */
+.wb-kit{display:flex;flex-wrap:wrap;gap:16px 24px;align-items:center;justify-content:space-between;background:#16181B;color:#FFFFFF;padding:22px 24px}
+.wb-kit div{display:grid;gap:4px;max-width:60ch}
+.wb-kit .eyebrow{color:#A2A3A4}
+.wb-kit h4{font-size:20px;color:#FFFFFF}
+.wb-kit p{font-size:14px;color:#B9BABB}
+/* side nav and cover links to the kit */
+.side .kit-link a,.mnav-body .kit-link a{display:flex;justify-content:space-between;gap:8px}
+.side .kit-link a::after,.mnav-body .kit-link a::after{content:"\2192"}
+@media (min-width:761px){.cover-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
+:root{--nav-h:60px}
+.topnav{position:sticky;top:0;z-index:55;background:#16181B;color:#FFFFFF;padding:env(safe-area-inset-top,0px) 0 0!important;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+.topnav .wrap{display:flex;align-items:stretch;flex-wrap:nowrap!important;gap:0!important;height:var(--nav-h);padding-block:0!important}
+.topnav .tn-logo{display:flex!important;align-items:center;flex:none;width:auto!important;padding:0!important;border:0!important}
+.topnav .tn-logo img{display:block;width:80px!important;height:auto}
+.pnav{display:flex;margin-left:auto}
+.pnav a{display:flex;align-items:center;justify-content:center;padding:0 32px;border-left:1px solid #3A3C3F;color:#FFFFFF;text-decoration:none;font-family:var(--display);font-weight:600;font-size:17px;line-height:1;white-space:nowrap;transition:background-color .2s,color .2s}
+.pnav a:last-child{border-right:1px solid #3A3C3F}
+.pnav a:hover{background:#2A2C2F}
+.pnav a[aria-current="page"]{background:#FFFFFF;color:#16181B;border-color:#FFFFFF}
+.pnav a:focus-visible,.tn-burger:focus-visible{outline:2px solid #FFFFFF;outline-offset:-4px}
+.pnav a[aria-current="page"]:focus-visible{outline-color:#16181B}
+.tn-burger{display:none}
+@media (max-width:900px){
+  :root{--nav-h:56px}
+  .topnav .tn-logo img{width:72px!important}
+  .tn-burger{display:flex;align-items:center;justify-content:center;width:56px;margin-left:auto;margin-right:calc(-1 * var(--gutter));padding:0;background:none;border:0;border-left:1px solid #3A3C3F;color:#FFFFFF;cursor:pointer}
+  .tn-burger i{position:relative;display:block;width:22px;height:2px;background:currentColor;transition:background-color .2s}
+  .tn-burger i::before,.tn-burger i::after{content:"";position:absolute;left:0;width:22px;height:2px;background:currentColor;transition:transform .25s cubic-bezier(.2,.7,.2,1)}
+  .tn-burger i::before{transform:translateY(-7px)}.tn-burger i::after{transform:translateY(7px)}
+  .topnav.open .tn-burger i{background:transparent}
+  .topnav.open .tn-burger i::before{transform:rotate(45deg)}.topnav.open .tn-burger i::after{transform:rotate(-45deg)}
+  .pnav{display:none;position:absolute;left:0;right:0;top:100%;flex-direction:column;margin:0;background:#16181B;border-top:1px solid #3A3C3F;box-shadow:0 16px 32px rgba(22,24,27,.25)}
+  .topnav.open .pnav{display:flex}
+  .pnav a{justify-content:flex-start;height:60px;padding:0 var(--gutter);border-left:0;border-right:0!important;border-bottom:1px solid #3A3C3F;font-size:20px}
+  .pnav a[aria-current="page"]{border-bottom-color:#FFFFFF}
+  .topnav.tn-hide{transform:translateY(-100%)}
+}
+@media (prefers-reduced-motion:reduce){.topnav,.tn-burger i::before,.tn-burger i::after{transition:none}}
+.hero-logo{padding-right:0;border-right:0}
+.side{top:var(--nav-h);max-height:calc(100vh - var(--nav-h))}
+.sec{scroll-margin-top:calc(16px + var(--nav-h))}
+.chapter{scroll-margin-top:calc(24px + var(--nav-h))}
+.mbar-t{font-family:var(--display);font-weight:600;font-size:17px}
+@media (max-width:900px){
+  .mbar{transition:top .3s cubic-bezier(.2,.7,.2,1)}
+  html.tn-shown .mbar:not(.mbar-in){top:var(--nav-h)}
+  .mbar:not(.mbar-in) .menu-btn::before{width:7px;height:7px;border:0;border-right:2px solid currentColor;border-bottom:2px solid currentColor;background:none;transform:translateY(-2px) rotate(45deg)}
+  .sec,.chapter{scroll-margin-top:64px}
+}
 </style>
 
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="wb-arr" viewBox="0 0 24 24"><path d="M6.29425 17.6443L5.25 16.6L15.0905 6.75H6.14425V5.25H17.6443V16.75H16.1443V7.80375L6.29425 17.6443Z" fill="currentColor"/></symbol></defs></svg>
 <div class="page">
 <!-- ======================= COVER ======================= -->
 <div data-view="home" id="view-home">
@@ -453,30 +579,30 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
       <nav class="cover-cards" aria-label="Guidelines">
         <a href="#brand">Brand</a>
         <a href="#templates">Templates</a>
+        <a href="reference-kit.html" data-internal>Reference kit</a>
       </nav>
       <div class="cover-dl">
         <a class="act inv" href="assets/guidelines/kiwi-brand-guidelines.pdf" data-file="Kiwi brand guidelines.pdf" data-dl>Brand guidelines (PDF)</a>
         <a class="act inv ghost" href="assets/guidelines/how-to-use-the-kiwi-brand-guidelines.txt" data-file="How to use the Kiwi brand guidelines.txt" data-dl>How to use these guidelines (TXT)</a>
       </div>
     </div>
-    <div class="cover-foot"><span>Version 1.8</span><span>15 October 2026</span></div>
+    <div class="cover-foot"><span>Kiwi brand guidelines</span><span>2026</span></div>
   </div></section>
 </div>
 
 <!-- ======================= BRAND ======================= -->
 <div data-view="brand" id="view-brand">
-  <section class="hero" id="brand"><div class="wrap">
-    <a href="#home" class="hero-logo" aria-label="Kiwi brand guidelines cover"><img src="assets/logo/kiwi-strap-right-white.svg" alt="KIWI. Design, Manage, Build" width="84" height="24"></a>
-    <h1>Brand</h1>
-    <p class="hero-sub">What Kiwi stands for, how it sounds and how it looks.</p>
-    <span class="ver">Version 1.8 · 15 October 2026</span>
+  <section class="hero topnav" id="brand"><div class="wrap">
+    <a href="#home" class="hero-logo tn-logo" aria-label="Kiwi brand guidelines cover"><img src="assets/logo/kiwi-primary-white.svg" alt="Kiwi" width="80" height="32"></a>
+    <h1 class="sr">Brand</h1>
+    <button type="button" class="tn-burger" aria-expanded="false" aria-controls="pnav-brand" aria-label="Open menu"><i aria-hidden="true"></i></button>
+    <nav class="pnav" id="pnav-brand" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a><a href="reference-kit.html" data-internal>Reference kit</a></nav>
   </div></section>
-  <div class="mbar"><div class="mswitch" role="group" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a></div><button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button></div>
+  <div class="mbar"><span class="mbar-t">Brand</span><button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button></div>
 
 
   <div class="wrap layout">
     <nav class="side" aria-label="Brand sections">
-      <div class="switch" role="group" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a></div>
       <div class="grp"><span class="eyebrow">Strategy</span><ol>
         <li><a href="#values">Values</a></li>
         <li><a href="#audience">Audience</a></li>
@@ -495,6 +621,14 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
         <li><a href="#colour">Colour</a></li>
         <li><a href="#type">Typography</a></li>
         <li><a href="#icons">Icons</a></li>
+      </ol></div>
+      <div class="grp"><span class="eyebrow">Website</span><ol>
+        <li><a href="#web-grid">Grid</a></li>
+        <li><a href="#web-highlights">Accent and highlights</a></li>
+        <li><a href="#web-buttons">Buttons</a></li>
+        <li><a href="#web-images">Image treatments</a></li>
+        <li><a href="#web-motion">Motion</a></li>
+        <li><a href="#web-rules">Website rules</a></li>
       </ol></div>
     </nav>
 
@@ -578,7 +712,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
         <div class="sec-head"><h3>Key messages</h3><p>What we want people to remember about Kiwi. Start from these on the website, in proposals and on social.</p></div>
         <div class="core"><span class="eyebrow">Core message</span><p>We make it happen.</p></div>
         <div class="tiles">
-          <div class="tile"><h4>One team, start to finish</h4><p>We design, manufacture and build in-house. You deal with one team from the first drawing to handover.</p></div>
+          <div class="tile"><h4>One team, start to finish</h4><p>We design, manage and build in-house. You deal with one team from the first drawing to handover.</p></div>
           <div class="tile"><h4>40 years of fit-out</h4><p>We’ve been designing and building interiors for 40 years. We know what can be built, and how to build it well.</p></div>
           <div class="tile"><h4>Our own specialists</h4><p>A specialist team of our own, backed by subcontractors we trust.</p></div>
           <div class="tile"><h4>Your design, made buildable</h4><p>We adapt your design to what can actually be built, without losing what makes it work.</p></div>
@@ -633,15 +767,15 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
           <a class="act" href="assets/logo/kiwi-logo-suite.zip" download="Kiwi logo suite.zip" data-dl style="margin-left:auto">Download all (.zip)</a>
         </div>
         <div class="lv-grid">
-          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="KIWI logo with strapline on the right" width="280" height="80"></div>
+          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="KIWI logo with strapline on the right" width="280" height="80" loading="lazy" decoding="async"></div>
             <div class="lv-body"><h4>Strap right</h4><p>The everyday version.</p><div class="lv-dl" data-logo="kiwi-strap-right" data-name="Strap right"></div></div></article>
-          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-strap-beneath-black.svg" alt="KIWI logo with strapline beneath" width="200" height="106"></div>
+          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-strap-beneath-black.svg" alt="KIWI logo with strapline beneath" width="200" height="106" loading="lazy" decoding="async"></div>
             <div class="lv-body"><h4>Strap beneath</h4><p>For square or tall spaces.</p><div class="lv-dl" data-logo="kiwi-strap-beneath" data-name="Strap beneath"></div></div></article>
-          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-primary-black.svg" alt="KIWI primary wordmark" width="200" height="80"></div>
+          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-primary-black.svg" alt="KIWI primary wordmark" width="200" height="80" loading="lazy" decoding="async"></div>
             <div class="lv-body"><h4>Primary</h4><p>For small sizes, without the strapline.</p><div class="lv-dl" data-logo="kiwi-primary" data-name="Primary"></div></div></article>
-          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-profile-dark.svg" alt="Kiwi profile image" width="120" height="120" style="max-width:84px"></div>
+          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-profile-dark.svg" alt="Kiwi profile image" width="120" height="120" style="max-width:84px" loading="lazy" decoding="async"></div>
             <div class="lv-body"><h4>Profile</h4><p>For social media profiles.</p><div class="lv-dl" data-logo="kiwi-profile" data-name="Profile" data-profile></div></div></article>
-          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-favicon-black.svg" alt="Kiwi favicon" width="100" height="100" style="max-width:84px"></div>
+          <article class="lv"><div class="lv-art"><img src="assets/logo/kiwi-favicon-black.svg" alt="Kiwi favicon" width="100" height="100" style="max-width:84px" loading="lazy" decoding="async"></div>
             <div class="lv-body"><h4>Favicon</h4><p>For browser tabs and app icons.</p><div class="lv-dl" data-logo="kiwi-favicon" data-name="Favicon" data-nocs></div></div></article>
         </div>
       </section>
@@ -652,7 +786,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
           <div class="cs-diagram" role="img" aria-label="Clear space diagram. The space around the logo on every side equals the height of the KIWI wordmark, marked x.">
             <div class="cs-box">
               <span class="x x-t">x</span><span class="x x-b">x</span><span class="x x-l">x</span><span class="x x-r">x</span>
-              <img src="assets/logo/kiwi-strap-right-black.svg" alt="" width="280" height="80">
+              <img src="assets/logo/kiwi-strap-right-black.svg" alt="" width="280" height="80" loading="lazy" decoding="async">
               <span class="x-mark"></span>
             </div>
           </div>
@@ -670,14 +804,14 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
       <section class="sec" id="misuse">
         <div class="sec-head"><h3>Logo don’ts</h3><p>Always use the supplied files as they are.</p></div>
         <div class="dont-grid">
-          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="transform:scaleX(1.45)"></div><figcaption>Don’t stretch or squash it</figcaption></figure>
-          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="transform:rotate(-14deg)"></div><figcaption>Don’t rotate it</figcaption></figure>
-          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="filter:invert(36%) sepia(92%) saturate(2400%) hue-rotate(345deg) brightness(95%)"></div><figcaption>Don’t change the colour</figcaption></figure>
-          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="filter:drop-shadow(5px 6px 4px rgba(0,0,0,.45))"></div><figcaption>Don’t add shadows or effects</figcaption></figure>
-          <figure class="dn"><div class="dn-art dn-busy"><img src="assets/logo/kiwi-strap-right-black.svg" alt=""></div><figcaption>Don’t place it on busy backgrounds</figcaption></figure>
-          <figure class="dn"><div class="dn-art" style="background:#2D2F32"><img src="assets/logo/kiwi-strap-right-black.svg" alt=""></div><figcaption>Don’t use black on dark backgrounds</figcaption></figure>
-          <figure class="dn"><div class="dn-art"><div class="dn-retype"><img src="assets/logo/kiwi-primary-black.svg" alt=""><span>Design · Manage · Build</span></div></div><figcaption>Don’t retype the strapline</figcaption></figure>
-          <figure class="dn"><div class="dn-art dn-crowd"><span>Lorem ipsum dolor sit</span><img src="assets/logo/kiwi-strap-right-black.svg" alt=""></div><figcaption>Don’t crowd it</figcaption></figure>
+          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="transform:scaleX(1.45)" loading="lazy" decoding="async"></div><figcaption>Don’t stretch or squash it</figcaption></figure>
+          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="transform:rotate(-14deg)" loading="lazy" decoding="async"></div><figcaption>Don’t rotate it</figcaption></figure>
+          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="filter:invert(36%) sepia(92%) saturate(2400%) hue-rotate(345deg) brightness(95%)" loading="lazy" decoding="async"></div><figcaption>Don’t change the colour</figcaption></figure>
+          <figure class="dn"><div class="dn-art"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" style="filter:drop-shadow(5px 6px 4px rgba(0,0,0,.45))" loading="lazy" decoding="async"></div><figcaption>Don’t add shadows or effects</figcaption></figure>
+          <figure class="dn"><div class="dn-art dn-busy"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" loading="lazy" decoding="async"></div><figcaption>Don’t place it on busy backgrounds</figcaption></figure>
+          <figure class="dn"><div class="dn-art" style="background:#2D2F32"><img src="assets/logo/kiwi-strap-right-black.svg" alt="" loading="lazy" decoding="async"></div><figcaption>Don’t use black on dark backgrounds</figcaption></figure>
+          <figure class="dn"><div class="dn-art"><div class="dn-retype"><img src="assets/logo/kiwi-primary-black.svg" alt="" loading="lazy" decoding="async"><span>Design · Manage · Build</span></div></div><figcaption>Don’t retype the strapline</figcaption></figure>
+          <figure class="dn"><div class="dn-art dn-crowd"><span>Lorem ipsum dolor sit</span><img src="assets/logo/kiwi-strap-right-black.svg" alt="" loading="lazy" decoding="async"></div><figcaption>Don’t crowd it</figcaption></figure>
         </div>
       </section>
 
@@ -739,10 +873,10 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
         </div>
       </section>
       <section class="sec" id="icons">
-        <div class="sec-head"><h3>Icons</h3><p>Google Material Symbols in the Sharp style. Square ends to match the square corners everywhere else. Always mono: Kiwi black on light backgrounds, white on dark.</p></div>
+        <div class="sec-head"><h3>Icons</h3><p>Google Material Symbols in the Sharp style. Square ends to match the square corners everywhere else. Kiwi black on light backgrounds, white on dark, or the accent on the website.</p></div>
         <div class="ic-panels">
-          <div class="ic-panel w"><div class="ic"><span class="ms" aria-hidden="true">call</span><code>call</code></div><div class="ic"><span class="ms" aria-hidden="true">mail</span><code>mail</code></div><div class="ic"><span class="ms" aria-hidden="true">location_on</span><code>location_on</code></div><div class="ic"><span class="ms" aria-hidden="true">arrow_forward</span><code>arrow_forward</code></div><div class="ic"><span class="ms" aria-hidden="true">download</span><code>download</code></div><div class="ic"><span class="ms" aria-hidden="true">open_in_new</span><code>open_in_new</code></div><div class="ic"><span class="ms" aria-hidden="true">menu</span><code>menu</code></div><div class="ic"><span class="ms" aria-hidden="true">design_services</span><code>design_services</code></div><div class="ic"><span class="ms" aria-hidden="true">precision_manufacturing</span><code>precision_manufacturing</code></div><div class="ic"><span class="ms" aria-hidden="true">construction</span><code>construction</code></div><div class="ic"><span class="ms" aria-hidden="true">storefront</span><code>storefront</code></div><div class="ic"><span class="ms" aria-hidden="true">fitness_center</span><code>fitness_center</code></div></div>
-          <div class="ic-panel k"><div class="ic"><span class="ms" aria-hidden="true">call</span><code>call</code></div><div class="ic"><span class="ms" aria-hidden="true">mail</span><code>mail</code></div><div class="ic"><span class="ms" aria-hidden="true">location_on</span><code>location_on</code></div><div class="ic"><span class="ms" aria-hidden="true">arrow_forward</span><code>arrow_forward</code></div><div class="ic"><span class="ms" aria-hidden="true">download</span><code>download</code></div><div class="ic"><span class="ms" aria-hidden="true">open_in_new</span><code>open_in_new</code></div><div class="ic"><span class="ms" aria-hidden="true">menu</span><code>menu</code></div><div class="ic"><span class="ms" aria-hidden="true">design_services</span><code>design_services</code></div><div class="ic"><span class="ms" aria-hidden="true">precision_manufacturing</span><code>precision_manufacturing</code></div><div class="ic"><span class="ms" aria-hidden="true">construction</span><code>construction</code></div><div class="ic"><span class="ms" aria-hidden="true">storefront</span><code>storefront</code></div><div class="ic"><span class="ms" aria-hidden="true">fitness_center</span><code>fitness_center</code></div></div>
+          <div class="ic-panel w"><div class="ic"><span class="ms" aria-hidden="true">call</span><code>call</code></div><div class="ic"><span class="ms" aria-hidden="true">mail</span><code>mail</code></div><div class="ic"><span class="ms" aria-hidden="true">location_on</span><code>location_on</code></div><div class="ic"><span class="ms" aria-hidden="true">arrow_forward</span><code>arrow_forward</code></div><div class="ic"><span class="ms" aria-hidden="true">download</span><code>download</code></div><div class="ic"><span class="ms" aria-hidden="true">open_in_new</span><code>open_in_new</code></div><div class="ic"><span class="ms" aria-hidden="true">menu</span><code>menu</code></div><div class="ic"><span class="ms" aria-hidden="true">design_services</span><code>design_services</code></div><div class="ic"><span class="ms" aria-hidden="true">checklist</span><code>checklist</code></div><div class="ic"><span class="ms" aria-hidden="true">build</span><code>build</code></div><div class="ic"><span class="ms" aria-hidden="true">storefront</span><code>storefront</code></div><div class="ic"><span class="ms" aria-hidden="true">fitness_center</span><code>fitness_center</code></div></div>
+          <div class="ic-panel k"><div class="ic"><span class="ms" aria-hidden="true">call</span><code>call</code></div><div class="ic"><span class="ms" aria-hidden="true">mail</span><code>mail</code></div><div class="ic"><span class="ms" aria-hidden="true">location_on</span><code>location_on</code></div><div class="ic"><span class="ms" aria-hidden="true">arrow_forward</span><code>arrow_forward</code></div><div class="ic"><span class="ms" aria-hidden="true">download</span><code>download</code></div><div class="ic"><span class="ms" aria-hidden="true">open_in_new</span><code>open_in_new</code></div><div class="ic"><span class="ms" aria-hidden="true">menu</span><code>menu</code></div><div class="ic"><span class="ms" aria-hidden="true">design_services</span><code>design_services</code></div><div class="ic"><span class="ms" aria-hidden="true">checklist</span><code>checklist</code></div><div class="ic"><span class="ms" aria-hidden="true">build</span><code>build</code></div><div class="ic"><span class="ms" aria-hidden="true">storefront</span><code>storefront</code></div><div class="ic"><span class="ms" aria-hidden="true">fitness_center</span><code>fitness_center</code></div></div>
         </div>
         <div class="ic-spec">
           <div class="block"><h4>Settings</h4>
@@ -753,7 +887,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
               <dt>Weight</dt><dd>300</dd>
               <dt>Grade</dt><dd>0</dd>
               <dt>Optical size</dt><dd>Match the icon size</dd>
-              <dt>Colour</dt><dd>Kiwi black #16181B or white</dd>
+              <dt>Colour</dt><dd>Kiwi black #16181B, white, or the accent on the website</dd>
             </dl>
           </div>
           <div class="block"><h4>Get them</h4>
@@ -768,10 +902,99 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
           </div>
         </div>
         <div class="rules rules-3">
-          <div><b>Mono only</b><p>Kiwi black on light, white on dark. Never a tint or any other colour.</p></div>
+          <div><b>Mono, plus the accent</b><p>Kiwi black on light, white on dark. On the website, icons can also take the accent, such as the map pin. Never a tint.</p></div>
           <div><b>One set, one setting</b><p>Material Symbols Sharp, outline, weight 300. Don't mix in other icon sets, styles or filled icons.</p></div>
           <div><b>Icons support words</b><p>Pair an icon with a label. Only universal icons, such as menu, stand alone, and they still need a name for screen readers.</p></div>
         </div>
+      </section>
+    
+      <div class="chapter-gap"></div>
+      <div class="chapter" id="website"><h2><span>04</span>Website</h2></div>
+
+      <section class="sec" id="web-grid">
+        <div class="sec-head"><h3>Grid</h3><p>Built from the logo’s construction lines. A 144 × 140px module at 1440 × 840, in 1px lines: solid for cells, dashed for diagonals and guides. Use it where it adds structure, such as a hero, a feature or a project grid. Most layouts stay clean.</p></div>
+        <div class="wb-tiles"><div class="wb-t"><div class="wb-art"><svg class="wb-g feature" viewBox="0 0 1440 840" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="840"/><line x1="144" y1="0" x2="144" y2="840"/><line x1="288" y1="0" x2="288" y2="840"/><line x1="432" y1="0" x2="432" y2="840"/><line x1="576" y1="0" x2="576" y2="840"/><line x1="720" y1="0" x2="720" y2="840"/><line x1="864" y1="0" x2="864" y2="840"/><line x1="1008" y1="0" x2="1008" y2="840"/><line x1="1152" y1="0" x2="1152" y2="840"/><line x1="1296" y1="0" x2="1296" y2="840"/><line x1="1440" y1="0" x2="1440" y2="840"/><line x1="0" y1="0" x2="1440" y2="0"/><line x1="0" y1="140" x2="1440" y2="140"/><line x1="0" y1="280" x2="1440" y2="280"/><line x1="0" y1="420" x2="1440" y2="420"/><line x1="0" y1="560" x2="1440" y2="560"/><line x1="0" y1="700" x2="1440" y2="700"/><line x1="0" y1="840" x2="1440" y2="840"/><line class="d" x1="0" y1="280" x2="288" y2="840"/><line class="d" x1="288" y1="280" x2="0" y2="840"/><line class="d" x1="288" y1="0" x2="432" y2="140"/><line class="d" x1="1152" y1="0" x2="288" y2="840"/><line class="d" x1="1008" y1="280" x2="1296" y2="700"/></svg></div><div class="wb-body"><b>Feature · 100%</b><p>The grid is the graphic.</p></div></div><div class="wb-t"><div class="wb-art dk"><svg class="wb-g on-dark structure" viewBox="0 0 1440 840" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="840"/><line x1="144" y1="0" x2="144" y2="840"/><line x1="288" y1="0" x2="288" y2="840"/><line x1="432" y1="0" x2="432" y2="840"/><line x1="576" y1="0" x2="576" y2="840"/><line x1="720" y1="0" x2="720" y2="840"/><line x1="864" y1="0" x2="864" y2="840"/><line x1="1008" y1="0" x2="1008" y2="840"/><line x1="1152" y1="0" x2="1152" y2="840"/><line x1="1296" y1="0" x2="1296" y2="840"/><line x1="1440" y1="0" x2="1440" y2="840"/><line x1="0" y1="0" x2="1440" y2="0"/><line x1="0" y1="140" x2="1440" y2="140"/><line x1="0" y1="280" x2="1440" y2="280"/><line x1="0" y1="420" x2="1440" y2="420"/><line x1="0" y1="560" x2="1440" y2="560"/><line x1="0" y1="700" x2="1440" y2="700"/><line x1="0" y1="840" x2="1440" y2="840"/><line class="d" x1="0" y1="280" x2="288" y2="840"/><line class="d" x1="288" y1="280" x2="0" y2="840"/><line class="d" x1="288" y1="0" x2="432" y2="140"/><line class="d" x1="1152" y1="0" x2="288" y2="840"/><line class="d" x1="1008" y1="280" x2="1296" y2="700"/></svg></div><div class="wb-body"><b>Structure · 35%</b><p>Over photos and dark layouts.</p></div></div><div class="wb-t"><div class="wb-art"><svg class="wb-g ambient" viewBox="0 0 1440 840" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="840"/><line x1="144" y1="0" x2="144" y2="840"/><line x1="288" y1="0" x2="288" y2="840"/><line x1="432" y1="0" x2="432" y2="840"/><line x1="576" y1="0" x2="576" y2="840"/><line x1="720" y1="0" x2="720" y2="840"/><line x1="864" y1="0" x2="864" y2="840"/><line x1="1008" y1="0" x2="1008" y2="840"/><line x1="1152" y1="0" x2="1152" y2="840"/><line x1="1296" y1="0" x2="1296" y2="840"/><line x1="1440" y1="0" x2="1440" y2="840"/><line x1="0" y1="0" x2="1440" y2="0"/><line x1="0" y1="140" x2="1440" y2="140"/><line x1="0" y1="280" x2="1440" y2="280"/><line x1="0" y1="420" x2="1440" y2="420"/><line x1="0" y1="560" x2="1440" y2="560"/><line x1="0" y1="700" x2="1440" y2="700"/><line x1="0" y1="840" x2="1440" y2="840"/><line class="d" x1="0" y1="280" x2="288" y2="840"/><line class="d" x1="288" y1="280" x2="0" y2="840"/><line class="d" x1="288" y1="0" x2="432" y2="140"/><line class="d" x1="1152" y1="0" x2="288" y2="840"/><line class="d" x1="1008" y1="280" x2="1296" y2="700"/></svg></div><div class="wb-body"><b>Ambient · 15%</b><p>Behind copy.</p></div></div><div class="wb-t"><div class="wb-art ph"><div class="wb-ph hero shade"></div><svg class="wb-g on-dark structure" viewBox="0 0 1440 840" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="840"/><line x1="144" y1="0" x2="144" y2="840"/><line x1="288" y1="0" x2="288" y2="840"/><line x1="432" y1="0" x2="432" y2="840"/><line x1="576" y1="0" x2="576" y2="840"/><line x1="720" y1="0" x2="720" y2="840"/><line x1="864" y1="0" x2="864" y2="840"/><line x1="1008" y1="0" x2="1008" y2="840"/><line x1="1152" y1="0" x2="1152" y2="840"/><line x1="1296" y1="0" x2="1296" y2="840"/><line x1="1440" y1="0" x2="1440" y2="840"/><line x1="0" y1="0" x2="1440" y2="0"/><line x1="0" y1="140" x2="1440" y2="140"/><line x1="0" y1="280" x2="1440" y2="280"/><line x1="0" y1="420" x2="1440" y2="420"/><line x1="0" y1="560" x2="1440" y2="560"/><line x1="0" y1="700" x2="1440" y2="700"/><line x1="0" y1="840" x2="1440" y2="840"/><line class="d" x1="0" y1="280" x2="288" y2="840"/><line class="d" x1="288" y1="280" x2="0" y2="840"/><line class="d" x1="288" y1="0" x2="432" y2="140"/><line class="d" x1="1152" y1="0" x2="288" y2="840"/><line class="d" x1="1008" y1="280" x2="1296" y2="700"/></svg></div><div class="wb-body"><b>On a photo</b><p>Structure strength in white, over a darkened photo.</p></div></div></div>
+        <div class="rules rules-3">
+          <div><b>One strength per view</b><p>Feature, structure or ambient. Never mix them in one layout.</p></div>
+          <div><b>Kiwi black or white</b><p>Lines are 1px. Diagonals share the colour and weight of the grid.</p></div>
+          <div><b>Built for the layout</b><p>Custom grids use the same module, fitted around the content.</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="web-highlights">
+        <div class="sec-head"><h3>Accent and highlights</h3><p>The accent is a highlighter. It overlaps the type in small doses, always with Kiwi black text on it.</p></div>
+        <div class="wb-note"><i></i><span>Shown in Forge Amber, the working accent. Kiwi choose the final accent from five options in the reference kit.</span></div>
+        <div class="wb-tiles">
+          <div class="wb-t"><div class="wb-art"><span class="wb-bar">How we work</span></div><div class="wb-body"><b>Eyebrow bar</b><p>On white.</p></div></div>
+          <div class="wb-t"><div class="wb-art dk"><span class="wb-dot"><i></i>Clients</span></div><div class="wb-body"><b>Eyebrow dot</b><p>On Kiwi black. The bar can’t be read on dark.</p></div></div>
+          <div class="wb-t"><div class="wb-art"><span class="wb-line"><span class="wb-mk">40</span> years.</span></div><div class="wb-body"><b>Marker</b><p>A figure or date, on white.</p></div></div>
+          <div class="wb-t"><div class="wb-art"><span class="wb-line">made <span class="wb-blk">buildable.</span></span></div><div class="wb-body"><b>Block</b><p>A key word or two.</p></div></div>
+        </div>
+        <div class="rules rules-3">
+          <div><b>Small doses</b><p>Highlights, eyebrows, the accent button and accent icons. Never a large background or body text.</p></div>
+          <div><b>Kiwi black on the accent</b><p>Never white on the accent. Never the accent as small text on white.</p></div>
+          <div><b>One move per layout</b><p>One lead highlight, with at most one supporting move.</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="web-buttons">
+        <div class="sec-head"><h3>Buttons</h3><p>Light, dark and accent. Square, with a 1px border and the arrow box. On hover and focus the box fills and the arrow turns to point forward. Labels in sentence case.</p></div>
+        <div class="wb-btns">
+          <div class="dk"><span><small>Standard</small><a class="wb-btn light" href="#"><span class="lbl">Contact</span><span class="box"><svg aria-hidden="true"><use href="#wb-arr"/></svg></span></a></span><span><small>Hover</small><a class="wb-btn light is-hover" href="#" tabindex="-1" aria-hidden="true"><span class="lbl">Contact</span><span class="box"><svg aria-hidden="true"><use href="#wb-arr"/></svg></span></a></span></div>
+          <div><span><small>Standard</small><a class="wb-btn dark" href="#"><span class="lbl">Contact</span><span class="box"><svg aria-hidden="true"><use href="#wb-arr"/></svg></span></a></span><span><small>Hover</small><a class="wb-btn dark is-hover" href="#" tabindex="-1" aria-hidden="true"><span class="lbl">Contact</span><span class="box"><svg aria-hidden="true"><use href="#wb-arr"/></svg></span></a></span></div>
+          <div><span><small>Standard</small><a class="wb-btn accent" href="#"><span class="lbl">Contact</span><span class="box"><svg aria-hidden="true"><use href="#wb-arr"/></svg></span></a></span><span><small>Hover</small><a class="wb-btn accent is-hover" href="#" tabindex="-1" aria-hidden="true"><span class="lbl">Contact</span><span class="box"><svg aria-hidden="true"><use href="#wb-arr"/></svg></span></a></span></div>
+        </div>
+      </section>
+
+      <section class="sec" id="web-images">
+        <div class="sec-head"><h3>Image treatments</h3><p>Real projects, shown as they were finished.</p></div>
+        <div class="wb-tiles">
+          <div class="wb-t"><div class="wb-art ph"><div class="wb-ph strat"></div></div><div class="wb-body"><b>Standard colour</b><p>For projects. Clients see the real finish.</p></div></div>
+          <div class="wb-t"><div class="wb-art ph"><div class="wb-ph strat mono"></div></div><div class="wb-body"><b>Mono</b><p>For atmosphere and behind type.</p></div></div>
+          <div class="wb-t"><div class="wb-art ph"><div class="wb-ph hero mono"></div><div class="wb-ph hero win"></div><svg class="wb-g on-dark ambient" viewBox="0 0 1440 840" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="840"/><line x1="144" y1="0" x2="144" y2="840"/><line x1="288" y1="0" x2="288" y2="840"/><line x1="432" y1="0" x2="432" y2="840"/><line x1="576" y1="0" x2="576" y2="840"/><line x1="720" y1="0" x2="720" y2="840"/><line x1="864" y1="0" x2="864" y2="840"/><line x1="1008" y1="0" x2="1008" y2="840"/><line x1="1152" y1="0" x2="1152" y2="840"/><line x1="1296" y1="0" x2="1296" y2="840"/><line x1="1440" y1="0" x2="1440" y2="840"/><line x1="0" y1="0" x2="1440" y2="0"/><line x1="0" y1="140" x2="1440" y2="140"/><line x1="0" y1="280" x2="1440" y2="280"/><line x1="0" y1="420" x2="1440" y2="420"/><line x1="0" y1="560" x2="1440" y2="560"/><line x1="0" y1="700" x2="1440" y2="700"/><line x1="0" y1="840" x2="1440" y2="840"/><line class="d" x1="0" y1="280" x2="288" y2="840"/><line class="d" x1="288" y1="280" x2="0" y2="840"/><line class="d" x1="288" y1="0" x2="432" y2="140"/><line class="d" x1="1152" y1="0" x2="288" y2="840"/><line class="d" x1="1008" y1="280" x2="1296" y2="700"/></svg></div><div class="wb-body"><b>Colour window</b><p>Grid cells in colour on a mono photo. Once per page, for a hero moment.</p></div></div>
+          <div class="wb-t"><div class="wb-art ph"><div class="wb-ph strat shade"></div><svg class="wb-g on-dark structure" viewBox="0 0 1440 840" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false"><line x1="0" y1="0" x2="0" y2="840"/><line x1="144" y1="0" x2="144" y2="840"/><line x1="288" y1="0" x2="288" y2="840"/><line x1="432" y1="0" x2="432" y2="840"/><line x1="576" y1="0" x2="576" y2="840"/><line x1="720" y1="0" x2="720" y2="840"/><line x1="864" y1="0" x2="864" y2="840"/><line x1="1008" y1="0" x2="1008" y2="840"/><line x1="1152" y1="0" x2="1152" y2="840"/><line x1="1296" y1="0" x2="1296" y2="840"/><line x1="1440" y1="0" x2="1440" y2="840"/><line x1="0" y1="0" x2="1440" y2="0"/><line x1="0" y1="140" x2="1440" y2="140"/><line x1="0" y1="280" x2="1440" y2="280"/><line x1="0" y1="420" x2="1440" y2="420"/><line x1="0" y1="560" x2="1440" y2="560"/><line x1="0" y1="700" x2="1440" y2="700"/><line x1="0" y1="840" x2="1440" y2="840"/><line class="d" x1="0" y1="280" x2="288" y2="840"/><line class="d" x1="288" y1="280" x2="0" y2="840"/><line class="d" x1="288" y1="0" x2="432" y2="140"/><line class="d" x1="1152" y1="0" x2="288" y2="840"/><line class="d" x1="1008" y1="280" x2="1296" y2="700"/></svg></div><div class="wb-body"><b>Grid overlay</b><p>For a feature image.</p></div></div>
+        </div>
+        <div class="rules rules-3">
+          <div><b>Text on photos</b><p>Always over a Kiwi black gradient, strong enough to read on the brightest photo.</p></div>
+          <div><b>Alt text</b><p>Say what and where, such as “JD Gyms, Wythenshawe: gym floor”.</p></div>
+          <div><b>Real work only</b><p>Kiwi projects, named correctly. AI images only as labelled placeholders.</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="web-motion">
+        <div class="sec-head"><h3>Motion</h3><p>Eased, smooth and on the grid. Things load in, respond to the cursor, then settle. Premium, not showy.</p></div>
+        <div class="wb-motion">
+          <div class="wb-ease">
+            <div><b>Ease out</b><code>cubic-bezier(.2, .7, .2, 1)</code><span class="bar"><i></i></span><p class="small">Entrances and hovers</p></div>
+            <div class="io"><b>Ease in-out</b><code>cubic-bezier(.65, 0, .35, 1)</code><span class="bar"><i></i></span><p class="small">Moving between states</p></div>
+          </div>
+          <table class="mini" style="max-width:none"><thead><tr><th>Motion</th><th>Duration</th></tr></thead><tbody>
+            <tr><td>Hover and focus</td><td>200ms</td></tr>
+            <tr><td>Links, list rows and tiles</td><td>250 to 300ms</td></tr>
+            <tr><td>Headline reveal</td><td>600ms, lines 120ms apart</td></tr>
+            <tr><td>Image reveals</td><td>700 to 900ms</td></tr>
+            <tr><td>Crossfade</td><td>1200ms, 4s a slide</td></tr>
+            <tr><td>Parallax</td><td>Tied to scroll</td></tr>
+          </tbody></table>
+        </div>
+        <div class="rules rules-3">
+          <div><b>One lead motion</b><p>Per section, with at most one supporting motion.</p></div>
+          <div><b>Scroll stays scroll</b><p>No pinned or hijacked scrolling. Hover effects are extras, never the only way to see something.</p></div>
+          <div><b>Respect reduced motion</b><p>Show the final state. Anything that moves for more than 5 seconds gets a pause control.</p></div>
+        </div>
+      </section>
+
+      <section class="sec" id="web-rules">
+        <div class="sec-head"><h3>Website rules</h3><p>The basics every page follows.</p></div>
+        <div class="rules">
+          <div><b>Square corners</b><p>Everywhere. No rounded buttons, cards or images.</p></div>
+          <div><b>Sentence case</b><p>Headings, navigation and buttons. Capitals only for short labels and eyebrows.</p></div>
+          <div><b>Say less, show more</b><p>One headline, one sentence and one button in a hero.</p></div>
+          <div><b>Real content</b><p>Only claims, figures and names Kiwi have confirmed. Anything else is marked [TBC].</p></div>
+          <div><b>Icons with words</b><p>Material Symbols Sharp, weight 300, with a label. Kiwi black, white or the accent.</p></div>
+          <div><b>Readable for everyone</b><p>WCAG 2.2 AA: 4.5:1 for text, 3:1 for large text and controls, visible focus, works with a keyboard.</p></div>
+        </div>
+        <div class="wb-kit"><div><span class="eyebrow">Reference kit</span><h4>Every element, composition and motion</h4><p>The full kit the website is designed from, with the five accent options and the technical guardrails for Claude.</p></div><a class="act inv" href="reference-kit.html" data-internal>Open the reference kit</a></div>
       </section>
     </main>
   </div>
@@ -779,18 +1002,17 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
 
 <!-- ======================= TEMPLATES ======================= -->
 <div data-view="templates" id="view-templates" hidden>
-  <section class="hero" id="templates"><div class="wrap">
-    <a href="#home" class="hero-logo" aria-label="Kiwi brand guidelines cover"><img src="assets/logo/kiwi-strap-right-white.svg" alt="KIWI. Design, Manage, Build" width="84" height="24"></a>
-    <h1>Templates</h1>
-    <p class="hero-sub">Ready-to-use files for everyday work.</p>
-    <span class="ver">Version 1.8 · 15 October 2026</span>
+  <section class="hero topnav" id="templates"><div class="wrap">
+    <a href="#home" class="hero-logo tn-logo" aria-label="Kiwi brand guidelines cover"><img src="assets/logo/kiwi-primary-white.svg" alt="Kiwi" width="80" height="32"></a>
+    <h1 class="sr">Templates</h1>
+    <button type="button" class="tn-burger" aria-expanded="false" aria-controls="pnav-templates" aria-label="Open menu"><i aria-hidden="true"></i></button>
+    <nav class="pnav" id="pnav-templates" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a><a href="reference-kit.html" data-internal>Reference kit</a></nav>
   </div></section>
-  <div class="mbar"><div class="mswitch" role="group" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a></div><button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button></div>
+  <div class="mbar"><span class="mbar-t">Templates</span><button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button></div>
 
 
   <div class="wrap layout">
     <nav class="side" aria-label="Template sections">
-      <div class="switch" role="group" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a></div>
       <div class="grp"><span class="eyebrow">Templates</span><ol>
         <li><a href="#signature">Email signature</a></li>
         <li><a href="#letterhead">Letterhead</a></li>
@@ -893,7 +1115,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
       <div class="chapter" id="letterhead"><h2><span>02</span>Letterhead</h2></div>
       <section class="sec" style="border-top:0">
         <div class="lh">
-          <figure class="paper"><img src="assets/templates/letterhead-preview.png" alt="Kiwi letterhead: logo top left, website, phone and address top right, a rule below and a blank page" width="910" height="1287"></figure>
+          <figure class="paper"><img src="assets/templates/letterhead-preview.png" alt="Kiwi letterhead: logo top left, website, phone and address top right, a rule below and a blank page" width="910" height="1287" loading="lazy" decoding="async"></figure>
           <div class="lh-side">
             <p class="sub" style="font-size:16px">A Word template with the logo and contact details in the header. Double-click it to start a new letter.</p>
             <div class="dl">
@@ -916,8 +1138,8 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
       <section class="sec" style="border-top:0">
         <div class="sec-head"><p>A simple two-page A4 newsletter for sharing news inside the team. Edit it in Word, save it as a PDF and send it round.</p></div>
         <div class="nl-pages">
-          <figure><img src="assets/templates/newsletter-p-1.png" alt="Newsletter page 1: title, intro, one image and a text section" width="662" height="936"></figure>
-          <figure><img src="assets/templates/newsletter-p-2.png" alt="Newsletter page 2: two text sections and a black panel" width="662" height="936"></figure>
+          <figure><img src="assets/templates/newsletter-p-1.png" alt="Newsletter page 1: title, intro, one image and a text section" width="662" height="936" loading="lazy" decoding="async"></figure>
+          <figure><img src="assets/templates/newsletter-p-2.png" alt="Newsletter page 2: two text sections and a black panel" width="662" height="936" loading="lazy" decoding="async"></figure>
         </div>
         <div class="nl-side">
           <div class="block">
@@ -950,10 +1172,10 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
     <a class="act inv ghost" href="assets/guidelines/how-to-use-the-kiwi-brand-guidelines.txt" data-file="How to use the Kiwi brand guidelines.txt" data-dl>How to use these guidelines (TXT)</a>
   </div>
 </div></section>
-<footer class="foot"><div class="wrap"><span>Kiwi brand guidelines</span><span>Version 1.8 · 15 October 2026</span></div></footer>
+<footer class="foot"><div class="wrap"><span>Kiwi brand guidelines</span><span>2026</span></div></footer>
 </div>
 <div class="mnav" id="mnav" role="dialog" aria-modal="true" aria-label="Sections" hidden>
-  <div class="mbar mbar-in"><div class="mswitch" role="group" aria-label="Choose a page"><button type="button" data-mview="brand">Brand</button><button type="button" data-mview="templates">Templates</button></div><button type="button" class="menu-btn is-close mnav-close" aria-expanded="true">Close</button></div>
+  <div class="mbar mbar-in"><span class="mbar-t">Sections</span><button type="button" class="menu-btn is-close mnav-close" aria-expanded="true">Close</button></div>
   <nav class="mnav-body" aria-label="Sections"></nav>
 </div>
 <div id="copybuf" aria-hidden="true"></div>
@@ -977,7 +1199,7 @@ const CONFIG = {
 /* ============================================================ */
 
 const EMBED = window.__EMBED_IMAGES__ || null; // preview builds only
-const base = CONFIG.imageBase || new URL('assets/email/', location.href).href;
+const base = CONFIG.imageBase || (()=>{try{return new URL('assets/email/', location.href).href}catch(e){return 'assets/email/'}})();
 const IMG = EMBED || { logo: base+'kiwi-logo.png', sc: base+'safecontractor.png', ssip: base+'ssip.png' };
 
 const K='#16181B', M='#5F6266', H='#D0D1D2';
@@ -995,7 +1217,7 @@ function signature(d){
   const rows=r.map(([k,v],i)=>{const b=i<r.length-1?`border-bottom:1px solid ${H};`:'';
     return `<tr><td width="72" style="${F}width:72px;padding:6px 0;${b}font-size:9px;line-height:16px;letter-spacing:1px;font-weight:600;color:${K};">${k}</td><td style="${F}padding:6px 0;${b}font-size:12px;line-height:16px;color:${K};">${v}</td></tr>`}).join('');
   const letters=d.letters.trim()?` <span class="m" style="font-weight:400;font-size:12px;color:${M};">${esc(d.letters.trim())}</span>`:'';
-  const img=(src,w,h,alt)=>`<img src="${src}" width="${w}" height="${h}" alt="${alt}" style="display:block;border:0;">`;
+  const img=(src,w,h,alt)=>`<img src="${src}" width="${w}" height="${h}" alt="${alt}" style="display:block;border:0;" loading="lazy" decoding="async">`;
   return `<table ${T} width="520" style="width:520px;border-collapse:collapse;">
 <tr><td style="${F}padding:0 0 2px;font-size:16px;line-height:20px;font-weight:600;color:${K};">${esc(d.name.trim())}${letters}</td></tr>
 <tr><td style="${F}padding:0 0 14px;font-size:13px;line-height:18px;color:${K};">${esc(d.title.trim())}</td></tr>
@@ -1033,8 +1255,8 @@ tabs.forEach((t,i)=>{t.addEventListener('click',()=>pick(t));t.addEventListener(
 
 /* Two pages in one file: #brand and #templates, plus any section id */
 const views=[...document.querySelectorAll('[data-view]')];
-function route(){
-  const id=decodeURIComponent(location.hash.slice(1))||'home';
+function route(force){
+  const id=(typeof force==='string'&&force)||decodeURIComponent(location.hash.slice(1))||'home';
   const target=document.getElementById(id);
   const view=(target&&target.closest('[data-view]'))||views[0];
   views.forEach(v=>v.hidden=v!==view);
@@ -1042,7 +1264,16 @@ function route(){
   document.querySelectorAll('[data-view-link]').forEach(a=>{if(a.dataset.viewLink===view.dataset.view)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current');});
   if(target&&!target.classList.contains('hero')&&!target.classList.contains('cover')){requestAnimationFrame(()=>target.scrollIntoView({block:'start'}));}else{window.scrollTo(0,0);}
 }
-addEventListener('hashchange',route);route();
+addEventListener('hashchange',()=>route());addEventListener('popstate',()=>route());route();window.kiwiRoute=route;
+document.addEventListener('click',e=>{
+  if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  const a=e.target.closest('a[href^="#"]');if(!a)return;
+  const id=decodeURIComponent(a.getAttribute('href').slice(1));if(!id)return;
+  const el=document.getElementById(id);if(!el||!el.closest('[data-view]'))return;
+  e.preventDefault();
+  try{if(location.hash!=='#'+id)history.pushState(null,'','#'+id);}catch(_){}
+  route(id);setTimeout(()=>dispatchEvent(new Event('scroll')),80);
+});
 
 /* Logo downloads: one zip per version and format, holding both colours */
 function logoRows(){
@@ -1101,7 +1332,7 @@ logoRows();
 function newTabs(root){
   root.querySelectorAll('a[href]').forEach(a=>{
     const h=a.getAttribute('href');
-    if(!h||h.startsWith('#')||a.closest('#sig'))return;
+    if(!h||h.startsWith('#')||a.closest('#sig')||a.hasAttribute('data-internal'))return;
     a.target='_blank'; a.rel='noopener';
   });
 }
@@ -1155,5 +1386,38 @@ addEventListener('hashchange',()=>setTimeout(track,60));
 setTimeout(track,60);
 </script>
 
+<script>
+/* Top navigation: sticky on desktop; on mobile a burger menu that hides on scroll down and returns on scroll up */
+(()=>{const navs=[...document.querySelectorAll('.topnav')];if(!navs.length)return;
+const root=document.documentElement,mq=matchMedia('(max-width:900px)');let y=scrollY,tick=false;
+const close=n=>{n.classList.remove('open');const b=n.querySelector('.tn-burger');if(b){b.setAttribute('aria-expanded','false');b.setAttribute('aria-label','Open menu')}};
+const show=v=>{navs.forEach(n=>n.classList.toggle('tn-hide',!v));root.classList.toggle('tn-shown',v)};
+const upd=()=>{tick=false;const ny=Math.max(0,scrollY);
+  if(!mq.matches){navs.forEach(n=>{n.classList.remove('tn-hide');close(n)});root.classList.remove('tn-shown');y=ny;return}
+  if(navs.some(n=>n.classList.contains('open'))){y=ny;return}
+  if(ny<=8)show(true);else if(ny>y+6)show(false);else if(ny<y-6)show(true);y=ny};
+addEventListener('scroll',()=>{if(!tick){tick=true;requestAnimationFrame(upd)}},{passive:true});
+mq.addEventListener('change',upd);
+navs.forEach(n=>{const b=n.querySelector('.tn-burger');if(!b)return;
+  b.addEventListener('click',e=>{e.stopPropagation();const o=!n.classList.contains('open');if(!o){close(n);return}
+    n.classList.add('open');b.setAttribute('aria-expanded','true');b.setAttribute('aria-label','Close menu');show(true)});
+  n.querySelectorAll('.pnav a').forEach(a=>a.addEventListener('click',()=>close(n)))});
+document.addEventListener('click',e=>navs.forEach(n=>{if(n.classList.contains('open')&&!n.contains(e.target))close(n)}));
+document.addEventListener('keydown',e=>{if(e.key==='Escape')navs.forEach(n=>{if(n.classList.contains('open')){close(n);n.querySelector('.tn-burger').focus()}})});
+show(true);
+/* In-page links scroll directly, so they also work inside sandboxed previews */
+document.addEventListener('click',e=>{if(e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||e.altKey)return;
+  const a=e.target.closest('a[href^="#"]');if(!a)return;const id=decodeURIComponent(a.getAttribute('href').slice(1));const el=id&&document.getElementById(id);if(!el)return;
+  e.preventDefault();try{history.pushState(null,'','#'+id)}catch(_){}el.scrollIntoView({block:'start'});
+  if(!el.matches('a,button,input,select,textarea,[tabindex]')){el.setAttribute('tabindex','-1');el.focus({preventScroll:true})}});
+})();
+</script>
+<script>
+/* Load section photos as they near the screen */
+(()=>{const s=[...document.querySelectorAll('.sec')];const all=()=>s.forEach(e=>e.classList.add('ld'));
+if(!('IntersectionObserver' in window)){all();return}
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('ld');io.unobserve(e.target)}}),{rootMargin:'900px 0px'});
+s.forEach(e=>io.observe(e));addEventListener('beforeprint',all);})();
+</script>
 </body>
 </html>

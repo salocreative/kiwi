@@ -1,0 +1,7 @@
+Fonts served with the Kiwi brand guidelines
+
+Familjen Grotesk  SIL Open Font License 1.1  https://fonts.google.com/specimen/Familjen+Grotesk/license
+Inter             SIL Open Font License 1.1  https://fonts.google.com/specimen/Inter/license
+Material Symbols  Apache License 2.0         https://github.com/google/material-design-icons/blob/master/LICENSE
+
+Latin subsets, downloaded from Google Fonts.

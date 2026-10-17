@@ -4,6 +4,9 @@ A brand guidelines site in `index.html`. It opens on a cover page (`#home`) that
 
 - **Brand** (`#brand`): strategy (values, audience, positioning), voice (tone, key messages, writing style, example headlines), logo, clear space and usage, colour, typography, icons.
 - **Templates** (`#templates`): email signature generator, Word letterhead, newsletter (Word file and PDF example).
+- **Website** (in the Brand view, `#website`): the website basics. Grid, accent and highlights, buttons, image treatments, motion and website rules.
+
+The **reference kit** (`reference-kit.html`) is a separate page, linked from the cover and the menu. It holds every website element, composition and motion demo, the five accent options with a switcher along the top, and the technical guardrails for Claude (`kiwi-website-rules.md`, also downloadable from the page).
 
 Any section can be linked directly, for example `#signature` or `#letterhead`. The page switches to the right view. The Kiwi logo in the top band always goes back to the cover.
 
@@ -19,6 +22,12 @@ Any section can be linked directly, for example `#signature` or `#letterhead`. T
 
 ```
 index.html                    The whole site (HTML, CSS and JavaScript in one file)
+reference-kit.html            The reference kit (photos load from assets/website/photos/)
+kiwi-website-rules.md         Technical guardrails for the website build, readable by Claude
+assets/website/photos/        Website photos (WebP). Each has a full version and a lighter
+                              -m version for phones. Pages load them section by section
+assets/fonts/                 Familjen Grotesk, Inter and the Material Symbols icons used on
+                              the site, served from here rather than Google Fonts
 assets/logo/                  Logo suite: primary, strap right, strap beneath (black and white,
                               with and without clear space), profile images and favicon,
                               as SVG, PNG and PDF
@@ -95,6 +104,9 @@ The site's own tab icon is in `assets/favicon/`. If the favicon changes, replace
 The site is live at https://salocreative.github.io/kiwi/. To move it to a custom domain such as brand.wearekiwi.co.uk, the domain owner adds a CNAME record for `brand` pointing to `salocreative.github.io`. Then, in this repository, go to **Settings › Pages › Custom domain**, enter the domain and save. Tick **Enforce HTTPS** once it's available. If the address changes, update the link in the how-to text file.
 
 ## Technical notes
+
+- Both pages load light: fonts are self-hosted and preloaded, images load as you scroll to them, and the reference kit's photos sit in their own files rather than inside the page.
+- The icon font in `assets/fonts/` only holds the icons the site uses. To add an icon, download a new subset from Google Fonts (Material Symbols Sharp, weight 300, with `icon_names=` listing every icon) and replace the file, keeping the name.
 
 - The signature is built with tables and inline styles so it renders consistently in Outlook.
 - The signature HTML is about 5,000 characters. Gmail allows up to 10,000.
