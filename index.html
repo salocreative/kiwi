@@ -519,7 +519,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
 /* side nav and cover links to the kit */
 .side .kit-link a,.mnav-body .kit-link a{display:flex;justify-content:space-between;gap:8px}
 .side .kit-link a::after,.mnav-body .kit-link a::after{content:"\2192"}
-@media (min-width:761px){.cover-cards{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:761px){.cover-cards{grid-template-columns:repeat(3,minmax(0,1fr))}.cover-cards:has(> :nth-child(4)){grid-template-columns:repeat(2,minmax(0,1fr))}}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(50%);white-space:nowrap}
 :root{--nav-h:60px}
 .topnav{position:sticky;top:0;z-index:55;background:#16181B;color:#FFFFFF;padding:env(safe-area-inset-top,0px) 0 0!important;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
@@ -580,6 +580,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
         <a href="#brand">Brand</a>
         <a href="#templates">Templates</a>
         <a href="reference-kit.html" data-internal>Reference kit</a>
+        <a href="concept-review.html" data-internal data-concept-link>Concept review</a>
       </nav>
       <div class="cover-dl">
         <a class="act inv" href="assets/guidelines/kiwi-brand-guidelines.pdf" data-file="Kiwi brand guidelines.pdf" data-dl>Brand guidelines (PDF)</a>
@@ -596,7 +597,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
     <a href="#home" class="hero-logo tn-logo" aria-label="Kiwi brand guidelines cover"><img src="assets/logo/kiwi-primary-white.svg" alt="Kiwi" width="80" height="32"></a>
     <h1 class="sr">Brand</h1>
     <button type="button" class="tn-burger" aria-expanded="false" aria-controls="pnav-brand" aria-label="Open menu"><i aria-hidden="true"></i></button>
-    <nav class="pnav" id="pnav-brand" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a><a href="reference-kit.html" data-internal>Reference kit</a></nav>
+    <nav class="pnav" id="pnav-brand" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a><a href="reference-kit.html" data-internal>Reference kit</a><a href="concept-review.html" data-internal data-concept-link>Concept review</a></nav>
   </div></section>
   <div class="mbar"><span class="mbar-t">Brand</span><button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button></div>
 
@@ -1006,7 +1007,7 @@ footer.foot .wrap{display:flex;flex-wrap:wrap;gap:8px 24px;justify-content:space
     <a href="#home" class="hero-logo tn-logo" aria-label="Kiwi brand guidelines cover"><img src="assets/logo/kiwi-primary-white.svg" alt="Kiwi" width="80" height="32"></a>
     <h1 class="sr">Templates</h1>
     <button type="button" class="tn-burger" aria-expanded="false" aria-controls="pnav-templates" aria-label="Open menu"><i aria-hidden="true"></i></button>
-    <nav class="pnav" id="pnav-templates" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a><a href="reference-kit.html" data-internal>Reference kit</a></nav>
+    <nav class="pnav" id="pnav-templates" aria-label="Guidelines"><a href="#brand" data-view-link="brand">Brand</a><a href="#templates" data-view-link="templates">Templates</a><a href="reference-kit.html" data-internal>Reference kit</a><a href="concept-review.html" data-internal data-concept-link>Concept review</a></nav>
   </div></section>
   <div class="mbar"><span class="mbar-t">Templates</span><button type="button" class="menu-btn" aria-expanded="false" aria-controls="mnav">Menu</button></div>
 
