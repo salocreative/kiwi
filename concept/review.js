@@ -27,7 +27,7 @@
     'html.cr-editing [data-cr-edit]{outline:1px dashed color-mix(in srgb,currentColor 55%,transparent);outline-offset:4px;animation:cr-pulse 2.8s ease-in-out infinite;cursor:text}' +
     'html.cr-editing img[data-cr-edit]{color:#fff;outline-width:1.5px;outline-offset:-10px;cursor:pointer}' +
     'html.cr-editing [data-cr-edit]:hover{animation:none;outline:1.5px solid currentColor}' +
-    'html.cr-editing .cr-sel{animation:none!important;outline:2px solid #E5322D!important;outline-offset:4px}html.cr-editing img.cr-sel{outline-offset:-10px!important;outline-width:3px!important}' +
+    'html.cr-editing .cr-sel{animation:none!important;outline:2px solid #6405FF!important;outline-offset:4px}html.cr-editing img.cr-sel{outline-offset:-10px!important;outline-width:3px!important}' +
     '[data-cr-edit][contenteditable]{caret-color:currentColor;-webkit-user-modify:read-write}' +
     '[data-cr-edit].cr-flash{outline:3px solid currentColor!important;outline-offset:6px;transition:outline-offset .3s}' +
     '@keyframes cr-pulse{50%{outline-color:color-mix(in srgb,currentColor 20%,transparent)}}' +
@@ -44,15 +44,15 @@
     '.row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.row .t{flex:1;min-width:0;font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}' +
     '.k{margin:0;font-size:12px;color:#5C5D5F}' +
     'button{font:500 14px/1 var(--body,system-ui,sans-serif);height:38px;padding:0 14px;border:1px solid #16181B;background:#fff;color:#16181B;cursor:pointer;border-radius:0}button:hover{background:#F3F3F4}' +
-    'button.pri{background:#16181B;color:#fff}button.pri:hover{background:#2D2F32}button.red{background:#C8261F;border-color:#C8261F;color:#fff}button.red:hover{background:#A81F19}' +
+    'button.pri{background:#16181B;color:#fff}button.pri:hover{background:#2D2F32}button.red{background:#6405FF;border-color:#6405FF;color:#fff}button.red:hover{background:#4F04CC}' +
     '.p>button.link{justify-self:start}button.link{height:auto;padding:0;border:0;background:none;text-decoration:underline;text-underline-offset:3px;font-weight:400;font-size:13px}button.link:hover{background:none}' +
-    'button:focus-visible{outline:2px solid #E5322D;outline-offset:2px}' +
-    '.run{display:flex;align-items:center;gap:10px;font-weight:500}.spin{width:16px;height:16px;border:2px solid #F3BDBB;border-top-color:#E5322D;border-radius:50%;animation:sp .7s linear infinite}@keyframes sp{to{transform:rotate(1turn)}}' +
-    '.bar{height:3px;background:#FCEBEA;overflow:hidden}.bar i{display:block;height:100%;width:40%;background:#E5322D;animation:bar 1.1s ease-in-out infinite}@keyframes bar{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}' +
+    'button:focus-visible{outline:2px solid #6405FF;outline-offset:2px}' +
+    '.run{display:flex;align-items:center;gap:10px;font-weight:500}.spin{width:16px;height:16px;border:2px solid #CDB3FF;border-top-color:#6405FF;border-radius:50%;animation:sp .7s linear infinite}@keyframes sp{to{transform:rotate(1turn)}}' +
+    '.bar{height:3px;background:#F0E8FF;overflow:hidden}.bar i{display:block;height:100%;width:40%;background:#6405FF;animation:bar 1.1s ease-in-out infinite}@keyframes bar{0%{transform:translateX(-100%)}100%{transform:translateX(250%)}}' +
     '.sc{display:flex;align-items:baseline;gap:8px}.sc b{font-size:28px;line-height:1;font-weight:600}.sc span{color:#5C5D5F}.sc em{margin-left:auto;font-style:normal;font-size:12px;font-weight:500;padding:4px 8px;background:#F3F3F4}' +
     '.meter{height:4px;background:#E8E8E8}.meter i{display:block;height:100%;background:#16181B}' +
     '.why{margin:0;color:#454649}' +
-    '.sug{display:grid;gap:6px;padding:12px;border-left:3px solid #E5322D;background:#FCEBEA}.tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#C8261F}' +
+    '.sug{display:grid;gap:6px;padding:12px;border-left:3px solid #6405FF;background:#F0E8FF}.tag{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#6405FF}' +
     '.sug p{margin:0;white-space:pre-wrap;overflow-wrap:anywhere;font-size:15px;color:#16181B}' +
     '@media (prefers-reduced-motion:reduce){.spin,.bar i,.p.nudge{animation:none}}</style><div class="p" role="group" aria-label="Save your edit"></div>';
   const pbox = ps.querySelector('.p');
