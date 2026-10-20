@@ -22,7 +22,7 @@
   --gutter:max(16px, 3.5vw);
   /* Brand palette, fixed in both themes */
   --k:#16181B; --k80:#454649; --k70:#5C5D5F; --k60:#737476; --k40:#A2A3A4; --k10:#E8E8E8; --k5:#F3F3F4; --w:#FFFFFF;
-  --acc:#FFB020; --acc-ink:#986D1E; --acc-ink3:#C2881F;
+  --acc:#FFDD00; --acc-ink:#877500; --acc-ink3:#AA9300;
   --g-feature:1; --g-structure:.35; --g-ambient:.15;
   --ease:cubic-bezier(.2,.7,.2,1); --ease-io:cubic-bezier(.65,0,.35,1);
 }
@@ -1289,7 +1289,7 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background
 .sec.ld .p-wyth.p-wyth{background-image:url(assets/website/photos/wyth.webp)}
 @media (max-width:760px){.sec.ld .p-gi.p-gi{background-image:url(assets/website/photos/gi-m.webp)}.sec.ld .p-gym.p-gym{background-image:url(assets/website/photos/gym-m.webp)}.sec.ld .p-gymfloor.p-gymfloor{background-image:url(assets/website/photos/gymfloor-m.webp)}.sec.ld .p-hero.p-hero{background-image:url(assets/website/photos/hero-m.webp)}.sec.ld .p-jd.p-jd{background-image:url(assets/website/photos/jd-m.webp)}.sec.ld .p-poster.p-poster{background-image:url(assets/website/photos/gi-m.webp)}.sec.ld .p-pub.p-pub{background-image:url(assets/website/photos/pub-m.webp)}.sec.ld .p-rest.p-rest{background-image:url(assets/website/photos/rest-m.webp)}.sec.ld .p-std.p-std{background-image:url(assets/website/photos/std-m.webp)}.sec.ld .p-strat.p-strat{background-image:url(assets/website/photos/strat-m.webp)}.sec.ld .p-wyth.p-wyth{background-image:url(assets/website/photos/wyth-m.webp)}}
 </style>
-<script>try{var a=localStorage.getItem('kiwi-accent');if(a&&a!=='amber')document.documentElement.setAttribute('data-accent',a)}catch(e){}</script>
+<script>try{var a=localStorage.getItem('kiwi-accent');if(a&&a!=='yellow'&&a!=='amber')document.documentElement.setAttribute('data-accent',a)}catch(e){}</script>
 </head>
 <body>
 <svg aria-hidden="true" focusable="false" style="position:absolute;width:0;height:0;overflow:hidden"><symbol id="kl-80042a54" viewBox="0 0 280 80">
@@ -1463,13 +1463,13 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background
 <div class="accbar"><div class="wrap">
   <span class="accbar-l" id="accbar-l">Accent</span>
   <div class="accbar-sw" role="group" aria-labelledby="accbar-l">
-    <button type="button" data-a="amber" style="--c:#FFB020" aria-pressed="true"><i></i><span>Forge Amber</span></button>
+    <button type="button" data-a="yellow" style="--c:#FFDD00" aria-pressed="true"><i></i><span>Site Yellow</span></button>
     <button type="button" data-a="steel" style="--c:#5AA9FF" aria-pressed="false"><i></i><span>Steel Beacon</span></button>
     <button type="button" data-a="crimson" style="--c:#ED3E33" aria-pressed="false"><i></i><span>Crimson Forge</span></button>
     <button type="button" data-a="tangerine" style="--c:#FF6A2C" aria-pressed="false"><i></i><span>Ink &amp; Tangerine</span></button>
     <button type="button" data-a="cyan" style="--c:#1FC9A0" aria-pressed="false"><i></i><span>Graphite Cyan</span></button>
   </div>
-  <span class="accbar-hex" aria-live="polite">#FFB020</span>
+  <span class="accbar-hex" aria-live="polite">#FFDD00</span>
 </div></div>
 
 <div class="wrap layout">
@@ -2640,12 +2640,13 @@ These block or shape the design. Each needs an owner's answer.
 
 | Palette | `--acc` | `--acc-ink` (4.5:1 on white) | `--acc-ink3` (3:1 on white) |
 | --- | --- | --- | --- |
-| Forge Amber | #FFB020 | #986D1E | #C2881F |
+| Site Yellow | #FFDD00 | #877500 | #AA9300 |
 | Steel Beacon | #5AA9FF | #4479B4 | #5298E4 |
 | Crimson Forge | #ED3E33 | #DF342A | #ED3E33 |
 | Ink & Tangerine | #FF6A2C | #C25528 | #F6672B |
 | Graphite Cyan | #1FC9A0 | #1B846C | #1DA787 |
 
+- Site Yellow (#FFDD00) replaced Forge Amber as the working accent on 20 October 2026 (Toby).
 - The accent is switched with one attribute on the page root (`data-accent`). Components only ever reference `--acc`, `--acc-ink` and `--acc-ink3`. Never a hex.
 - **Small doses.** Highlights, eyebrow bars, the accent button, accent icons, indicator lines and counters. Never a large background area, never body text.
 - **Allowed pairings:**
@@ -2812,13 +2813,13 @@ document.querySelectorAll('a.btn[href="#"]').forEach(a=>a.addEventListener('clic
 </script>
 <script>
 (()=>{const r=document.documentElement,bs=[...document.querySelectorAll('.accbar button')],hx=document.querySelector('.accbar-hex');
-const set=(k,save)=>{k==='amber'?r.removeAttribute('data-accent'):r.setAttribute('data-accent',k);
+const set=(k,save)=>{k==='yellow'?r.removeAttribute('data-accent'):r.setAttribute('data-accent',k);
   bs.forEach(b=>b.setAttribute('aria-pressed',b.dataset.a===k?'true':'false'));
   hx.textContent=getComputedStyle(r).getPropertyValue('--acc').trim().toUpperCase();
   if(save)try{localStorage.setItem('kiwi-accent',k)}catch(e){}
   r.dispatchEvent(new CustomEvent('kiwi:accent',{detail:k}));};
 bs.forEach(b=>b.addEventListener('click',()=>set(b.dataset.a,true)));
-set(r.getAttribute('data-accent')||'amber',false);})();
+set(r.getAttribute('data-accent')||'yellow',false);})();
 </script>
 <script>
 (()=>{const src=document.getElementById('kiwi-website-rules');if(!src)return;const md=src.textContent.replace(/^\n/,'').replace(/\s+$/,'')+'\n';

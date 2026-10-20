@@ -128,6 +128,11 @@ window.CR_PAGES=[
     "shared": false
    },
    {
+    "id": "our-work:industries",
+    "label": "Our work · Sectors in detail",
+    "shared": false
+   },
+   {
     "id": "our-work:work",
     "label": "Our work · All projects",
     "shared": false

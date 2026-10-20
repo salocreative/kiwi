@@ -87,12 +87,13 @@ These block or shape the design. Each needs an owner's answer.
 
 | Palette | `--acc` | `--acc-ink` (4.5:1 on white) | `--acc-ink3` (3:1 on white) |
 | --- | --- | --- | --- |
-| Forge Amber | #FFB020 | #986D1E | #C2881F |
+| Site Yellow | #FFDD00 | #877500 | #AA9300 |
 | Steel Beacon | #5AA9FF | #4479B4 | #5298E4 |
 | Crimson Forge | #ED3E33 | #DF342A | #ED3E33 |
 | Ink & Tangerine | #FF6A2C | #C25528 | #F6672B |
 | Graphite Cyan | #1FC9A0 | #1B846C | #1DA787 |
 
+- Site Yellow (#FFDD00) replaced Forge Amber as the working accent on 20 October 2026 (Toby).
 - The accent is switched with one attribute on the page root (`data-accent`). Components only ever reference `--acc`, `--acc-ink` and `--acc-ink3`. Never a hex.
 - **Small doses.** Highlights, eyebrow bars, the accent button, accent icons, indicator lines and counters. Never a large background area, never body text.
 - **Allowed pairings:**

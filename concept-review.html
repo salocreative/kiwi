@@ -21,7 +21,8 @@ const CONFIG = {
   round: 1,
   replyBy: "2026-11-06",
   closed: false,
-  changes: []
+  changes: [],
+  signers: ["Richard Levett", "Lee Coley"]
 };
 /* Password screen: a light gate so people who land on the guidelines don't see the concept by accident. Not encryption */
 /* Forms run from the button and the Enter key as well as submit, so they work in sandboxed previews that block form submission */
@@ -42,7 +43,7 @@ const crHash=s=>{let h=0x811c9dc5;for(const c of new TextEncoder().encode(s)){h^
   --n-800:#2D2F32; --n-850:#2A2C2F; --n-900:#1A1C1F; --n-950:#16181B; --n-990:#0F1012;
   --n-950-rgb:22 24 27;
   --bad:#E5322D; --bad-bg:#FCEBEA; --bad-ink:#8E1E1A;
-  --acc:#FFB020; --acc-ink:#986D1E; --acc-ink3:#C2881F;
+  --acc:#FFDD00; --acc-ink:#877500; --acc-ink3:#AA9300;
   --radius:0px;
   --display:'Familjen Grotesk', Arial, Helvetica, sans-serif;
   --body:'Inter', Arial, Helvetica, sans-serif;
@@ -55,7 +56,7 @@ const crHash=s=>{let h=0x811c9dc5;for(const c of new TextEncoder().encode(s)){h^
 
 /* Accent options. --acc fills, --acc-ink is 4.5:1 on white, --acc-ink3 is 3:1 on white. Text on the accent is always --n-950. */
 /*@accents start*/
-:root[data-accent="amber"]{--acc:#FFB020;--acc-ink:#986D1E;--acc-ink3:#C2881F}
+:root[data-accent="yellow"]{--acc:#FFDD00;--acc-ink:#877500;--acc-ink3:#AA9300}
 :root[data-accent="steel"]{--acc:#5AA9FF;--acc-ink:#4479B4;--acc-ink3:#5298E4}
 :root[data-accent="crimson"]{--acc:#ED3E33;--acc-ink:#DF342A;--acc-ink3:#ED3E33}
 :root[data-accent="tangerine"]{--acc:#FF6A2C;--acc-ink:#C25528;--acc-ink3:#F6672B}
@@ -65,7 +66,7 @@ const crHash=s=>{let h=0x811c9dc5;for(const c of new TextEncoder().encode(s)){h^
 :root{
   --bg:var(--n-0); --surface:var(--n-50); --surface-2:var(--n-100); --ink:var(--n-950); --ink-2:var(--n-700);
   --muted:var(--n-600); --rule:var(--n-100); --line:var(--n-200);
-  --red:#E5322D; --red-ink:#C8261F; --red-bg:#FCEBEA;
+  --salo:#6405FF; --salo-ink:#6405FF;   /* Salo Purple (brand/visual/tokens.md): the review tool's own accent. 6.98:1 with white */
   --gutter:max(16px, 3.5vw); --ease:cubic-bezier(.2,.7,.2,1);
   --nav-h:60px; --bar-h:56px; --panel-w:380px;
 }
@@ -159,7 +160,7 @@ button,input,textarea{font:inherit;color:inherit}
 .seg-view button:hover{color:var(--ink);background:rgb(var(--n-950-rgb) / .05)}
 .seg-view button[aria-pressed="true"]{background:var(--ink);color:var(--bg);box-shadow:0 1px 3px rgb(var(--n-950-rgb) / .25)}
 .rbar-l{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:14px}
-.chip{display:inline-flex;align-items:center;height:24px;padding:0 8px;background:var(--red-ink);color:var(--n-0);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border-radius:var(--radius)}
+.chip{display:inline-flex;align-items:center;height:24px;padding:0 8px;background:var(--salo-ink);color:var(--n-0);font-size:12px;font-weight:500;letter-spacing:.06em;text-transform:uppercase;border-radius:var(--radius)}
 .rbar-l .muted{color:var(--muted)}
 .sep{width:1px;align-self:stretch;margin-block:4px;background:var(--rule)}
 /* Several pages: the page picker and the page headings in the approval list */
@@ -176,6 +177,7 @@ button,input,textarea{font:inherit;color:inherit}
 @media (min-width:901px){.pg-pick{display:none!important}}
 .slist li.pg-h{display:block;padding:16px 0 6px;background:none;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
 .slist li.pg-h:first-child{padding-top:0}
+.s-hint{margin:6px 0 0;font-size:13px;line-height:1.45;color:var(--muted)}
 .tool{display:flex;align-items:center;gap:8px;height:44px;padding:0 12px;border:0;background:none;color:var(--ink-2);font-size:14px;white-space:nowrap;cursor:pointer;border-radius:var(--radius)}
 .tool:hover{background:var(--surface)}
 .tools{display:flex;gap:8px;justify-self:end}
@@ -214,7 +216,7 @@ html.cr-full .fs-exit{display:flex}
 
 .tabs{display:flex;flex:none;border-bottom:1px solid var(--rule)}
 .tabs button{flex:1;height:48px;border:0;background:none;font-size:14px;color:var(--ink-2);cursor:pointer;box-shadow:inset 0 -2px 0 transparent}
-.tabs button[aria-selected="true"]{color:var(--ink);font-weight:500;box-shadow:inset 0 -2px 0 var(--red)}
+.tabs button[aria-selected="true"]{color:var(--ink);font-weight:500;box-shadow:inset 0 -2px 0 var(--salo)}
 .tabs button:hover{background:var(--surface)}
 .pane{flex:1;min-height:0;overflow-y:auto;overflow-x:hidden;padding:20px;display:grid;grid-template-columns:minmax(0,1fr);align-content:start;gap:16px}
 .pane>*{min-width:0}
@@ -250,7 +252,7 @@ fieldset{border:0;margin:0;padding:0}
 /* Comments */
 .filter{display:flex;gap:2px}
 .filter button{height:32px;padding:0 10px;border:0;background:none;font-size:13px;color:var(--ink-2);cursor:pointer;border-radius:var(--radius)}
-.filter button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:inset 0 -2px 0 var(--red)}
+.filter button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:inset 0 -2px 0 var(--salo)}
 .clist{display:grid;gap:10px;margin:0;padding:0;list-style:none}
 .c{position:relative;padding:14px 14px 10px;background:var(--bg);border:1px solid var(--rule);display:grid;gap:8px;min-width:0;cursor:pointer;border-radius:var(--radius);transition:border-color .15s,box-shadow .15s}
 .c:hover{border-color:var(--line)}
@@ -299,10 +301,10 @@ fieldset{border:0;margin:0;padding:0}
 .prog{display:grid;gap:8px}
 .prog b{font-weight:500;font-size:14px}
 .bar{height:6px;background:var(--surface-2);border-radius:3px;overflow:hidden}
-.bar i{display:block;height:100%;width:0;background:var(--red);transition:width .3s var(--ease)}
+.bar i{display:block;height:100%;width:0;background:var(--salo);transition:width .3s var(--ease)}
 .sign{display:grid;gap:12px;margin-top:8px;padding-top:20px;border-top:1px solid var(--line)}
 .lock{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;background:var(--surface);font-size:14px;border-left:3px solid var(--n-400)}
-.lock.ready{border-left-color:var(--red)}
+.lock.ready{border-left-color:var(--salo)}
 .s-fs{display:grid;gap:12px;border:0;margin:0;padding:0;min-width:0}
 .s-fs:disabled{opacity:.45}
 .s-fs:disabled *{cursor:not-allowed}
@@ -311,12 +313,12 @@ fieldset{border:0;margin:0;padding:0}
 .who-f input{flex:1 1 150px;min-width:0;padding:10px 12px;border:1px solid var(--line);background:var(--bg);border-radius:var(--radius)}
 .changes{margin:0;padding-left:18px;font-size:14px;display:grid;gap:4px}
 .approvals{margin:0;padding:0;list-style:none;display:grid;gap:8px}
-.approvals li{padding:12px;border-left:3px solid var(--red);background:var(--surface);font-size:14px}
+.approvals li{padding:12px;border-left:3px solid var(--salo);background:var(--surface);font-size:14px}
 .approvals small{display:block;color:var(--muted);font-size:12px}
 .done-msg{padding:12px 14px;background:var(--surface);font-size:14px}
 
 /* Edit content */
-.e-now{display:grid;gap:10px;padding:14px;background:var(--surface);border-left:3px solid var(--red);font-size:14px;border-radius:var(--radius)}
+.e-now{display:grid;gap:10px;padding:14px;background:var(--surface);border-left:3px solid var(--salo);font-size:14px;border-radius:var(--radius)}
 .e-now b{font-weight:500}
 .e-now .lead{display:flex;gap:12px;align-items:flex-start}
 .e-now .dot{flex:none;width:26px;height:18px;margin-top:2px;border:2px dashed var(--n-950);animation:e-pulse 1.6s ease-in-out infinite}
@@ -348,7 +350,7 @@ fieldset{border:0;margin:0;padding:0}
 .elist .diff{grid-column:1/-1;font-size:13px;color:var(--ink-2);overflow-wrap:anywhere}
 .elist .diff s{color:var(--muted)}
 .elist .tone{grid-column:1/-1;display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-2)}
-.elist .tone b{font-size:12px;font-weight:600;color:var(--red-ink)}
+.elist .tone b{font-size:12px;font-weight:600;color:var(--salo-ink)}
 .elist .th{width:64px;height:48px;object-fit:cover;background:var(--surface-2)}
 .e-acts{grid-column:1/-1;display:flex;gap:16px;font-size:13px}
 .e-note{font-size:12px;color:var(--muted)}
@@ -417,7 +419,7 @@ fieldset{border:0;margin:0;padding:0}
       <button type="button" class="acc-cur" id="acc-cur" aria-haspopup="listbox" aria-expanded="false" aria-controls="acc-menu"><span class="sw" aria-hidden="true"></span><span class="acc-lbl"><small>Accent</small><b id="acc-name">Accent</b></span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
       <div class="acc-menu seg-acc float" id="acc-menu" role="listbox" aria-label="Accent" hidden>
 <!--@accent-buttons start-->
-    <button type="button" data-a="amber" style="--c:#FFB020" aria-pressed="true"><i></i><span>Forge Amber</span></button>
+    <button type="button" data-a="yellow" style="--c:#FFDD00" aria-pressed="true"><i></i><span>Site Yellow</span></button>
     <button type="button" data-a="steel" style="--c:#5AA9FF" aria-pressed="false"><i></i><span>Steel Beacon</span></button>
     <button type="button" data-a="crimson" style="--c:#ED3E33" aria-pressed="false"><i></i><span>Crimson Forge</span></button>
     <button type="button" data-a="tangerine" style="--c:#FF6A2C" aria-pressed="false"><i></i><span>Ink &amp; Tangerine</span></button>
@@ -506,13 +508,14 @@ fieldset{border:0;margin:0;padding:0}
         <p class="lock" id="lock">Approve every section above to unlock sign-off.</p>
         <form id="signoff" class="composer" novalidate>
           <fieldset class="s-fs" id="s-fs" disabled>
-            <div class="field"><label for="s-name">Your name</label><input id="s-name" autocomplete="name" required></div>
+            <div class="field" id="s-name-f"><label for="s-name">Your name</label><input id="s-name" autocomplete="name" required></div>
             <div class="field"><label for="s-role">Your role</label><input id="s-role" autocomplete="organization-title"></div>
             <fieldset class="field" id="s-acc-f"><legend>Accent</legend><div class="acc-pick" id="s-acc"></div></fieldset>
             <label class="check"><input type="checkbox" id="s-ok" required><span>I approve this website design, with the accent above, for the build.</span></label>
             <div class="field"><label for="s-sig">Type your full name to sign</label><input id="s-sig" autocomplete="off" required></div>
+            <div class="field" id="s-code-f" hidden><label for="s-code">Sign-off code</label><input id="s-code" inputmode="numeric" autocomplete="one-time-code" maxlength="7"><p class="s-hint" id="s-code-h"></p></div>
             <p class="err" id="s-err" role="alert"></p>
-            <div class="btns"><button class="b fill" type="submit">Sign off the design</button></div>
+            <div class="btns"><button class="b fill" type="submit" id="s-go">Sign off the design</button></div>
           </fieldset>
         </form>
         <p class="done-msg" id="s-done" hidden></p>
@@ -583,7 +586,7 @@ if(CONFIG.changes&&CONFIG.changes.length){$('changes-box').hidden=false;$('chang
 
 /* Accent */
 const accBtns=[...document.querySelectorAll('.seg-acc [data-a]')];
-const accName=id=>{const b=accBtns.find(x=>x.dataset.a===id);return b?b.textContent.trim():id};
+const accName=id=>{const b=accBtns.find(x=>x.dataset.a===id);return b?b.textContent.trim():id==='amber'?'Forge Amber (since replaced)':id};
 let acc=store.get('accent',null);if(!accBtns.some(b=>b.dataset.a===acc))acc=(accBtns.find(b=>b.getAttribute('aria-pressed')==='true')||accBtns[0]||{dataset:{}}).dataset.a;
 const setAcc=id=>{if(!id)return;acc=id;post({type:'accent',id});const cb=accBtns.find(b=>b.dataset.a===id);if(cb)accCur.style.setProperty('--c',cb.style.getPropertyValue('--c'));
   accBtns.forEach(b=>{b.setAttribute('aria-pressed',b.dataset.a===id);b.setAttribute('aria-selected',b.dataset.a===id)});store.set('accent',id);$('acc-name').textContent=accName(id);
@@ -789,17 +792,44 @@ $('t-cancel').addEventListener('click',()=>{pendingTick=null;$('who-f').hidden=t
 /* Sign-off */
 function appsRender(apps){$('a-empty').hidden=!!apps.length;
   $('approvals').innerHTML=apps.map(a=>'<li><b>'+esc(a.name)+'</b>'+(a.role?', '+esc(a.role):'')+'<small>'+when(a.ts)+(accBtns.length>1?' · Accent: '+esc(accName(a.accent)):'')+' · Round '+esc(a.round)+'</small></li>').join('')}
-crForm($('signoff'),()=>{const name=$('s-name').value.trim(),sig=$('s-sig').value.trim(),err=$('s-err');
+/* Sign-off: only the client's named signers (CONFIG.signers), proven by a 6-digit code emailed to them by the review sheet */
+const SIGNERS=Array.isArray(CONFIG.signers)?CONFIG.signers.filter(Boolean):[];
+const sameName=(a,b)=>{a=String(a||'').trim().toLowerCase();b=String(b||'').trim().toLowerCase();return !!a&&(a===b||a===b.split(' ')[0])};
+if(SIGNERS.length){const inp=$('s-name'),sel=document.createElement('select');sel.id='s-name';sel.required=true;
+  sel.innerHTML='<option value="">Choose your name</option>'+SIGNERS.map(n=>'<option>'+esc(n)+'</option>').join('');
+  inp.replaceWith(sel);$('s-name-f').querySelector('label').textContent='Signing off as';
+  const dl=document.createElement('datalist');dl.id='cr-signers';dl.innerHTML=SIGNERS.map(n=>'<option value="'+esc(n)+'">').join('');document.body.appendChild(dl);
+  ['c-name','e-name','t-name'].forEach(id=>{const x=$(id);if(x)x.setAttribute('list','cr-signers')});
+  const pick=()=>{const m=SIGNERS.find(n=>sameName(me,n));if(m)sel.value=m};pick();sel.addEventListener('focus',pick,{once:true});
+  $('s-go').textContent=local?'Sign off the design':'Email me a sign-off code'}
+let codeSentTo='';
+async function signPost(body){try{const r=await fetch(CONFIG.endpoint,{method:'POST',body:JSON.stringify({project:P,key:CONFIG.key,page:location.href.split('#')[0],...body})});return await r.json()}catch(_){return{ok:false,error:'network'}}}
+crForm($('signoff'),async()=>{const name=$('s-name').value.trim(),sig=$('s-sig').value.trim(),err=$('s-err');
   const pick=document.querySelector('#s-acc input:checked');err.textContent='';
-  if(!name){err.textContent='Add your name.';$('s-name').focus();return}
-  const {ticks}=state();if(!secs.every(s=>[...((ticks.get(s.id)||new Map()).values())].some(x=>x.on&&x.name.toLowerCase()===name.toLowerCase()))){err.textContent='Approve every section as '+name+' before signing off.';return}
+  if(!name){err.textContent=SIGNERS.length?'Choose your name.':'Add your name.';$('s-name').focus();return}
+  const {ticks}=state();if(!secs.every(s=>[...((ticks.get(s.id)||new Map()).values())].some(x=>x.on&&sameName(x.name,name)))){err.textContent='Approve every section as '+name+' before signing off.';return}
   if(accBtns.length>1&&!pick){err.textContent='Choose the accent you\'re signing off.';return}
   if(!$('s-ok').checked){err.textContent='Tick the box to confirm you approve the design.';return}
   if(sig.toLowerCase()!==name.toLowerCase()){err.textContent='Type your full name exactly as above to sign.';$('s-sig').focus();return}
-  me=name;store.set('cr-name',me);const a=pick?pick.value:acc;
-  add({type:'approval',name,role:$('s-role').value.trim(),accent:a,text:'Approved the website design'+(accBtns.length>1?' with '+accName(a):''),info:{sections:secs.map(x=>x.label),accentName:accBtns.length>1?accName(a):'',edits:state().ed.cur.size}});
-  $('signoff').reset();$('s-name').value=me;$('s-done').hidden=false;
-  $('s-done').textContent='Thanks, '+name.split(' ')[0]+'. Your sign-off is recorded and Salo has been told.'});
+  const a=pick?pick.value:acc,go=$('s-go');
+  const it={id:uid(),round:CONFIG.round,ts:new Date().toISOString(),type:'approval',name,role:$('s-role').value.trim(),accent:a,text:'Approved the website design'+(accBtns.length>1?' with '+accName(a):''),info:{sections:secs.map(x=>x.label),accentName:accBtns.length>1?accName(a):'',edits:state().ed.cur.size}};
+  const done=()=>{me=name;store.set('cr-name',me);$('signoff').reset();$('s-code-f').hidden=true;codeSentTo='';$('s-done').hidden=false;
+    $('s-done').textContent='Thanks, '+name.split(' ')[0]+'. Your sign-off is recorded and Salo has been told. The review is now closed.'};
+  if(!SIGNERS.length){add(it);done();return}
+  if(local){if($('s-code-f').hidden){$('s-code-f').hidden=false;$('s-code-h').textContent='Preview mode: any 6 digits work here. On the live review the code is emailed to you.';go.textContent='Sign off the design';$('s-code').focus();return}
+    if(!/^\d{6}$/.test($('s-code').value.replace(/\D/g,''))){err.textContent='Enter the 6-digit code.';return}
+    add(it);closed=true;done();render();return}
+  if($('s-code-f').hidden||!codeSentTo){go.disabled=true;go.textContent='Sending your code';const j=await signPost({action:'code',name});go.disabled=false;
+    if(!j.ok){go.textContent='Email me a sign-off code';err.textContent=j.error==='not a signer'?'Only the people named for this project can sign off. If that should include you, ask Salo.':j.message||'The code didn\'t send. Check your connection and try again.';return}
+    codeSentTo=j.to;$('s-code-f').hidden=false;$('s-code-h').textContent='We\'ve emailed a 6-digit code to '+j.to+'. It works for '+(j.minutes||15)+' minutes. Not there? Check your junk folder, or press the button below with the box empty to send another.';
+    go.textContent='Sign off the design';$('s-code').value='';$('s-code').focus();return}
+  const codeV=$('s-code').value.replace(/\D/g,'');
+  if(!codeV){codeSentTo='';$('s-code-f').hidden=true;go.textContent='Email me a sign-off code';go.click();return}
+  if(codeV.length!==6){err.textContent='Enter the 6-digit code from the email.';$('s-code').focus();return}
+  go.disabled=true;go.textContent='Signing off';const j=await signPost({item:{...it,code:codeV}});go.disabled=false;go.textContent='Sign off the design';
+  if(j.ok){items.push(it);if(j.closed)closed=true;done();render();refresh();return}
+  if(j.error==='closed'){closed=true;render();err.textContent='This review is already signed off and closed.';return}
+  err.textContent=j.error==='not a signer'?'Only the people named for this project can sign off.':j.message||'The sign-off didn\'t send. Check your connection and try again.'});
 
 /* Edit content: people try their own words and photos on the design. Every edit is an item in the review sheet,
    and photos are saved to the review's Drive folder. Editing is on only while this tab is showing, outside full screen */
