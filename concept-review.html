@@ -649,6 +649,10 @@ async function add(it){it={id:uid(),round:CONFIG.round,ts:new Date().toISOString
   if(!local&&it.data)syncMsg('Sending the photo to the review');
   await flush();if(outbox.some(x=>x.id===it.id))syncMsg(it.data?'The photo hasn\'t sent yet. Keep this page open and it will send when the connection is back.':'Not sent yet. It\'s saved here and will send when the connection is back.',true);else if(!local)syncMsg('Saved to the review sheet')}
 async function refresh(){await flush();await load();const ids=new Set(items.map(i=>i.id));outbox.forEach(i=>{if(!ids.has(i.id))items.push(i)});render()}
+/* Never lose anything unsent: send as soon as the connection is back, and warn before leaving with items still waiting */
+addEventListener('online',()=>{if(started)refresh()});
+document.addEventListener('visibilitychange',()=>{if(started&&!document.hidden&&outbox.length)refresh()});
+addEventListener('beforeunload',e=>{if(!local&&outbox.length){e.preventDefault();e.returnValue=''}});
 
 /* Turn the event list into comments, ticks and sign-offs */
 function state(){

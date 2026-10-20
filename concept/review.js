@@ -14,7 +14,7 @@
   const labelOf = sec => { const l = sec.dataset.label || sec.dataset.section; return sec.hasAttribute('data-cr-shared') ? l : PL + ' · ' + l; };
   const pageOf = id => { const s = String(id || ''), i = s.indexOf(':'); return i < 0 ? null : s.slice(0, i); };
   const isPage = a => { const h = a.getAttribute('href') || ''; return /^[\w-]+\.html([?#].*)?$/.test(h); };
-  let list = [], mode = false, editOn = false, sel = null, startHtml = '', applied = {}, showOrig = false, hovSec = null, hovBox = null, req = 0, pfT = 0, check = null;
+  let list = [], mode = false, editOn = false, sel = null, startHtml = '', rawHtml = '', applied = {}, showOrig = false, hovSec = null, hovBox = null, req = 0, pfT = 0, check = null;
   const boxes = new Map();
   const send = m => P.postMessage({ cr: 1, ...m }, '*');
   const st = d.createElement('style');
@@ -102,7 +102,7 @@
         const b = { el, id, img, section: sid, slabel, kind, n: counts[kind] };
         if (img) { b.src = el.getAttribute('src'); b.srcset = el.getAttribute('srcset'); b.sizes = el.getAttribute('sizes');
           b.sources = el.parentElement && el.parentElement.tagName === 'PICTURE' ? [...el.parentElement.querySelectorAll('source')].map(s => [s, s.getAttribute('srcset')]) : []; }
-        else { b.html = el.innerHTML; b.text = plain(el.innerHTML); }
+        else { b.html = el.innerHTML; b.text = plain(clean(el.innerHTML)); }
         el.dataset.crEdit = id; boxes.set(id, b);
       };
       const walk = el => {
@@ -120,6 +120,7 @@
 
   /* Edited text keeps only simple inline formatting, whoever wrote it */
   const OK = new Set(['B', 'STRONG', 'I', 'EM', 'U', 'BR', 'SPAN', 'SMALL', 'SUP', 'SUB', 'MARK']);
+  const ART = /^(kw-w|kw-glow|kw-type|kw-type__c|kw-quote__w|kw-quote__l|kw-words)$/;
   const DROP = /^(script|style|iframe|object|embed|svg|math|template|img|video|audio|canvas|link|meta|input|textarea|select|button|form)$/i;
   function clean(html) {
     const t = d.createElement('template'); t.innerHTML = String(html == null ? '' : html);
@@ -130,16 +131,23 @@
         if (DROP.test(c.tagName)) { c.remove(); continue; }
         walk(c);
         if (!OK.has(c.tagName)) { if (/^(DIV|P|LI)$/.test(c.tagName) && c.previousSibling) c.before(d.createElement('br')); c.replaceWith(...c.childNodes); continue; }
-        const cls = c.tagName === 'SPAN' ? (c.getAttribute('class') || '').replace(/[^\w -]/g, '').trim() : '';
+        const cls = (c.getAttribute('class') || '').replace(/[^\w -]/g, '').split(/\s+/).filter(k => k && !/^is-/.test(k)).join(' ');
+        /* Page scripts split text into words and letters for motion. Those wrappers aren't content: keep the words only */
+        if (c.tagName === 'SPAN' && (!cls || cls.split(' ').every(k => ART.test(k)))) { c.replaceWith(...c.childNodes); continue; }
         [...c.attributes].forEach(a => c.removeAttribute(a.name));
         if (cls) c.setAttribute('class', cls);
       }
     };
     walk(t.content);
     const box = d.createElement('div'); box.appendChild(t.content);
-    return box.innerHTML.replace(/&nbsp;/g, ' ').replace(/(\s*<br>\s*)+$/, '').replace(/^(\s*<br>\s*)+/, '').trim().slice(0, 4000);
+    return box.innerHTML.replace(/&nbsp;/g, ' ').replace(/(\s*<br>\s*)+$/, '').replace(/^(\s*<br>\s*)+/, '').replace(/\s{2,}/g, ' ').trim();
   }
-  function plain(html) { const t = d.createElement('template'); t.innerHTML = String(html || '').replace(/<br\s*\/?>/gi, ' '); return t.content.textContent.replace(/\s+/g, ' ').trim(); }
+  function plain(html) {
+    const t = d.createElement('template'); t.innerHTML = String(html || '').replace(/<br\s*\/?>/gi, ' ');
+    const all = t.content.textContent.replace(/\s+/g, ' ').trim(), sr = [...t.content.querySelectorAll('.kw-sr')].map(e => e.textContent).join(' ').replace(/\s+/g, ' ').trim();
+    if (sr) { const sq = s => s.replace(/\s/g, ''); if (sq(all) === sq(sr) + sq(sr)) return sr; }
+    return all;
+  }
 
   /* Apply everyone's edits (or the original content) to the page */
   const okSrc = s => typeof s === 'string' && /^(data:image\/(jpeg|png|webp|gif);base64,|blob:|https:\/\/)/.test(s);
@@ -182,7 +190,8 @@
     const b = boxes.get(el.dataset.crEdit); if (!b) return;
     sel = b; el.classList.add('cr-sel');
     if (b.img) { const r = el.getBoundingClientRect(); send({ type: 'edit-image', id: b.id, label: b.label, section: b.section, w: Math.round(r.width), h: Math.round(r.height) }); return; }
-    startHtml = el.innerHTML;
+    rawHtml = el.innerHTML; startHtml = clean(rawHtml);
+    if (startHtml !== rawHtml) el.innerHTML = startHtml;   /* edit the words, not the motion wrappers */
     el.setAttribute('contenteditable', 'true'); el.spellcheck = true;
     el.focus({ preventScroll: true }); caretAt(el, e);
     popState('edit');
@@ -201,6 +210,7 @@
           (r.reason ? '<p class="why">' + esc(r.reason) + '</p>' : '') +
           (same ? '<p class="k">No changes suggested. Your text fits the tone of voice.</p><div class="row"><button type="button" class="pri" data-a="dismiss">Save</button><button type="button" class="link" data-a="back">Keep editing</button></div>'
             : '<div class="sug"><span class="tag">Suggested copy · AI generated tone check</span><p>' + esc(r.suggestion) + '</p></div><div class="row"><button type="button" class="red" data-a="accept">Use suggestion</button><button type="button" data-a="dismiss">Dismiss and save mine</button></div><button type="button" class="link" data-a="back">Keep editing</button>'); },
+      long: () => '<p class="k">That\'s too long to save in one box. Shorten it, or add the rest as a comment.</p><div class="row"><button type="button" class="link" data-a="back">Keep editing</button></div>',
       none: () => '<p class="k">' + esc(r && r.message || 'The tone check isn\'t available right now.') + '</p><div class="row"><button type="button" class="pri" data-a="dismiss">Save my text</button><button type="button" class="link" data-a="back">Keep editing</button></div>' };
     pbox.innerHTML = H[st](); pop.hidden = false; placePop();
     requestAnimationFrame(() => { const r = pbox.getBoundingClientRect(); if (r.bottom > innerHeight - 8) scrollBy({ top: Math.min(r.bottom - innerHeight + 16, Math.max(0, sel ? sel.el.getBoundingClientRect().top - 8 : 0)), behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' }); });
@@ -218,8 +228,9 @@
   function save() {
     if (!sel || sel.img) return;
     const t = typed();
-    if (!t.text) { sel.el.innerHTML = startHtml; release(); send({ type: 'edit-none', empty: true }); return; }
+    if (!t.text) { sel.el.innerHTML = rawHtml; release(); send({ type: 'edit-none', empty: true }); return; }
     if (t.html === clean(startHtml)) { cancel(); return; }
+    if (t.html.length > 4000) { popState('long'); return; }
     if (!checkable(sel, t.text)) { finish(t.html, null); return; }
     sel.el.setAttribute('contenteditable', 'false');
     check = { id: ++req, text: t.lines, html: t.html, state: 'check' }; popState('check');
@@ -238,7 +249,7 @@
     else finish(check.html, check.state === 'result' ? { typed: check.text, suggestion: r.suggestion, score: r.score, choice: 'dismissed' } : { typed: check.text, choice: 'none' });
   }
   pbox.addEventListener('click', e => { const b = e.target.closest('[data-a]'); if (!b) return; const a = b.dataset.a;
-    if (a === 'save') save(); else if (a === 'cancel') cancel(); else choose(a); });
+    if (a === 'save') save(); else if (a === 'cancel') cancel(); else if (a === 'back' && !check && sel) { popState('edit'); sel.el.focus({ preventScroll: true }); } else choose(a); });
   /* Hovering Use suggestion shows it on the design */
   pbox.addEventListener('mouseover', e => { if (sel && check && check.r && e.target.closest('[data-a="accept"]')) sel.el.innerHTML = clean(esc(check.r.suggestion).replace(/\n/g, '<br>')); });
   pbox.addEventListener('mouseout', e => { if (sel && check && check.r && e.target.closest('[data-a="accept"]')) sel.el.innerHTML = check.html; });
@@ -250,7 +261,7 @@
   }
   function cancel() {
     if (!sel) return;
-    if (!sel.img) sel.el.innerHTML = startHtml;
+    if (!sel.img) sel.el.innerHTML = rawHtml;
     release(); send({ type: 'edit-none' });
   }
   function setEditing(on) {
