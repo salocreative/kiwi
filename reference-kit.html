@@ -22,7 +22,7 @@
   --gutter:max(16px, 3.5vw);
   /* Brand palette, fixed in both themes */
   --k:#16181B; --k80:#454649; --k70:#5C5D5F; --k60:#737476; --k40:#A2A3A4; --k10:#E8E8E8; --k5:#F3F3F4; --w:#FFFFFF;
-  --acc:#FFDD00; --acc-ink:#877500; --acc-ink3:#AA9300;
+  --acc:#1FC9A0; --acc-ink:#1B846C; --acc-ink3:#1DA787;
   --g-feature:1; --g-structure:.35; --g-ambient:.15;
   --ease:cubic-bezier(.2,.7,.2,1); --ease-io:cubic-bezier(.65,0,.35,1);
 }
@@ -1464,14 +1464,14 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background
 <div class="accbar"><div class="wrap">
   <span class="accbar-l" id="accbar-l">Accent</span>
   <div class="accbar-sw" role="group" aria-labelledby="accbar-l">
-    <button type="button" data-a="yellow" style="--c:#FFDD00" aria-pressed="true"><i></i><span>Site Yellow</span></button>
+    <button type="button" data-a="yellow" style="--c:#FFDD00" aria-pressed="false"><i></i><span>Site Yellow</span></button>
     <button type="button" data-a="steel" style="--c:#5AA9FF" aria-pressed="false"><i></i><span>Steel Beacon</span></button>
     <button type="button" data-a="crimson" style="--c:#ED3E33" aria-pressed="false"><i></i><span>Crimson Forge</span></button>
     <button type="button" data-a="tangerine" style="--c:#FF6A2C" aria-pressed="false"><i></i><span>Ink &amp; Tangerine</span></button>
-    <button type="button" data-a="cyan" style="--c:#1FC9A0" aria-pressed="false"><i></i><span>Graphite Cyan</span></button>
+    <button type="button" data-a="cyan" style="--c:#1FC9A0" aria-pressed="true"><i></i><span>Graphite Cyan</span></button>
     <button type="button" data-a="violet" style="--c:#9B61FF" aria-pressed="false"><i></i><span>Arc Violet</span></button>
   </div>
-  <span class="accbar-hex" aria-live="polite">#FFDD00</span>
+  <span class="accbar-hex" aria-live="polite">#1FC9A0</span>
 </div></div>
 
 <div class="wrap layout">
@@ -2650,6 +2650,7 @@ These block or shape the design. Each needs an owner's answer.
 | Arc Violet | #9B61FF | #8C57E6 | #9B61FF |
 
 - Site Yellow (#FFDD00) replaced Forge Amber as the working accent on 20 October 2026 (Toby).
+- Graphite Cyan (#1FC9A0) chosen by Kiwi in the concept review (Richard, 2 November 2026) and now the default. The other five stay as options until the accent is locked at stage 5, when the PDF follows.
 - Arc Violet (#9B61FF) added as a sixth option on 2 November 2026, at Kiwi's request (Richard). It's lighter than Salo Purple so Kiwi black text passes on it, like every other accent.
 - The accent is switched with one attribute on the page root (`data-accent`). Components only ever reference `--acc`, `--acc-ink` and `--acc-ink3`. Never a hex.
 - **Small doses.** Highlights, eyebrow bars, the accent button, accent icons, indicator lines and counters. Never a large background area, never body text.

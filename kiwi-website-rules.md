@@ -95,6 +95,7 @@ These block or shape the design. Each needs an owner's answer.
 | Arc Violet | #9B61FF | #8C57E6 | #9B61FF |
 
 - Site Yellow (#FFDD00) replaced Forge Amber as the working accent on 20 October 2026 (Toby).
+- Graphite Cyan (#1FC9A0) chosen by Kiwi in the concept review (Richard, 2 November 2026) and now the default. The other five stay as options until the accent is locked at stage 5, when the PDF follows.
 - Arc Violet (#9B61FF) added as a sixth option on 2 November 2026, at Kiwi's request (Richard). It's lighter than Salo Purple so Kiwi black text passes on it, like every other accent.
 - The accent is switched with one attribute on the page root (`data-accent`). Components only ever reference `--acc`, `--acc-ink` and `--acc-ink3`. Never a hex.
 - **Small doses.** Highlights, eyebrow bars, the accent button, accent icons, indicator lines and counters. Never a large background area, never body text.

@@ -70,6 +70,7 @@
     for (const c of list) {
       const here = /:page$/.test(c.section) ? pageOf(c.section) === PG : c.section === 'page' || !!find(c.section);
       if (!c.draft && !here) continue;   /* a comment on another page */
+      if (!c.draft) { const el = find(c.section); if (el && !el.getClientRects().length) continue; }   /* its section is hidden (archived) */
       const p = pos(c), b = d.createElement('button');
       b.type = 'button'; b.textContent = c.n;
       b.className = (c.done ? 'done ' : '') + (c.draft ? 'draft ' : '') + (c.on ? 'on' : '');
@@ -281,6 +282,7 @@
     if (m.type === 'hello') send({ type: 'ready', sections: sections(), page: PG, pageLabel: PL });
     else if (m.type === 'go' && m.page && m.page !== PG) location.href = m.page + '.html';
     else if (m.type === 'accent') { if (m.id) de.dataset.accent = m.id; requestAnimationFrame(draw); }
+    else if (m.type === 'archived') { de.classList.toggle('kw-show-archived', !!m.on); dispatchEvent(new Event('resize')); requestAnimationFrame(draw); }
     else if (m.type === 'mode') { mode = !!m.on; de.classList.toggle('cr-commenting', mode); }
     else if (m.type === 'pins') { list = m.list || []; draw(); }
     else if (m.type === 'edit-mode') setEditing(!!m.on);

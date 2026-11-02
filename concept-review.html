@@ -43,7 +43,7 @@ const crHash=s=>{let h=0x811c9dc5;for(const c of new TextEncoder().encode(s)){h^
   --n-800:#2D2F32; --n-850:#2A2C2F; --n-900:#1A1C1F; --n-950:#16181B; --n-990:#0F1012;
   --n-950-rgb:22 24 27;
   --bad:#E5322D; --bad-bg:#FCEBEA; --bad-ink:#8E1E1A;
-  --acc:#FFDD00; --acc-ink:#877500; --acc-ink3:#AA9300;
+  --acc:#1FC9A0; --acc-ink:#1B846C; --acc-ink3:#1DA787;
   --radius:0px;
   --display:'Familjen Grotesk', Arial, Helvetica, sans-serif;
   --body:'Inter', Arial, Helvetica, sans-serif;
@@ -189,6 +189,10 @@ button,input,textarea{font:inherit;color:inherit}
 .tool.fs{background:var(--n-0);color:var(--n-950);font-weight:500;padding:0 16px;box-shadow:inset 0 0 0 2px var(--n-950)}
 .tool.fs:hover{background:var(--n-100)}
 .tool.rv{box-shadow:inset 0 0 0 1px var(--line)}
+/* Archived sections: hidden in the concept and left out of approval until shown */
+.tool.arch{box-shadow:inset 0 0 0 1px var(--line)}
+.tool.arch[aria-pressed="true"]{background:var(--salo);color:var(--n-0);box-shadow:none}
+.tool.arch[hidden]{display:none}
 .tool.rv[aria-expanded="true"]{background:var(--surface);color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
 .tool .n{min-width:20px;height:20px;padding:0 6px;display:inline-grid;place-items:center;background:var(--surface-2);color:var(--ink);font-size:12px;border-radius:10px}
 .tool:disabled{opacity:.45;cursor:not-allowed}
@@ -420,11 +424,11 @@ fieldset{border:0;margin:0;padding:0}
       <button type="button" class="acc-cur" id="acc-cur" aria-haspopup="listbox" aria-expanded="false" aria-controls="acc-menu"><span class="sw" aria-hidden="true"></span><span class="acc-lbl"><small>Accent</small><b id="acc-name">Accent</b></span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
       <div class="acc-menu seg-acc float" id="acc-menu" role="listbox" aria-label="Accent" hidden>
 <!--@accent-buttons start-->
-    <button type="button" data-a="yellow" style="--c:#FFDD00" aria-pressed="true"><i></i><span>Site Yellow</span></button>
+    <button type="button" data-a="yellow" style="--c:#FFDD00" aria-pressed="false"><i></i><span>Site Yellow</span></button>
     <button type="button" data-a="steel" style="--c:#5AA9FF" aria-pressed="false"><i></i><span>Steel Beacon</span></button>
     <button type="button" data-a="crimson" style="--c:#ED3E33" aria-pressed="false"><i></i><span>Crimson Forge</span></button>
     <button type="button" data-a="tangerine" style="--c:#FF6A2C" aria-pressed="false"><i></i><span>Ink &amp; Tangerine</span></button>
-    <button type="button" data-a="cyan" style="--c:#1FC9A0" aria-pressed="false"><i></i><span>Graphite Cyan</span></button>
+    <button type="button" data-a="cyan" style="--c:#1FC9A0" aria-pressed="true"><i></i><span>Graphite Cyan</span></button>
     <button type="button" data-a="violet" style="--c:#9B61FF" aria-pressed="false"><i></i><span>Arc Violet</span></button>
 <!--@accent-buttons end-->
       </div>
@@ -435,6 +439,7 @@ fieldset{border:0;margin:0;padding:0}
     <button type="button" data-v="mobile" aria-pressed="false"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><rect x="7" y="2.5" width="10" height="19" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M11 18h2" fill="none" stroke="currentColor" stroke-width="2"/></svg><span>Mobile</span></button>
   </div>
   <div class="tools">
+    <button type="button" class="tool arch" id="arch-btn" aria-pressed="false" hidden>Show archived sections</button>
     <button type="button" class="tool main" id="cmode" aria-pressed="false">Add a comment</button>
     <button type="button" class="tool fs" id="fs-btn" aria-label="Full screen"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 9V4h5M15 4h5v5M20 15v5h-5M9 20H4v-5" fill="none" stroke="currentColor" stroke-width="2"/></svg><span class="lbl-l">Full screen</span></button>
     <button type="button" class="tool rv" id="panel-btn" aria-expanded="true" aria-controls="panel">Review <span class="n" id="panel-n">0</span></button>
@@ -679,6 +684,11 @@ const PAGES=Array.isArray(window.CR_PAGES)&&window.CR_PAGES.length?window.CR_PAG
 const allSecs=()=>{const out=[],seen=new Set();PAGES.forEach(p=>p.sections.forEach(s=>{if(!seen.has(s.id)){seen.add(s.id);out.push({...s,page:s.shared?'':p.label})}}));
   return [...out.filter(s=>s.shared),...out.filter(s=>!s.shared)]};
 let secs=PAGES?allSecs():[],curPage='home';
+/* Archived sections (data-archived in the concept, archived:true in the page list): hidden until shown, and only then part of approval */
+let showArch=!!store.get('arch',false);const live=()=>secs.filter(s=>!s.archived||showArch);
+const archBtn=$('arch-btn');if(secs.some(s=>s.archived)){archBtn.hidden=false;archBtn.setAttribute('aria-pressed',showArch)}
+archBtn.addEventListener('click',()=>{showArch=!showArch;store.set('arch',showArch);archBtn.setAttribute('aria-pressed',showArch);archBtn.textContent=showArch?'Hide archived sections':'Show archived sections';post({type:'archived',on:showArch});render()});
+if(showArch)archBtn.textContent='Hide archived sections';
 /* Page picker: every concept page, and the one in the frame */
 const pgSel=$('pg-sel');
 const pgSel2=$('pg-sel2'),pgSels=[pgSel,pgSel2];
@@ -691,7 +701,7 @@ function pins(){const {cs}=state();
   const list=cs.filter(c=>filter==='all'||(filter==='done')===c.done).map(c=>({id:c.id,n:c.n,name:c.name,section:c.section,x:c.x,y:c.y,done:c.done,on:active===c.id}));
   if(draft)list.push({id:'draft',n:'+',section:draft.section,x:draft.x,y:draft.y,draft:true});post({type:'pins',list})}
 addEventListener('message',e=>{if(e.source!==ifr.contentWindow||!e.data||!e.data.cr)return;const m=e.data;
-  if(m.type==='ready'){if(!PAGES)secs=m.sections||[];if(m.page){curPage=m.page;store.set('page',m.page);pgSels.forEach(sl=>{if(sl)sl.value=m.page});$('frame-name').textContent=(m.pageLabel||'Website')+' concept'}lastEd='';post({type:'accent',id:acc});post({type:'mode',on:cmode});post({type:'edit-mode',on:emode});render()}
+  if(m.type==='ready'){if(!PAGES)secs=m.sections||[];if(m.page){curPage=m.page;store.set('page',m.page);pgSels.forEach(sl=>{if(sl)sl.value=m.page});$('frame-name').textContent=(m.pageLabel||'Website')+' concept'}lastEd='';post({type:'accent',id:acc});post({type:'archived',on:showArch});post({type:'mode',on:cmode});post({type:'edit-mode',on:emode});render()}
   else if(m.type==='edit-start'){eSel={kind:'text',id:m.id,label:m.label};eMsg='';eRender()}
   else if(m.type==='edit-none'){if(eSel&&eSel.kind==='text')eSel=null;if(m.empty)eMsg='Text can\'t be empty, so the box is back to how it was.';eRender()}
   else if(m.type==='edit-text'){if(eSel&&eSel.kind==='text')eSel=null;eMsg='';if(!me||closed){eRender();return}
@@ -768,16 +778,16 @@ function focusName(){showTab('tab-c');sheet(true);draft=null;$('composer').hidde
 const TICK='<span class="box"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12.5l4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.5"/></svg></span>';
 let pendingTick=null,wasReady=false;
 function slistRender(ticks){
-  const mineN=secs.filter(s=>me&&[...((ticks.get(s.id)||new Map()).values())].some(x=>x.on&&x.name.toLowerCase()===me.toLowerCase())).length;
-  $('n-secs').textContent=mineN+'/'+secs.length;
-  $('prog-t').textContent=me?'You\'ve approved '+mineN+' of '+secs.length+' sections':'0 of '+secs.length+' sections approved';
-  $('prog-bar').style.width=(secs.length?mineN/secs.length*100:0)+'%';
-  const ready=!!secs.length&&mineN===secs.length;
+  const mineN=live().filter(s=>me&&[...((ticks.get(s.id)||new Map()).values())].some(x=>x.on&&x.name.toLowerCase()===me.toLowerCase())).length;
+  $('n-secs').textContent=mineN+'/'+live().length;
+  $('prog-t').textContent=me?'You\'ve approved '+mineN+' of '+live().length+' sections':'0 of '+live().length+' sections approved';
+  $('prog-bar').style.width=(live().length?mineN/live().length*100:0)+'%';
+  const ready=!!live().length&&mineN===live().length;
   $('s-fs').disabled=!ready||closed;$('lock').classList.toggle('ready',ready);
-  $('lock').textContent=ready?'Every section approved. You can sign off now.':'Approve every section above to unlock sign-off ('+mineN+' of '+secs.length+' done).';
+  $('lock').textContent=ready?'Every section approved. You can sign off now.':'Approve every section above to unlock sign-off ('+mineN+' of '+live().length+' done).';
   if(ready&&!wasReady&&started)$('sign').scrollIntoView({block:'nearest',behavior:'smooth'});wasReady=ready;
   let lastPg=null;
-  $('slist').innerHTML=secs.map(s=>{const head=PAGES&&s.page!==lastPg?'<li class="pg-h">'+esc(s.page||'Every page')+'</li>':'';lastPg=s.page;const t=[...((ticks.get(s.id)||new Map()).values())].filter(x=>x.on);const mine=me&&t.some(x=>x.name.toLowerCase()===me.toLowerCase());
+  $('slist').innerHTML=live().map(s=>{const head=PAGES&&s.page!==lastPg?'<li class="pg-h">'+esc(s.page||'Every page')+'</li>':'';lastPg=s.page;const t=[...((ticks.get(s.id)||new Map()).values())].filter(x=>x.on);const mine=me&&t.some(x=>x.name.toLowerCase()===me.toLowerCase());
     return head+'<li'+(mine?' class="ok"':'')+'><div><button type="button" class="go" data-go="'+esc(s.id)+'">'+esc(s.page&&s.label.startsWith(s.page+' · ')?s.label.slice(s.page.length+3):s.label)+'</button><div class="who">'+(t.length?'Approved by '+t.map(x=>esc(x.name)).join(', '):'Not approved yet')+'</div></div>'+
       (closed?'':'<button type="button" class="tick" data-tick="'+esc(s.id)+'" aria-pressed="'+!!mine+'" aria-label="Approve '+esc(s.label)+'">'+TICK+(mine?'Approved':'Approve')+'</button>')+'</li>'}).join('')}
 const tick=(id,on)=>add({type:on?'tick':'untick',section:id,label:label(id),name:me});
@@ -809,7 +819,7 @@ async function signPost(body){try{const r=await fetch(CONFIG.endpoint,{method:'P
 crForm($('signoff'),async()=>{const name=$('s-name').value.trim(),sig=$('s-sig').value.trim(),err=$('s-err');
   const pick=document.querySelector('#s-acc input:checked');err.textContent='';
   if(!name){err.textContent=SIGNERS.length?'Choose your name.':'Add your name.';$('s-name').focus();return}
-  const {ticks}=state();if(!secs.every(s=>[...((ticks.get(s.id)||new Map()).values())].some(x=>x.on&&sameName(x.name,name)))){err.textContent='Approve every section as '+name+' before signing off.';return}
+  const {ticks}=state();if(!live().every(s=>[...((ticks.get(s.id)||new Map()).values())].some(x=>x.on&&sameName(x.name,name)))){err.textContent='Approve every section as '+name+' before signing off.';return}
   if(accBtns.length>1&&!pick){err.textContent='Choose the accent you\'re signing off.';return}
   if(!$('s-ok').checked){err.textContent='Tick the box to confirm you approve the design.';return}
   if(sig.toLowerCase()!==name.toLowerCase()){err.textContent='Type your full name exactly as above to sign.';$('s-sig').focus();return}

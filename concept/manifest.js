@@ -21,9 +21,15 @@ window.CR_PAGES=[
     "shared": false
    },
    {
+    "id": "home:forty",
+    "label": "Home · 40 years",
+    "shared": false
+   },
+   {
     "id": "home:statement",
     "label": "Home · Statement",
-    "shared": false
+    "shared": false,
+    "archived": true
    },
    {
     "id": "home:logos",
@@ -61,19 +67,16 @@ window.CR_PAGES=[
     "shared": false
    },
    {
-    "id": "home:forty",
-    "label": "Home · 40 years",
-    "shared": false
-   },
-   {
     "id": "home:frame",
     "label": "Home · Whatever the space",
-    "shared": false
+    "shared": false,
+    "archived": true
    },
    {
     "id": "home:promises",
     "label": "Home · What you can count on",
-    "shared": false
+    "shared": false,
+    "archived": true
    },
    {
     "id": "home:quality",
@@ -88,12 +91,14 @@ window.CR_PAGES=[
    {
     "id": "home:team",
     "label": "Home · Meet the makers",
-    "shared": false
+    "shared": false,
+    "archived": true
    },
    {
     "id": "home:careers",
     "label": "Home · Careers",
-    "shared": false
+    "shared": false,
+    "archived": true
    },
    {
     "id": "home:quote",
