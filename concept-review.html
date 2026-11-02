@@ -56,11 +56,11 @@ const crHash=s=>{let h=0x811c9dc5;for(const c of new TextEncoder().encode(s)){h^
 
 /* Accent options. --acc fills, --acc-ink is 4.5:1 on white, --acc-ink3 is 3:1 on white. Text on the accent is always --n-950. */
 /*@accents start*/
+:root[data-accent="cyan"]{--acc:#1FC9A0;--acc-ink:#1B846C;--acc-ink3:#1DA787}
 :root[data-accent="yellow"]{--acc:#FFDD00;--acc-ink:#877500;--acc-ink3:#AA9300}
 :root[data-accent="steel"]{--acc:#5AA9FF;--acc-ink:#4479B4;--acc-ink3:#5298E4}
 :root[data-accent="crimson"]{--acc:#ED3E33;--acc-ink:#DF342A;--acc-ink3:#ED3E33}
 :root[data-accent="tangerine"]{--acc:#FF6A2C;--acc-ink:#C25528;--acc-ink3:#F6672B}
-:root[data-accent="cyan"]{--acc:#1FC9A0;--acc-ink:#1B846C;--acc-ink3:#1DA787}
 :root[data-accent="violet"]{--acc:#9B61FF;--acc-ink:#8C57E6;--acc-ink3:#9B61FF}
 /*@accents end*/
 
@@ -424,11 +424,11 @@ fieldset{border:0;margin:0;padding:0}
       <button type="button" class="acc-cur" id="acc-cur" aria-haspopup="listbox" aria-expanded="false" aria-controls="acc-menu"><span class="sw" aria-hidden="true"></span><span class="acc-lbl"><small>Accent</small><b id="acc-name">Accent</b></span><svg class="chev" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2"/></svg></button>
       <div class="acc-menu seg-acc float" id="acc-menu" role="listbox" aria-label="Accent" hidden>
 <!--@accent-buttons start-->
+    <button type="button" data-a="cyan" style="--c:#1FC9A0" aria-pressed="true"><i></i><span>Graphite Cyan</span></button>
     <button type="button" data-a="yellow" style="--c:#FFDD00" aria-pressed="false"><i></i><span>Site Yellow</span></button>
     <button type="button" data-a="steel" style="--c:#5AA9FF" aria-pressed="false"><i></i><span>Steel Beacon</span></button>
     <button type="button" data-a="crimson" style="--c:#ED3E33" aria-pressed="false"><i></i><span>Crimson Forge</span></button>
     <button type="button" data-a="tangerine" style="--c:#FF6A2C" aria-pressed="false"><i></i><span>Ink &amp; Tangerine</span></button>
-    <button type="button" data-a="cyan" style="--c:#1FC9A0" aria-pressed="true"><i></i><span>Graphite Cyan</span></button>
     <button type="button" data-a="violet" style="--c:#9B61FF" aria-pressed="false"><i></i><span>Arc Violet</span></button>
 <!--@accent-buttons end-->
       </div>

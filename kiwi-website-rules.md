@@ -87,11 +87,11 @@ These block or shape the design. Each needs an owner's answer.
 
 | Palette | `--acc` | `--acc-ink` (4.5:1 on white) | `--acc-ink3` (3:1 on white) |
 | --- | --- | --- | --- |
+| Graphite Cyan | #1FC9A0 | #1B846C | #1DA787 |
 | Site Yellow | #FFDD00 | #877500 | #AA9300 |
 | Steel Beacon | #5AA9FF | #4479B4 | #5298E4 |
 | Crimson Forge | #ED3E33 | #DF342A | #ED3E33 |
 | Ink & Tangerine | #FF6A2C | #C25528 | #F6672B |
-| Graphite Cyan | #1FC9A0 | #1B846C | #1DA787 |
 | Arc Violet | #9B61FF | #8C57E6 | #9B61FF |
 
 - Site Yellow (#FFDD00) replaced Forge Amber as the working accent on 20 October 2026 (Toby).

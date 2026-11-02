@@ -32,10 +32,10 @@
   --bg:#0F1012; --surface:#1A1C1F; --surface-2:#2D2F32; --ink:#F3F3F4; --ink-2:#D0D1D1; --muted:#A2A3A4; --rule:#2D2F32; --line:#454649; color-scheme:dark}
 /* Accent palettes: one accent per palette, mono tones stay fixed.
    --acc fills and accent on dark. --acc-ink is the accent as small text or icons on white (4.5:1). --acc-ink3 is large text and graphics on white (3:1). */
+:root[data-accent="cyan"]{--acc:#1FC9A0;--acc-ink:#1B846C;--acc-ink3:#1DA787}
 :root[data-accent="steel"]{--acc:#5AA9FF;--acc-ink:#4479B4;--acc-ink3:#5298E4}
 :root[data-accent="crimson"]{--acc:#ED3E33;--acc-ink:#DF342A;--acc-ink3:#ED3E33}
 :root[data-accent="tangerine"]{--acc:#FF6A2C;--acc-ink:#C25528;--acc-ink3:#F6672B}
-:root[data-accent="cyan"]{--acc:#1FC9A0;--acc-ink:#1B846C;--acc-ink3:#1DA787}
 :root[data-accent="violet"]{--acc:#9B61FF;--acc-ink:#8C57E6;--acc-ink3:#9B61FF}
 .accbar{position:sticky;top:0;z-index:50;background:var(--bg);border-bottom:1px solid var(--rule)}
 .accbar .wrap{display:flex;align-items:center;gap:12px;min-height:48px}
@@ -1464,11 +1464,11 @@ code{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:.9em;background
 <div class="accbar"><div class="wrap">
   <span class="accbar-l" id="accbar-l">Accent</span>
   <div class="accbar-sw" role="group" aria-labelledby="accbar-l">
+    <button type="button" data-a="cyan" style="--c:#1FC9A0" aria-pressed="true"><i></i><span>Graphite Cyan</span></button>
     <button type="button" data-a="yellow" style="--c:#FFDD00" aria-pressed="false"><i></i><span>Site Yellow</span></button>
     <button type="button" data-a="steel" style="--c:#5AA9FF" aria-pressed="false"><i></i><span>Steel Beacon</span></button>
     <button type="button" data-a="crimson" style="--c:#ED3E33" aria-pressed="false"><i></i><span>Crimson Forge</span></button>
     <button type="button" data-a="tangerine" style="--c:#FF6A2C" aria-pressed="false"><i></i><span>Ink &amp; Tangerine</span></button>
-    <button type="button" data-a="cyan" style="--c:#1FC9A0" aria-pressed="true"><i></i><span>Graphite Cyan</span></button>
     <button type="button" data-a="violet" style="--c:#9B61FF" aria-pressed="false"><i></i><span>Arc Violet</span></button>
   </div>
   <span class="accbar-hex" aria-live="polite">#1FC9A0</span>
@@ -2642,11 +2642,11 @@ These block or shape the design. Each needs an owner's answer.
 
 | Palette | `--acc` | `--acc-ink` (4.5:1 on white) | `--acc-ink3` (3:1 on white) |
 | --- | --- | --- | --- |
+| Graphite Cyan | #1FC9A0 | #1B846C | #1DA787 |
 | Site Yellow | #FFDD00 | #877500 | #AA9300 |
 | Steel Beacon | #5AA9FF | #4479B4 | #5298E4 |
 | Crimson Forge | #ED3E33 | #DF342A | #ED3E33 |
 | Ink & Tangerine | #FF6A2C | #C25528 | #F6672B |
-| Graphite Cyan | #1FC9A0 | #1B846C | #1DA787 |
 | Arc Violet | #9B61FF | #8C57E6 | #9B61FF |
 
 - Site Yellow (#FFDD00) replaced Forge Amber as the working accent on 20 October 2026 (Toby).
