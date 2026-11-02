@@ -92,16 +92,18 @@ These block or shape the design. Each needs an owner's answer.
 | Crimson Forge | #ED3E33 | #DF342A | #ED3E33 |
 | Ink & Tangerine | #FF6A2C | #C25528 | #F6672B |
 | Graphite Cyan | #1FC9A0 | #1B846C | #1DA787 |
+| Arc Violet | #9B61FF | #8C57E6 | #9B61FF |
 
 - Site Yellow (#FFDD00) replaced Forge Amber as the working accent on 20 October 2026 (Toby).
+- Arc Violet (#9B61FF) added as a sixth option on 2 November 2026, at Kiwi's request (Richard). It's lighter than Salo Purple so Kiwi black text passes on it, like every other accent.
 - The accent is switched with one attribute on the page root (`data-accent`). Components only ever reference `--acc`, `--acc-ink` and `--acc-ink3`. Never a hex.
 - **Small doses.** Highlights, eyebrow bars, the accent button, accent icons, indicator lines and counters. Never a large background area, never body text.
 - **Allowed pairings:**
-  - Kiwi black text on the accent (4.5:1 or better in all five).
-  - The accent as text, numbers or icons on Kiwi black (4.5:1 or better in all five).
+  - Kiwi black text on the accent (4.5:1 or better in all six).
+  - The accent as text, numbers or icons on Kiwi black (4.5:1 or better in all six).
   - The accent as a fill, bar or line on white, when it's decoration or backed by another cue.
 - **Not allowed:**
-  - White text on the accent (fails in all five).
+  - White text on the accent (fails in all six).
   - The accent as text or as the only state cue on white. Use `--acc-ink` for small text and icons, `--acc-ink3` for large text (24px, or 18.66px at weight 600 and above).
   - The accent on `--k80` for anything that must be read.
   - Two accents on one page.
@@ -216,7 +218,7 @@ Each component follows its reference kit figure. These are the rules that keep i
 
 - [ ] Matches its kit figure and the rules above
 - [ ] Desktop 1440px and mobile 390px, no sideways scroll
-- [ ] All five accents checked, contrast passes in each
+- [ ] All six accents checked, contrast passes in each
 - [ ] Light and dark page themes checked where the section sits on the page background
 - [ ] Reduced motion checked
 - [ ] Keyboard only: reachable, visible focus, sensible order
